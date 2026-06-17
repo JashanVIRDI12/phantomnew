@@ -1,0 +1,410 @@
+/* ── StaggeredMenu — Phantom Logistics light theme (paper / red / coal) ─────── */
+
+.staggered-menu-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  z-index: 40;
+  pointer-events: none;
+  overflow: hidden; /* clip panel/prelayer slide animations at wrapper boundary */
+}
+
+.staggered-menu-wrapper.fixed-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 40;
+  overflow: hidden;
+}
+
+/* ── Header bar (logo left, toggle right) ───────────────────────────────────── */
+.staggered-menu-header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  /* height matches --nav-h-mobile (68px) accounting for safe-area notch */
+  height: calc(68px + env(safe-area-inset-top, 0px));
+  padding: env(safe-area-inset-top, 0px) 1.5rem 0;
+  /* solid coal — no blur/transparency that bleeds surrounding colors */
+  background: #0b0b0c;
+  border-bottom: 1px solid rgba(246, 244, 239, 0.08);
+  pointer-events: none;
+  z-index: 20;
+  /* own compositing layer: panel slide animations never displace the header */
+  will-change: transform;
+  transform: translateZ(0);
+  transition: background 0.25s ease, border-color 0.25s ease;
+}
+
+/* when panel open: flip to paper so header blends seamlessly with the panel */
+.staggered-menu-wrapper[data-open] .staggered-menu-header {
+  background: #f6f4ef;
+  border-bottom-color: rgba(11, 11, 12, 0.1);
+}
+
+.staggered-menu-header > * {
+  pointer-events: auto;
+}
+
+/* ── Logo ────────────────────────────────────────────────────────────────────── */
+.sm-logo {
+  display: flex;
+  align-items: center;
+  user-select: none;
+}
+
+.sm-logo-img {
+  display: block;
+  height: 28px;
+  width: auto;
+  object-fit: contain;
+}
+
+/* ── Toggle button ──────────────────────────────────────────────────────────── */
+.sm-toggle {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: #f6f4ef; /* overridden per-state via GSAP from Nav props */
+  font-weight: 500;
+  font-size: 0.8125rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-family: var(--font-sans, sans-serif);
+  line-height: 1;
+  overflow: visible;
+  /* ensure comfortable touch target */
+  min-height: 44px;
+  min-width: 44px;
+  padding: 0 0.25rem;
+}
+
+.sm-toggle:focus-visible {
+  outline: 2px solid rgba(225, 6, 0, 0.7);
+  outline-offset: 4px;
+  border-radius: 4px;
+}
+
+.sm-toggle-textWrap {
+  position: relative;
+  display: inline-block;
+  height: 1em;
+  overflow: hidden;
+  white-space: nowrap;
+  /* 3.5rem (~56px) comfortably fits both "MENU" and "CLOSE" without shifting */
+  width: 3.5rem;
+  min-width: 3.5rem;
+}
+
+.sm-toggle-textInner {
+  display: flex;
+  flex-direction: column;
+  line-height: 1;
+}
+
+.sm-toggle-line {
+  display: block;
+  height: 1em;
+  line-height: 1;
+}
+
+/* ── Icon (+ that rotates to ×) ─────────────────────────────────────────────── */
+.sm-icon {
+  position: relative;
+  width: 14px;
+  height: 14px;
+  flex: 0 0 14px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  will-change: transform;
+}
+
+.sm-icon-line {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 100%;
+  height: 2px;
+  background: currentColor;
+  border-radius: 2px;
+  transform: translate(-50%, -50%);
+  will-change: transform;
+}
+
+.sm-line {
+  display: none !important;
+}
+
+/* ── Pre-layers (stagger colour sweeps before panel arrives) ────────────────── */
+.sm-prelayers {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: clamp(260px, 38vw, 420px);
+  pointer-events: none;
+  z-index: 5;
+  opacity: 0;
+}
+
+[data-position='left'] .sm-prelayers {
+  right: auto;
+  left: 0;
+}
+
+.sm-prelayer {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100%;
+  width: 100%;
+  transform: translateX(0);
+  opacity: 0;
+}
+
+/* ── Slide-out panel ────────────────────────────────────────────────────────── */
+.staggered-menu-panel {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: clamp(260px, 38vw, 420px);
+  height: 100%;
+  background: #f6f4ef;
+  border-left: 1px solid rgba(11, 11, 12, 0.08);
+  display: flex;
+  flex-direction: column;
+  padding: 5.5em 2em 2.5em 2em;
+  overflow-y: auto;
+  z-index: 10;
+  pointer-events: auto;
+  opacity: 0;
+}
+
+[data-position='left'] .staggered-menu-panel {
+  right: auto;
+  left: 0;
+  border-left: none;
+  border-right: 1px solid rgba(11, 11, 12, 0.08);
+}
+
+/* ── Panel inner layout ─────────────────────────────────────────────────────── */
+.sm-panel-inner {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+/* ── Nav list ───────────────────────────────────────────────────────────────── */
+.sm-panel-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.sm-panel-itemWrap {
+  position: relative;
+  overflow: hidden;
+  line-height: 1;
+}
+
+.sm-panel-item {
+  position: relative;
+  color: #0b0b0c;
+  font-weight: 700;
+  font-size: clamp(2.5rem, 8vw, 3.5rem);
+  cursor: pointer;
+  line-height: 1;
+  letter-spacing: -2px;
+  text-transform: uppercase;
+  font-family: var(--font-display, sans-serif);
+  transition: color 0.25s ease;
+  display: inline-block;
+  text-decoration: none;
+  padding-right: 1.4em;
+}
+
+.sm-panel-item:hover {
+  color: var(--sm-accent, #e10600);
+}
+
+.sm-panel-itemLabel {
+  display: inline-block;
+  will-change: transform;
+  transform-origin: 50% 100%;
+}
+
+/* ── Item numbering (counter via CSS + GSAP opacity var) ────────────────────── */
+.sm-panel-list[data-numbering] {
+  counter-reset: smItem;
+}
+
+.sm-panel-list[data-numbering] .sm-panel-item::after {
+  counter-increment: smItem;
+  content: counter(smItem, decimal-leading-zero);
+  position: absolute;
+  top: 0.1em;
+  right: 2.8em;
+  font-size: 14px;
+  font-weight: 400;
+  font-family: var(--font-sans, sans-serif);
+  color: var(--sm-accent, #e10600);
+  letter-spacing: 0;
+  pointer-events: none;
+  user-select: none;
+  opacity: var(--sm-num-opacity, 0);
+}
+
+/* ── Social section ─────────────────────────────────────────────────────────── */
+.sm-socials {
+  margin-top: auto;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(11, 11, 12, 0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.sm-socials-title {
+  display: none;
+}
+
+.sm-socials-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.sm-socials-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #121214;
+  text-decoration: none;
+  padding: 4px;
+  transition: color 0.3s ease, opacity 0.3s ease, transform 0.25s ease;
+}
+
+.sm-socials-link:hover {
+  color: var(--sm-accent, #e10600);
+  transform: translateY(-2px);
+}
+
+.sm-socials-link:focus-visible {
+  outline: 2px solid var(--sm-accent, #e10600);
+  outline-offset: 4px;
+  border-radius: 4px;
+}
+
+.sm-socials-list:hover .sm-socials-link:not(:hover) {
+  opacity: 0.35;
+}
+
+.sm-socials-list:focus-within .sm-socials-link:not(:focus-visible) {
+  opacity: 0.35;
+}
+
+/* ── Logo text adapts: white over dark page → coal over light panel ─────────── */
+.sm-mobile-logo-text {
+  color: #f6f4ef;
+  transition: color 0.25s ease 0.08s;
+}
+
+.staggered-menu-wrapper[data-open] .sm-mobile-logo-text {
+  color: #0b0b0c;
+}
+
+/* ── Mobile CTA block inside panel ─────────────────────────────────────────── */
+.sm-cta-block {
+  margin-top: auto;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(11,11,12,.1);
+  display: flex;
+  flex-direction: column;
+  gap: .75rem;
+}
+
+.sm-cta-dispatch {
+  display: inline-flex;
+  align-items: center;
+  gap: .6rem;
+  font-family: var(--font-sans, sans-serif);
+  font-size: .7rem;
+  font-weight: 700;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: #0b0b0c;
+  text-decoration: none;
+  padding: .95rem 1.4rem;
+  border-radius: 100px;
+  background: #0b0b0c;
+  color: #f6f4ef;
+  transition: background .3s ease, transform .2s ease;
+  cursor: pointer;
+  border: none;
+  text-align: center;
+  justify-content: center;
+  clip-path: polygon(
+    0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px)
+  );
+}
+
+.sm-cta-dispatch:active {
+  transform: scale(0.97);
+}
+
+.sm-cta-dispatch:hover {
+  background: var(--sm-accent, #e10600);
+}
+
+/* ── Mobile: full-width panel & pre-layers ──────────────────────────────────── */
+@media (max-width: 767px) {
+  .staggered-menu-panel {
+    width: 100%;
+    left: 0;
+    right: 0;
+    border-left: none;
+    border-right: none;
+    /* top padding clears the fixed header height (68px) + safe-area + breathing room */
+    padding: calc(68px + env(safe-area-inset-top, 0px) + 1.5rem) 1.75em calc(2.5em + env(safe-area-inset-bottom, 0px));
+  }
+
+  .sm-prelayers {
+    width: 100%;
+    left: 0;
+    right: 0;
+  }
+
+  .sm-panel-item {
+    font-size: clamp(2.8rem, 14vw, 4rem);
+    letter-spacing: -1px;
+  }
+
+  .sm-cta-block {
+    display: flex; /* show on mobile */
+  }
+}
+
+/* hide CTA block on desktop widths (where the slide panel is narrow) */
+@media (min-width: 768px) {
+  .sm-cta-block { display: none; }
+}

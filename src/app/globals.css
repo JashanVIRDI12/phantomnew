@@ -1,0 +1,647 @@
+@import "tailwindcss";
+
+@theme inline {
+  /* Signal-red industrial palette — coal black, paper white, one violent red */
+  --color-coal: #0b0b0c;
+  --color-ink: #121214;
+  --color-smoke: #1a1a1d;
+  --color-paper: #f6f4ef;
+  --color-silver: #a3a19c;
+  --color-steel: #565550;
+  --color-red: #e10600;
+  --color-redhot: #ff2e1f;
+
+  /* shadcn-compatible semantic tokens (light) — used by /components/ui */
+  --color-background: #fbfaf7;
+  --color-foreground: #0b0b0c;
+  --color-card: #ffffff;
+  --color-muted: #ece8df;
+  --color-muted-foreground: #6b6a64;
+  --color-secondary: #f1ede5;
+  --color-border: rgba(11, 11, 12, 0.1);
+  --color-ring: #e10600;
+
+  --font-display: var(--font-display);
+  --font-sans: var(--font-sans);
+  --font-mono: var(--font-mono);
+}
+
+:root {
+  --nav-h: 76px;
+  --nav-h-mobile: 68px;
+  --glass-bg: rgba(11, 11, 12, 0.45);
+  --glass-border: rgba(246, 244, 239, 0.12);
+  --glass-bright: rgba(246, 244, 239, 0.06);
+  --glass-light: rgba(255, 255, 255, 0.6);
+  --glass-light-border: rgba(11, 11, 12, 0.1);
+  /* Inline SVG noise texture — used as a frosted grain overlay on glass surfaces */
+  --glass-noise: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E");
+  /* safe area insets for notched devices */
+  --sai-top: env(safe-area-inset-top, 0px);
+  --sai-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+html {
+  scroll-behavior: smooth;
+  background: var(--color-coal);
+  /* prevent pull-to-refresh hijack on section-pinned pages */
+  overscroll-behavior-y: contain;
+}
+
+body {
+  background: var(--color-coal);
+  color: var(--color-paper);
+  font-family: var(--font-sans);
+  overflow-x: clip;
+  -webkit-font-smoothing: antialiased;
+  /* prevent iOS font size inflation on rotate */
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+/* ── Remove 300ms tap delay on all interactive elements ─────────── */
+a, button, label, select, input, textarea,
+[role="button"], [type="button"], [type="submit"], [type="reset"] {
+  touch-action: manipulation;
+}
+
+/* ── Remove iOS highlight flash on tap ──────────────────────────── */
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+::selection {
+  background: var(--color-red);
+  color: var(--color-paper);
+}
+
+/* ---------- film grain over everything ---------- */
+.grain::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 80;
+  pointer-events: none;
+  opacity: 0.06;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 240px 240px;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   REALISTIC GLASS SYSTEM
+   
+   Real frosted glass has:
+   1. A blurred view of what's behind it (backdrop-filter)
+   2. A subtle noise/frost texture on the surface
+   3. Light refraction along edges (bright top edge, dark bottom)
+   4. Slight colour tinting from the glass material itself
+   5. Multiple shadow layers for depth — contact shadow + ambient
+   6. The border is barely visible — like polished glass edges catching light
+   ═══════════════════════════════════════════════════════════════════════════ */
+@layer components {
+
+/* ── Base glass — dark frosted panels ─────────────────────────────────────── */
+.glass {
+  position: relative;
+  background:
+    linear-gradient(135deg, rgba(246,244,239,0.06) 0%, rgba(246,244,239,0.01) 100%),
+    var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  backdrop-filter: blur(24px) saturate(1.4) brightness(0.95);
+  -webkit-backdrop-filter: blur(24px) saturate(1.4) brightness(0.95);
+  box-shadow:
+    /* inner top highlight — simulates light refraction on glass lip */
+    inset 0 1px 0 0 rgba(246, 244, 239, 0.09),
+    /* inner bottom shadow — grounds the panel */
+    inset 0 -1px 0 0 rgba(0, 0, 0, 0.15),
+    /* ambient float shadow */
+    0 8px 32px rgba(0, 0, 0, 0.25),
+    /* subtle outer glow for depth separation */
+    0 0 0 0.5px rgba(246, 244, 239, 0.05);
+}
+
+/* Noise frost texture overlay — applied via ::after pseudo */
+.glass::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background-image: var(--glass-noise);
+  opacity: 0.03;
+  pointer-events: none;
+  mix-blend-mode: overlay;
+  z-index: 1;
+}
+
+/* ── Glass bright — lighter variant for floating badges ───────────────────── */
+.glass-bright {
+  position: relative;
+  background:
+    linear-gradient(135deg, rgba(246,244,239,0.08) 0%, rgba(246,244,239,0.02) 100%),
+    var(--glass-bright);
+  border: 1px solid var(--glass-border);
+  backdrop-filter: blur(20px) saturate(1.3);
+  -webkit-backdrop-filter: blur(20px) saturate(1.3);
+  box-shadow:
+    inset 0 1px 0 0 rgba(246, 244, 239, 0.08),
+    0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.glass-bright::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background-image: var(--glass-noise);
+  opacity: 0.025;
+  pointer-events: none;
+  mix-blend-mode: overlay;
+  z-index: 1;
+}
+
+/* ── Glass light — for light-background sections ──────────────────────────── */
+.glass-light {
+  position: relative;
+  background:
+    linear-gradient(135deg, rgba(255,255,255,0.7) 0%, rgba(255,255,255,0.5) 100%);
+  border: 1px solid var(--glass-light-border);
+  backdrop-filter: blur(20px) saturate(1.1);
+  -webkit-backdrop-filter: blur(20px) saturate(1.1);
+  box-shadow:
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.5),
+    0 8px 32px rgba(0, 0, 0, 0.08);
+}
+
+/* ── Hero glass — the centrepiece panel. Extra depth, extra drama. ────────── */
+.glass-hero {
+  position: relative;
+  background:
+    /* Subtle diagonal gradient gives the glass a directional light feel */
+    linear-gradient(145deg, rgba(246,244,239,0.07) 0%, rgba(246,244,239,0.01) 50%, rgba(225,6,0,0.02) 100%),
+    rgba(11, 11, 12, 0.40);
+  border: 1px solid rgba(246, 244, 239, 0.10);
+  backdrop-filter: blur(40px) saturate(1.8) brightness(0.92);
+  -webkit-backdrop-filter: blur(40px) saturate(1.8) brightness(0.92);
+  box-shadow:
+    /* inner top highlight — bright, like light hitting the edge of thick glass */
+    inset 0 1px 0 0 rgba(246, 244, 239, 0.12),
+    /* inner bottom — deep shadow under the glass slab */
+    inset 0 -1px 0 0 rgba(0, 0, 0, 0.25),
+    /* floating shadow — large, soft, gives the panel serious depth */
+    0 40px 100px -20px rgba(0, 0, 0, 0.6),
+    /* contact shadow — tight, right under the panel */
+    0 8px 24px -4px rgba(0, 0, 0, 0.3),
+    /* outer rim — barely visible, catches light like polished glass edge */
+    0 0 0 0.5px rgba(246, 244, 239, 0.06);
+}
+
+/* Frost noise texture */
+.glass-hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background-image: var(--glass-noise);
+  opacity: 0.035;
+  pointer-events: none;
+  mix-blend-mode: overlay;
+  z-index: 1;
+}
+
+/* ── Navbar glass — thinner, tighter blur for performance ─────────────────── */
+.glass-nav {
+  position: relative;
+  background:
+    linear-gradient(180deg, rgba(11,11,12,0.55) 0%, rgba(11,11,12,0.40) 100%);
+  border-bottom: 1px solid rgba(246, 244, 239, 0.08);
+  backdrop-filter: blur(20px) saturate(1.3) brightness(0.9);
+  -webkit-backdrop-filter: blur(20px) saturate(1.3) brightness(0.9);
+  box-shadow:
+    inset 0 -1px 0 0 rgba(0, 0, 0, 0.2),
+    0 4px 30px rgba(0, 0, 0, 0.15);
+}
+
+.glass-nav::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: var(--glass-noise);
+  opacity: 0.02;
+  pointer-events: none;
+  mix-blend-mode: overlay;
+  z-index: 1;
+}
+
+/* ---------- type helpers ---------- */
+.display {
+  font-family: var(--font-display);
+  font-weight: 800;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+}
+
+.kicker {
+  display: none;
+}
+
+/* outline-type: formerly used for hollow stroke text — now retired */
+.outline-type {
+  color: rgba(246, 244, 239, 0.06);
+}
+
+/* section heading flanked by hairlines, like road markings */
+.rule-heading {
+  display: flex;
+  align-items: center;
+  gap: clamp(1rem, 3vw, 2.5rem);
+}
+
+.rule-heading::before,
+.rule-heading::after {
+  content: "";
+  height: 1px;
+  flex: 1;
+  background: linear-gradient(90deg, transparent, currentColor);
+  opacity: 0.3;
+}
+
+.rule-heading::after {
+  background: linear-gradient(90deg, currentColor, transparent);
+}
+
+/* ---------- chamfered industrial buttons ---------- */
+.btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  clip-path: polygon(
+    0 0,
+    calc(100% - 14px) 0,
+    100% 14px,
+    100% 100%,
+    14px 100%,
+    0 calc(100% - 14px)
+  );
+  font-family: var(--font-sans);
+  font-size: 0.8125rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  overflow: hidden;
+  transition: color 0.35s cubic-bezier(0.65, 0, 0.35, 1);
+  cursor: pointer;
+}
+
+.btn > * {
+  position: relative;
+  z-index: 1;
+}
+
+.btn::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--color-red);
+  transform: translateY(101%);
+  transition: transform 0.35s cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+.btn:hover::before,
+.btn:focus-visible::before {
+  transform: translateY(0);
+}
+
+.btn:hover,
+.btn:focus-visible {
+  color: var(--color-paper);
+}
+
+.btn-solid {
+  background: var(--color-paper);
+  color: var(--color-coal);
+}
+
+.btn-red {
+  background: var(--color-red);
+  color: var(--color-paper);
+}
+
+.btn-red::before {
+  background: var(--color-paper);
+}
+
+.btn-red:hover,
+.btn-red:focus-visible {
+  color: var(--color-coal);
+}
+
+.btn-ghost {
+  position: relative;
+  border: 1px solid var(--glass-border);
+  color: var(--color-paper);
+  background:
+    linear-gradient(135deg, rgba(246,244,239,0.04) 0%, rgba(246,244,239,0.01) 100%),
+    rgba(11, 11, 12, 0.30);
+  backdrop-filter: blur(12px) saturate(1.2);
+  -webkit-backdrop-filter: blur(12px) saturate(1.2);
+}
+
+/* ---------- underline form fields ---------- */
+.field {
+  width: 100%;
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid rgba(246, 244, 239, 0.3);
+  padding: 0.85rem 0 0.6rem;
+  font-family: var(--font-sans);
+  font-size: 0.95rem;
+  color: var(--color-paper);
+  outline: none;
+  border-radius: 0;
+  transition: border-color 0.3s ease;
+}
+
+.field::placeholder {
+  color: var(--color-silver);
+}
+
+.field:focus {
+  border-color: var(--color-red);
+}
+
+/* ---------- ticker marquee ---------- */
+.ticker-track {
+  display: flex;
+  width: max-content;
+  animation: ticker 26s linear infinite;
+}
+
+@keyframes ticker {
+  to { transform: translateX(-50%); }
+}
+
+/* ---------- nav link hover ---------- */
+.nav-link {
+  position: relative;
+  transition: color 0.25s ease;
+}
+
+.nav-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  height: 2px;
+  width: 100%;
+  background: var(--color-red);
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.3s cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+.nav-link:hover::after,
+.nav-link:focus-visible::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+/* ---------- services rows (light section) ---------- */
+.service-row {
+  border-top: 1px solid rgba(11, 11, 12, 0.14);
+  transition: background-color 0.4s ease;
+}
+
+.service-row:last-child {
+  border-bottom: 1px solid rgba(11, 11, 12, 0.14);
+}
+
+@media (hover: hover) {
+  .service-row:hover {
+    background: rgba(11, 11, 12, 0.035);
+  }
+}
+}
+
+/* hide pre-animation flash only when JS + motion are available */
+@media (prefers-reduced-motion: no-preference) {
+  html.motion-ok [data-reveal] {
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ticker-track {
+    animation: none;
+  }
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+/* ---------- gradient blob drift (CSS — zero JS cost) ---------- */
+@keyframes blob-a {
+  0%,100% { transform: translate(0,0) scale(1); }
+  33%      { transform: translate(100px,80px) scale(1.1); }
+  66%      { transform: translate(-50px,40px) scale(0.93); }
+}
+@keyframes blob-b {
+  0%,100% { transform: translate(0,0) scale(1); }
+  33%      { transform: translate(-80px,-60px) scale(0.9); }
+  66%      { transform: translate(60px,-30px) scale(1.06); }
+}
+.blob-drift-a {
+  animation: blob-a 22s ease-in-out infinite;
+}
+.blob-drift-b {
+  animation: blob-b 28s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .blob-drift-a, .blob-drift-b { animation: none; }
+}
+
+/* ══════════════════════════════════════════════════════════════
+   MOBILE — PRODUCTION ENHANCEMENTS
+   Tactile feedback, safe areas, touch-first layout fixes
+   ══════════════════════════════════════════════════════════════ */
+
+/* Tap feedback for all pressable elements on touch devices */
+@media (hover: none) and (pointer: coarse) {
+  .btn:active                { transform: scale(0.96); opacity: 0.88; }
+  .h-btn:active              { transform: translateY(2px) scale(0.98); }
+  .ab-btn:active             { transform: translateY(2px); opacity: 0.88; }
+  .navx-cta:active           { transform: scale(0.96); }
+  .service-row:active        { background: rgba(11,11,12,0.055); }
+  [data-fleet-card]:active   { transform: scale(0.985); }
+  .ab-loc-card:active        { transform: scale(0.985); border-color: rgba(225,6,0,0.3); }
+  .sm-panel-item:active      { color: var(--sm-accent, #e10600); }
+  .field:focus               { font-size: 16px; /* prevent iOS zoom */ }
+}
+
+/* prevent iOS from zooming into inputs smaller than 16px */
+input, textarea, select { font-size: max(16px, 1em); }
+@media (min-width: 768px) {
+  input, textarea, select { font-size: inherit; }
+}
+
+/* Safe-area padding for footer (notched phones, home-indicator) */
+.safe-bottom {
+  padding-bottom: calc(0px + env(safe-area-inset-bottom, 0px));
+}
+
+/* Mobile: hide horizontal scrollbar on snap-scroll tracks */
+.snap-x::-webkit-scrollbar { display: none; }
+.snap-x { scrollbar-width: none; }
+
+/* Mobile hero: prevent accidental horizontal overflow flash */
+@media (max-width: 767px) {
+  .h-section { overflow-x: hidden; }
+}
+
+/* ── Horizontal-scroll section indicators (mobile) ──────────── */
+.scroll-hint {
+  display: none;
+}
+@media (max-width: 1023px) {
+  .scroll-hint {
+    display: flex;
+    align-items: center;
+    gap: .4rem;
+    font-family: var(--font-mono, monospace);
+    font-size: .75rem;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: var(--color-silver);
+    animation: sh-fade 2.5s ease-in-out infinite;
+  }
+  .scroll-hint svg { animation: sh-slide 2.5s ease-in-out infinite; }
+}
+@keyframes sh-fade { 0%,100%{opacity:.6;} 50%{opacity:1;} }
+@keyframes sh-slide { 0%,100%{transform:translateX(0);} 50%{transform:translateX(5px);} }
+
+/* ── Better readability for small screens ────────────────────── */
+@media (max-width: 380px) {
+  .display { letter-spacing: 0; }
+}
+
+
+/* ── Ticker runs full width on all screen sizes ──────────────── */
+.ticker-track { white-space: nowrap; }
+
+/* ── Service rows: ensure tap target height on mobile ────────── */
+@media (max-width: 639px) {
+  .service-row a { min-height: 72px; }
+}
+
+/* ── FAQ button row: min touch height ────────────────────────── */
+.faq-trigger { min-height: 56px; }
+
+/* ── Contact / detail grids: safe bottom on fixed CTAs ───────── */
+@media (max-width: 767px) {
+  .contact-sticky-cta {
+    bottom: max(1rem, env(safe-area-inset-bottom, 1rem));
+  }
+}
+
+/* thin scrollbar accent (desktop only — mobile scrollbars are hidden) */
+@media (hover: hover) {
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: var(--color-coal);
+  }
+  ::-webkit-scrollbar-thumb {
+    background: var(--color-smoke);
+    border-radius: 8px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--color-red);
+  }
+}
+
+
+/* ---------- TestimonialReel (custom native implementation) ---------- */
+@keyframes scroll-reel-char-rise {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scroll-reel-exit {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-12px);
+  }
+}
+
+.scroll-reel-char {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(0.6em);
+  animation: scroll-reel-char-rise 0.55s cubic-bezier(0.65, 0, 0.35, 1) forwards;
+}
+
+.scroll-reel-exit {
+  animation: scroll-reel-exit 0.24s cubic-bezier(0.65, 0, 0.35, 1) forwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scroll-reel-char {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+  .scroll-reel-exit {
+    animation: none;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   GRADIENT TEXT — animated brand gradient (warm Phantom palette, not neon)
+   Used by /components/ui/gradient-text.tsx
+   ═══════════════════════════════════════════════════════════════════════════ */
+:root {
+  --color-1: 2 100% 45%;    /* brand red  (#e10600-ish) */
+  --color-2: 22 100% 50%;   /* warm orange */
+  --color-3: 350 95% 42%;   /* deep crimson */
+  --color-4: 34 100% 52%;   /* amber highlight */
+  --color-5: 8 100% 48%;    /* red-hot */
+}
+
+@keyframes gradient-border {
+  0%, 100% { border-radius: 37% 29% 27% 27% / 28% 25% 41% 37%; }
+  25%      { border-radius: 47% 29% 39% 49% / 61% 19% 66% 26%; }
+  50%      { border-radius: 57% 23% 47% 72% / 63% 17% 66% 33%; }
+  75%      { border-radius: 28% 49% 29% 100% / 93% 20% 64% 25%; }
+}
+@keyframes gradient-1 {
+  0%, 100% { top: 0; right: 0; }
+  50%      { top: 50%; right: 25%; }
+  75%      { top: 25%; right: 50%; }
+}
+@keyframes gradient-2 {
+  0%, 100% { top: 0; left: 0; }
+  60%      { top: 75%; left: 25%; }
+  85%      { top: 50%; left: 50%; }
+}
+@keyframes gradient-3 {
+  0%, 100% { bottom: 0; left: 0; }
+  40%      { bottom: 50%; left: 25%; }
+  65%      { bottom: 25%; left: 50%; }
+}
+@keyframes gradient-4 {
+  0%, 100% { bottom: 0; right: 0; }
+  50%      { bottom: 25%; right: 40%; }
+  90%      { bottom: 50%; right: 25%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [class*="gradient-border"] { animation: none !important; }
+}
