@@ -230,11 +230,6 @@ export default function AboutPage() {
 
         {/* ── HERO ─────────────────────────────────────────────── */}
         <header className="ab-hero">
-          <p className="ab-kicker ab-kicker-hero">
-            <span className="ab-kicker-dot" aria-hidden="true" />
-            About Phantom <em>/ since 2017</em>
-          </p>
-
           <h1 className="ab-hero-head ab-display" aria-label="Built for the long haul.">
             {HERO_LINES.map((line, i) => (
               <span className="ab-line" key={i}>
@@ -279,10 +274,6 @@ export default function AboutPage() {
         <section className="ab-timeline" aria-label="Company milestones">
           <div className="ab-tl-head">
             <div>
-              <p className="ab-kicker">
-                <span className="ab-kicker-dot" aria-hidden="true" />
-                Milestones
-              </p>
               <h2 className="ab-tl-title ab-display">Built mile by <span className="accent">mile</span></h2>
             </div>
             <span className="ab-tl-hint">
@@ -359,9 +350,6 @@ export default function AboutPage() {
 
         {/* ── FLEET MARQUEE ────────────────────────────────────── */}
         <section className="ab-marquee" aria-label="What we run">
-          <div className="ab-marquee-label">
-            <p className="ab-kicker" style={{ justifyContent: "center" }}>The fleet at work</p>
-          </div>
           <div className="ab-marquee-row">
             <div className="ab-marquee-track">
               {[...FLEET, ...FLEET].map((f, i) => (
@@ -378,7 +366,6 @@ export default function AboutPage() {
         {/* ── LOCATIONS ────────────────────────────────────────── */}
         <section className="ab-loc" aria-label="Where we operate">
           <div className="ab-loc-head">
-            <p className="ab-kicker"><span className="ab-kicker-dot" aria-hidden="true" />Where we operate</p>
             <h2 className="ab-display">Coast to coast, <span className="accent">always on</span></h2>
           </div>
           <div className="ab-loc-grid">
@@ -403,7 +390,6 @@ export default function AboutPage() {
             <div className="v" />
           </div>
           <div className="ab-cta-inner">
-            <p className="ab-kicker" style={{ color: "var(--silver)" }}>Ready to move?</p>
             <h2>Join 3,000+ shippers who <span className="accent">trust Phantom.</span></h2>
             <p>Tell us your lanes and freight type. A firm rate comes back fast — and every mile after runs on company iron.</p>
             <div className="ab-cta-row">

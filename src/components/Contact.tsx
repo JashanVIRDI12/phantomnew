@@ -100,9 +100,6 @@ export default function Contact() {
           data-reveal
           className="glass w-full rounded-2xl p-7 md:p-10"
         >
-          <p className="kicker">
-            Contact <span className="text-red">/ 15-min callback</span>
-          </p>
           <h2
             className="display mt-3 leading-[0.95] text-paper"
             style={{ fontSize: "clamp(1.9rem, 4.5vw, 2.8rem)" }}

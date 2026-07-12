@@ -205,7 +205,6 @@ export default function WhyPage() {
             <img src={IMG.aerial} alt="" />
           </div>
           <div className="why-hero-inner why-wrap">
-            <span className="why-eyebrow"><span className="dot" />Why Phantom <span className="accent">/ the full story</span></span>
             <h1 className="why-hero-title">
               <span className="line"><span className="line-in" data-hero-line>We own</span></span>
               <span className="line"><span className="line-in" data-hero-line>every</span></span>
@@ -224,7 +223,6 @@ export default function WhyPage() {
         {/* ══════════ THE PROBLEM ══════════ */}
         <section className="why-problem">
           <div className="why-wrap">
-            <span className="why-eyebrow" data-rise><span className="dot" />Chapter 01 <span className="accent">/ the problem</span></span>
             <p className="why-problem-statement">Most carriers don&apos;t own their trucks.</p>
 
             <div className="why-problem-grid">
@@ -256,7 +254,6 @@ export default function WhyPage() {
         <section className="why-vs why-section--light">
           <div className="why-wrap">
             <div className="why-vs-head">
-              <span className="why-eyebrow" data-rise><span className="dot" />Chapter 02 <span className="accent">/ the comparison</span></span>
               <h2 className="why-section-h" data-rise>Phantom vs. <span className="accent">the broker market</span></h2>
             </div>
 
@@ -280,7 +277,6 @@ export default function WhyPage() {
         {/* ══════════ THE EDGE (6 reasons) ══════════ */}
         <section className="why-edge">
           <div className="why-wrap why-edge-head">
-            <span className="why-eyebrow" data-rise><span className="dot" />Chapter 03 <span className="accent">/ the edge</span></span>
             <h2 className="why-section-h" data-rise>Six reasons we <span className="accent">run better.</span></h2>
             <p className="why-edge-dek" data-rise>
               Own the truck, own the outcome. Here&apos;s what running 100% company iron actually
@@ -314,7 +310,6 @@ export default function WhyPage() {
             <img src={IMG.sunset} alt="" />
           </div>
           <div className="why-stats-inner why-wrap">
-            <span className="why-eyebrow" data-rise><span className="dot" />Chapter 04 <span className="accent">/ the scale</span></span>
             <h2 className="why-section-h" data-rise>Numbers that <span className="accent">prove it.</span></h2>
             <div className="why-stats-grid">
               {STATS.map((s) => (
@@ -334,7 +329,6 @@ export default function WhyPage() {
         <section className="why-certs why-section--light">
           <div className="why-wrap">
             <div className="why-certs-head">
-              <span className="why-eyebrow" data-rise><span className="dot" />Chapter 05 <span className="accent">/ the proof</span></span>
               <h2 className="why-section-h" data-rise>Approved. Certified. <span className="accent">Trusted.</span></h2>
             </div>
             <div className="why-certs-grid">
@@ -357,7 +351,6 @@ export default function WhyPage() {
             <img src={IMG.dock} alt="" />
           </div>
           <div className="why-cta-inner why-wrap">
-            <span className="why-eyebrow"><span className="dot" />Ship with confidence</span>
             <h2>Ship it and <span className="accent">forget it.</span></h2>
             <p>One carrier. One invoice. North America wide. That&apos;s the Phantom promise — every time, every lane.</p>
             <Link href="/contact" className="btn btn-red px-12 py-5">GET A FREE QUOTE</Link>

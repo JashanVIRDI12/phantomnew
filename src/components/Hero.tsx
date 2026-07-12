@@ -79,11 +79,6 @@ export default function Hero() {
 
           {/* LEFT — copy */}
           <div className="h-copy">
-            <span className="h-kicker">
-              <span className="h-kicker-dot" aria-hidden="true" />
-              Asset-Based Carrier · Est. 2017
-            </span>
-
             <h1 className="h-title">
               <span className="h-title-line"><span className="h-title-in">Freight that</span></span>
               <span className="h-title-line"><span className="h-title-in">moves like it was</span></span>

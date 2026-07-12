@@ -28,7 +28,6 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
     return (
       <div className="min-h-[70vh] flex items-center justify-center bg-coal text-paper px-6">
         <div className="text-center">
-          <p className="kicker text-red mb-3">SERVICE NOT FOUND</p>
           <h1 className="display text-6xl mb-6">That lane doesn’t exist yet.</h1>
           <Link href="/services" className="btn btn-red px-10 py-4 inline-block">
             BACK TO ALL SERVICES

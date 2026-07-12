@@ -164,9 +164,6 @@ export default function Run() {
       className="relative mx-auto max-w-[1380px] scroll-mt-24 overflow-hidden px-5 py-[clamp(4rem,10vw,8rem)] md:px-10"
     >
       <div data-run-head data-reveal>
-        <p className="kicker text-center">
-          The run <span className="text-red">/ 48 hours, coast to coast</span>
-        </p>
         <h2
           className="rule-heading display mt-3 text-center text-paper"
           style={{ fontSize: "clamp(2.4rem, 6vw, 4.5rem)" }}

@@ -426,12 +426,6 @@ export default function ServicesPage() {
           </motion.span>
 
           <div data-hero-content className="relative z-10 mx-auto w-full max-w-[1380px] px-5 pt-[calc(68px+clamp(3rem,6vh,5rem))] pb-[clamp(5rem,12vh,8rem)] md:pt-[calc(76px+clamp(3rem,6vh,5rem))] md:px-10">
-            <p data-hero-rise className="kicker mb-5 flex flex-wrap items-center gap-3">
-              <span>What we run</span>
-              <span className="h-px w-8 shrink-0 bg-red" aria-hidden="true" />
-              <span className="text-red">Defence Canada · Transport Canada approved</span>
-            </p>
-
             <h1
               id="services-hero-heading"
               data-hero-headline
@@ -511,7 +505,6 @@ export default function ServicesPage() {
           <div className="mx-auto max-w-[1380px] px-5 md:px-10">
             {/* Centered Heading */}
             <div className="mb-12 text-center" data-services-heading>
-              <p className="kicker text-steel">Our Portfolio</p>
               <h2
                 id="services-grid-heading"
                 className="display mt-3 leading-none text-coal font-bold"
@@ -602,7 +595,6 @@ export default function ServicesPage() {
         >
           <div className="mx-auto max-w-[1380px] px-5 md:px-10">
             <div className="mb-[clamp(3rem,6vw,5rem)] max-w-[40ch]">
-              <p className="kicker text-silver">How it works</p>
               <h2
                 id="process-heading"
                 className="display mt-3 leading-[0.9] text-paper"
@@ -703,10 +695,6 @@ export default function ServicesPage() {
             {/* Asymmetric Header */}
             <div className="mb-16 flex flex-col md:flex-row md:items-end justify-between gap-6">
               <div className="max-w-[50ch]">
-                <p className="kicker flex items-center gap-2 text-steel">
-                  <span className="h-1.5 w-1.5 rounded-full bg-red animate-pulse" aria-hidden="true" />
-                  On the record
-                </p>
                 <h2
                   id="proof-heading"
                   className="display mt-4 leading-none text-coal font-bold"
@@ -737,7 +725,6 @@ export default function ServicesPage() {
 
           {/* infinite wordmark marquee (reuses .ticker-track; paused under reduced-motion) */}
           <div className="mt-[clamp(3rem,6vw,4.5rem)]">
-            <p className="kicker mb-7 text-center text-steel/70">Freight trusted by operators nationwide</p>
             <div className="relative overflow-hidden [mask-image:linear-gradient(90deg,transparent,#000_12%,#000_88%,transparent)]">
               <ul className="ticker-track items-center gap-x-14" aria-hidden="true">
                 {[...WORDMARKS, ...WORDMARKS].map((w, i) => (
@@ -772,9 +759,6 @@ export default function ServicesPage() {
           </div>
 
           <div className="relative z-10 flex flex-col items-center gap-7 px-5 text-center md:px-10">
-            <p data-cta-rise className="kicker">
-              LET’S GET MOVING
-            </p>
             <h2
               id="cta-heading"
               data-cta-rise

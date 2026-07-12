@@ -202,7 +202,6 @@ export default function ServiceDetailClient({ service }: { service: Service }) {
         <section className="border-t border-white/10 py-20 md:py-28" data-benefits>
           <div className="mx-auto max-w-[1180px] px-6">
             <div className="max-w-[38ch]">
-              <p className="kicker text-red">WHY THIS SERVICE HITS DIFFERENT</p>
               <h2 className="display mt-4 text-[clamp(2.6rem,5.6vw,4.6rem)] leading-none">
                 Built for operators who can’t afford excuses.
               </h2>
@@ -247,7 +246,6 @@ export default function ServiceDetailClient({ service }: { service: Service }) {
           <div className="mx-auto max-w-[1180px] px-6">
             <div className="mb-8 flex items-end justify-between">
               <div>
-                <p className="kicker">PRECISION TRACKING</p>
                 <h3 className="display text-[clamp(2.8rem,5.4vw,4.2rem)]">See the move in real time</h3>
               </div>
               <Link href="/contact" className="hidden md:block text-xs tracking-[0.25em] hover:text-red">
@@ -263,7 +261,6 @@ export default function ServiceDetailClient({ service }: { service: Service }) {
         <section className="py-20 md:py-28" data-process-track>
           <div className="mx-auto max-w-[1180px] px-6">
             <div className="max-w-[42ch] mb-12">
-              <p className="kicker text-red">EXECUTION</p>
               <h2 className="display text-[clamp(2.5rem,5.8vw,4.1rem)] leading-none mt-3">
                 How Phantom runs {service.title.toLowerCase()}
               </h2>
@@ -313,7 +310,6 @@ export default function ServiceDetailClient({ service }: { service: Service }) {
 
           <div className="relative z-10 mx-auto max-w-[1080px] px-6 py-24">
             <div className="max-w-3xl">
-              <p className="kicker text-red mb-4">THE PHANTOM STANDARD</p>
               <h2 className="display text-[clamp(3rem,6.2vw,5.6rem)] leading-[0.9] mb-8">
                 We don’t just move freight.<br />We own the outcome.
               </h2>
@@ -415,7 +411,6 @@ function RouteVisualizer({ service }: { service: Service }) {
     <div className="relative rounded-3xl border border-white/10 bg-coal/60 p-6 md:p-10 overflow-hidden">
       <div className="flex items-center justify-between mb-6">
         <div>
-          <p className="kicker text-red">LIVE ROUTE</p>
           <h4 className="display text-3xl text-paper mt-1">See the move in real time</h4>
         </div>
         <button

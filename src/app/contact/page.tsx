@@ -255,11 +255,6 @@ export default function ContactPage() {
 
               {/* ── lead column ── */}
               <div className="ct-lead">
-                <p data-c-eyebrow className="ct-eyebrow">
-                  <span className="dot" aria-hidden="true" />
-                  Contact dispatch <span className="accent">/ live now</span>
-                </p>
-
                 <h1 className="ct-headline" aria-label="Open a line.">
                   <span className="line"><span className="line-in" data-c-line>Open</span></span>
                   <span className="line"><span className="line-in" data-c-line>a <span className="accent">line.</span></span></span>
@@ -418,7 +413,6 @@ export default function ContactPage() {
           <div className="ct-wrap">
             <div className="ct-term-head">
               <div>
-                <p className="ct-eyebrow"><span className="dot" aria-hidden="true" />Terminals</p>
                 <h2>Two yards, <span className="accent">one network.</span></h2>
               </div>
               <p className="note">Walk-ins welcome at both terminals. Same main line for Dispatch (102), Customs (105), and Safety (106).</p>
@@ -460,7 +454,6 @@ export default function ContactPage() {
           <div className="ct-wrap">
             <div className="ct-faq-grid">
               <div className="ct-faq-head">
-                <p className="ct-eyebrow"><span className="dot" aria-hidden="true" />Before you call</p>
                 <h2>Questions, <span className="accent">answered.</span></h2>
                 <p>Can&apos;t find it here? Call (902) 403-0112 — Dispatch ext 102, Customs ext 105, Safety ext 106.</p>
                 <a className="cta" href={`tel:${DISPATCH_TEL}`}>
@@ -508,7 +501,6 @@ export default function ContactPage() {
             <img src={IMG.sunset} alt="" />
           </div>
           <div className="ct-cta-inner">
-            <p data-c-cta-rise className="ct-eyebrow"><span className="dot" aria-hidden="true" />Prefer to talk?</p>
             <h2 data-c-cta-rise>Dispatch is <span className="accent">ready.</span></h2>
             <p data-c-cta-rise>
               Real humans on the desk Mon–Fri 8AM–6PM and Sat 10AM–4PM. One call and your freight

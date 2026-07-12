@@ -138,9 +138,6 @@ export default function Fleet() {
           data-reveal
           className="mx-auto w-full max-w-[1380px] px-5 md:px-10"
         >
-          <p className="kicker">
-            The fleet <span className="text-red">/ drag of the road</span>
-          </p>
           <div className="mt-3 flex flex-wrap items-end justify-between gap-6">
             <h2
               className="display leading-[0.9] text-paper"

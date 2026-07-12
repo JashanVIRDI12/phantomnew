@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
-import { Teko, Manrope, JetBrains_Mono } from "next/font/google";
+import type { CSSProperties } from "react";
+import { Teko, Manrope } from "next/font/google";
 import "./globals.css";
 
 const teko = Teko({
@@ -17,13 +18,8 @@ const manrope = Manrope({
   display: "swap",
 });
 
-/* Technical labels / kickers — a real monospace so the industrial
-   label aesthetic reads as intentional (no system-mono fallback). */
-const jetbrainsMono = JetBrains_Mono({
-  variable: "--font-mono",
-  subsets: ["latin"],
-  display: "swap",
-});
+/* Labels / kickers now share the Manrope sans (see the --font-mono alias on
+   <html> below) — the old monospace read as a wireframe, not a final product. */
 
 const siteUrl = "https://phantomlogisticsinc.com";
 
@@ -140,7 +136,9 @@ export default function RootLayout({
       // before hydration, causing a known but intentional class mismatch.
       suppressHydrationWarning
       data-scroll-behavior="smooth"
-      className={`${teko.variable} ${manrope.variable} ${jetbrainsMono.variable} antialiased`}
+      className={`${teko.variable} ${manrope.variable} antialiased`}
+      // Alias the "mono" label font to the clean sans site-wide.
+      style={{ "--font-mono": "var(--font-sans)" } as CSSProperties}
     >
       <body className="grain">
         <script

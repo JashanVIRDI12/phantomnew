@@ -1,13 +1,12 @@
 import Link from "next/link";
 import BrandLogo from "./BrandLogo";
 
-const OPERATIONS_LINKS = [
-  { label: "Company Bio", href: "/about" },
-  { label: "Fleet Roster", href: "/why" },
-  { label: "Deployments", href: "/why" },
-  { label: "Capabilities", href: "/services" },
-  { label: "FAQ", href: "/why" },
-  { label: "Safety Protocols", href: "/why" },
+const EXPLORE_LINKS = [
+  { label: "Services", href: "/services" },
+  { label: "Why Phantom", href: "/why" },
+  { label: "About Us", href: "/about" },
+  { label: "Contact", href: "/contact" },
+  { label: "Get a Quote", href: "/contact" },
 ];
 
 export default function Footer() {
@@ -29,17 +28,17 @@ export default function Footer() {
           </p>
         </div>
 
-        {/* Column 3: Operations Links */}
+        {/* Column 3: Explore Links */}
         <div>
           <h3 className="display text-[13px] font-bold text-red tracking-[0.15em] uppercase mb-6">
-            OPERATIONS
+            EXPLORE
           </h3>
           <ul className="flex flex-col gap-3.5">
-            {OPERATIONS_LINKS.map((link) => (
+            {EXPLORE_LINKS.map((link) => (
               <li key={link.label}>
                 <Link
                   href={link.href}
-                  className="font-mono text-[13px] uppercase tracking-[0.15em] text-silver hover:text-paper transition-colors duration-200"
+                  className="font-sans text-[13px] uppercase tracking-[0.15em] text-silver hover:text-paper transition-colors duration-200"
                 >
                   {link.label}
                 </Link>
@@ -55,18 +54,18 @@ export default function Footer() {
           </h3>
           <div className="flex flex-col gap-5">
             <div>
-              <p className="font-mono text-[13px] uppercase tracking-[0.15em] text-paper font-bold leading-normal">
+              <p className="font-sans text-[13px] uppercase tracking-[0.15em] text-paper font-bold leading-normal">
                 Truro, NS
               </p>
-              <p className="font-mono text-[12px] uppercase tracking-[0.14em] text-silver mt-1 leading-normal">
+              <p className="font-sans text-[12px] uppercase tracking-[0.14em] text-silver mt-1 leading-normal">
                 415 Willow St · Home Terminal
               </p>
             </div>
             <div>
-              <p className="font-mono text-[13px] uppercase tracking-[0.15em] text-paper font-bold leading-normal">
+              <p className="font-sans text-[13px] uppercase tracking-[0.15em] text-paper font-bold leading-normal">
                 Bolton, ON
               </p>
-              <p className="font-mono text-[12px] uppercase tracking-[0.14em] text-silver mt-1 leading-normal">
+              <p className="font-sans text-[12px] uppercase tracking-[0.14em] text-silver mt-1 leading-normal">
                 365 Healey Rd Unit 19
               </p>
             </div>
@@ -80,32 +79,32 @@ export default function Footer() {
           </h3>
           <div className="flex flex-col gap-4">
             <div>
-              <p className="font-mono text-[12px] uppercase tracking-[0.15em] text-silver leading-normal">
+              <p className="font-sans text-[12px] uppercase tracking-[0.15em] text-silver leading-normal">
                 DISPATCH · EXT 102
               </p>
               <a
                 href="tel:+19024030112"
-                className="font-mono text-[13px] uppercase tracking-[0.2em] text-paper hover:text-red transition-colors duration-200 block mt-1 font-bold"
+                className="font-sans text-[13px] uppercase tracking-[0.2em] text-paper hover:text-red transition-colors duration-200 block mt-1 font-bold"
               >
                 (902) 403-0112
               </a>
             </div>
             <div>
-              <p className="font-mono text-[12px] uppercase tracking-[0.15em] text-silver leading-normal">
+              <p className="font-sans text-[12px] uppercase tracking-[0.15em] text-silver leading-normal">
                 EMAIL
               </p>
               <a
                 href="mailto:info@phantomlogisticsinc.com"
-                className="font-mono text-[12px] lowercase tracking-[0.04em] text-paper hover:text-red transition-colors duration-200 block mt-1 break-all"
+                className="font-sans text-[12px] lowercase tracking-[0.04em] text-paper hover:text-red transition-colors duration-200 block mt-1 break-all"
               >
                 info@phantomlogisticsinc.com
               </a>
             </div>
             <div>
-              <p className="font-mono text-[12px] uppercase tracking-[0.15em] text-silver leading-normal">
+              <p className="font-sans text-[12px] uppercase tracking-[0.15em] text-silver leading-normal">
                 HOURS
               </p>
-              <p className="font-mono text-[11px] uppercase tracking-[0.1em] text-paper mt-1 leading-relaxed">
+              <p className="font-sans text-[11px] uppercase tracking-[0.1em] text-paper mt-1 leading-relaxed">
                 Mon–Fri 8AM–6PM
                 <br />
                 Sat 10AM–4PM · Sun Closed
@@ -118,7 +117,7 @@ export default function Footer() {
 
       {/* Bottom Footer Bar */}
       <div className="relative border-t border-(--glass-border) mt-10 pt-6">
-        <div className="mx-auto max-w-[1380px] px-5 md:px-10 flex flex-col md:flex-row justify-between items-center text-[12px] font-mono uppercase tracking-[0.16em] text-steel gap-4">
+        <div className="mx-auto max-w-[1380px] px-5 md:px-10 flex flex-col md:flex-row justify-between items-center text-[12px] font-sans uppercase tracking-[0.16em] text-steel gap-4">
           <p className="text-center md:text-left">
             © 2026 PHANTOM LOGISTICS INC. ALL RIGHTS RESERVED.
           </p>

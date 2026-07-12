@@ -242,7 +242,6 @@ export default function RefrigeratedClient({ service }: { service: Service }) {
           <div className="rf-hero-inner rf-wrap">
             {/* top meta line */}
             <div className="rf-hero-top">
-              <span className="rf-eyebrow"><span className="dot" />Climate-Controlled · −40°F to 70°F</span>
               <span className="rf-hero-toptag">North America · 48 States</span>
             </div>
 
@@ -286,7 +285,6 @@ export default function RefrigeratedClient({ service }: { service: Service }) {
 
         {/* ══════════ THESIS / PRINCIPLE ══════════ */}
         <section className="rf-thesis rf-wrap">
-          <span className="rf-eyebrow"><span className="dot red" />The principle</span>
           <MagicText
             className="rf-magic"
             text="Most carriers move freight. We hold a temperature — exact, unbroken, every degree of the way."
@@ -343,7 +341,6 @@ export default function RefrigeratedClient({ service }: { service: Service }) {
         <section className="rf-watch rf-wrap">
           <div className="rf-watch-grid">
             <div className="rf-watch-copy">
-              <span className="rf-eyebrow"><span className="dot" />Live Thermal Watch</span>
               <h2>We don’t hope it stayed cold. We watch it.</h2>
               <p>
                 Every reefer streams temperature to a 24/7 monitoring center. Cross the
@@ -421,7 +418,6 @@ export default function RefrigeratedClient({ service }: { service: Service }) {
           <div className="rf-process-grid">
             {/* sticky heading + framing */}
             <div className="rf-process-aside">
-              <span className="rf-eyebrow"><span className="dot red" />Execution</span>
               <h2>Four checkpoints.<br />Zero broken links.</h2>
               <p className="rf-process-lead">
                 Every Phantom reefer load clears four control gates. Miss none, break
@@ -457,7 +453,6 @@ export default function RefrigeratedClient({ service }: { service: Service }) {
         {/* ══════════ CARGO SPECIALTIES ══════════ */}
         <section className="rf-cargo rf-wrap">
           <div className="rf-cargo-head">
-            <span className="rf-eyebrow"><span className="dot" />What rides cold</span>
             <h2>Specialists in the product that can’t wait.</h2>
           </div>
           <div className="rf-cargo-grid">
@@ -473,7 +468,6 @@ export default function RefrigeratedClient({ service }: { service: Service }) {
 
         {/* ══════════ INTERACTIVE WORD ══════════ */}
         <section className="rf-reveal rf-wrap">
-          <span className="rf-eyebrow"><span className="dot" />Built for the cold</span>
           <div className="rf-reveal-stage">
             <RevealText
               text="FROZEN"
@@ -496,7 +490,6 @@ export default function RefrigeratedClient({ service }: { service: Service }) {
             <img src={service.img} alt="" />
           </div>
           <div className="rf-cta-inner rf-wrap">
-            <span className="rf-eyebrow"><span className="dot" />The Phantom Standard</span>
             <h2>Your cold chain,<br /><span className="ice">never broken.</span></h2>
             <p>Tell us your lanes, your product, and your temperature spec. A firm rate comes back fast — and every mile after runs on company-owned, live-monitored reefers.</p>
 

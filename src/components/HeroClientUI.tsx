@@ -204,11 +204,6 @@ export default function HeroClientUI() {
 
         {/* ── Content (z-20 to sit above the noise ::after pseudo) ─────── */}
         <div className="relative z-20">
-          {/* Kicker */}
-          <p className="hero-kicker kicker mb-5" style={{ opacity: 0 }}>
-            Nationwide trucking · freight that moves like it was never there
-          </p>
-
           {/* ── h1 — masked word-by-word reveal ─────────────────────────── */}
           <h1
             aria-label="Phantom Logistics"
