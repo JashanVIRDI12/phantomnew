@@ -6,9 +6,9 @@ import { gsap, useGSAP } from "@/lib/gsap";
 import { Input } from "@/components/ui/input";
 
 const DETAILS = [
-  { label: "Dispatch", value: "1-800-PHANTOM", href: "tel:+18007428666" },
-  { label: "Quotes", value: "ship@phantom.example", href: "mailto:ship@phantom.example" },
-  { label: "HQ", value: "4400 Linehaul Blvd, Columbus OH", href: undefined },
+  { label: "Dispatch", value: "(902) 403-0112 · ext 102", href: "tel:+19024030112" },
+  { label: "Email", value: "info@phantomlogisticsinc.com", href: "mailto:info@phantomlogisticsinc.com" },
+  { label: "Home Terminal", value: "415 Willow St, Truro, NS", href: undefined },
 ];
 
 export default function Contact() {
@@ -118,7 +118,7 @@ export default function Contact() {
                 // Request logged
               </p>
               <p className="mt-3 text-sm leading-relaxed text-silver">
-                Dispatch will call you back within 15 minutes — even at 3 a.m.
+                Dispatch will call you back within 15 minutes during business hours.
                 That&apos;s the job.
               </p>
             </div>

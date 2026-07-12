@@ -236,7 +236,7 @@
 .ab-loc-head h2 { font-size: clamp(2.2rem,5.5vw,4rem); margin-top: .8rem; }
 .ab-loc-head h2 .accent { color: var(--red); }
 .ab-loc-grid { display: grid; gap: 1.25rem; grid-template-columns: 1fr; }
-@media (min-width: 760px) { .ab-loc-grid { grid-template-columns: repeat(3,1fr); } }
+@media (min-width: 760px) { .ab-loc-grid { grid-template-columns: repeat(2,1fr); } }
 .ab-loc-card {
   position: relative; border-radius: 20px; padding: 1.8rem; overflow: hidden;
   background: var(--paper); border: 1px solid rgba(11,11,12,.08);

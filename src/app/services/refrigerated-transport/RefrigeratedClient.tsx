@@ -263,7 +263,7 @@ export default function RefrigeratedClient({ service }: { service: Service }) {
                 </p>
                 <div className="rf-hero-actions">
                   <Link href="/contact" className="btn btn-red px-10 py-4">GET A FIRM QUOTE</Link>
-                  <a href="tel:+18007428666" className="rf-phone"><span className="pulse" />1-800-PHANTOM</a>
+                  <a href="tel:+19024030112" className="rf-phone"><span className="pulse" />(902) 403-0112</a>
                 </div>
               </div>
 

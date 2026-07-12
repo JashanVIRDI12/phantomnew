@@ -182,10 +182,10 @@ export default function ServiceDetailClient({ service }: { service: Service }) {
                 GET A FIRM QUOTE
               </Link>
               <a
-                href="tel:+18007428666"
+                href="tel:+19024030112"
                 className="nav-link inline-flex items-center gap-3 px-4 py-4 text-[13px] uppercase tracking-[0.26em] text-paper hover:text-red"
               >
-                <span className="h-1.5 w-1.5 rounded-full bg-red" /> SPEAK TO DISPATCH • 1-800-PHANTOM
+                <span className="h-1.5 w-1.5 rounded-full bg-red" /> SPEAK TO DISPATCH • (902) 403-0112
               </a>
             </div>
 

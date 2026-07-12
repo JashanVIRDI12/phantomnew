@@ -5,6 +5,7 @@
    ══════════════════════════════════════════════════════════════ */
 
 .navx-wrap {
+  position: relative;
   max-width: 1340px;
   margin: 0 auto;
   padding: clamp(1rem, 2vh, 1.4rem) clamp(1rem, 3vw, 1.75rem) 0;
@@ -41,24 +42,12 @@
 
 /* ── Logo ───────────────────────────────────────────────────── */
 .navx-logo {
-  display: inline-flex; align-items: center; gap: .6rem;
+  display: inline-flex; align-items: center;
   text-decoration: none; flex-shrink: 0;
+  line-height: 0;
+  transition: opacity .3s ease, transform .35s cubic-bezier(.2,.7,.3,1);
 }
-.navx-logo-mark {
-  color: #e10600;
-  transition: transform .6s cubic-bezier(.5,1.6,.4,1);
-}
-.navx-logo:hover .navx-logo-mark { transform: rotate(180deg) scale(1.08); }
-.navx-logo-text {
-  font-family: var(--font-display);
-  font-weight: 700;
-  font-size: 15px;
-  letter-spacing: .2em;
-  text-transform: uppercase;
-  color: #0b0b0c;
-  white-space: nowrap;
-}
-.navx-logo-text .dot { color: #e10600; }
+.navx-logo:hover { opacity: .88; transform: scale(1.03); }
 
 /* ── Links group + sliding highlight ────────────────────────── */
 .navx-links {
@@ -166,8 +155,291 @@
   .navx-link { padding: 0 .8rem; letter-spacing: .12em; }
 }
 
+/* ══════════════════════════════════════════════════════════════
+   SERVICES MEGA-MENU (desktop) — grouped index + CTA feature card
+   ══════════════════════════════════════════════════════════════ */
+
+/* trigger chevron */
+.navx-link--mega { gap: .38rem; }
+.navx-chev {
+  color: currentColor;
+  opacity: .55;
+  transition: transform .3s cubic-bezier(.2,.7,.3,1), opacity .3s ease;
+}
+.navx-link--mega:hover .navx-chev,
+.navx-link--open .navx-chev { transform: rotate(180deg); opacity: 1; }
+.navx-link--open { color: #e10600; }
+
+/* panel shell */
+.navx-mega {
+  position: absolute;
+  top: calc(100% + 10px);
+  left: 50%;
+  transform: translateX(-50%) translateY(10px);
+  width: min(1000px, calc(100vw - 2rem));
+  z-index: 60;
+  border-radius: 24px;
+  background: rgba(252, 251, 248, 0.66);
+  /* NOTE: backdrop-filter is applied inline in Nav.tsx — the Tailwind v4 /
+     Lightning CSS build strips backdrop-filter from stylesheet rules. */
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  box-shadow:
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.85),
+    0 34px 80px -26px rgba(30, 22, 22, 0.45),
+    0 10px 26px -14px rgba(0, 0, 0, 0.16);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition:
+    opacity .28s ease,
+    transform .36s cubic-bezier(.2,.7,.3,1),
+    visibility 0s linear .36s;
+}
+.navx-mega--open {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translateX(-50%) translateY(0);
+  transition:
+    opacity .28s ease,
+    transform .36s cubic-bezier(.2,.7,.3,1),
+    visibility 0s;
+}
+
+.navx-mega-inner {
+  display: flex;
+  gap: 1.75rem;
+  padding: 1.6rem 1.75rem 1.4rem;
+}
+.navx-mega-groups {
+  flex: 1 1 auto;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.15rem 1.4rem;
+}
+.navx-mega-colhead {
+  margin: 0 0 .55rem .55rem;
+  font-family: var(--font-sans);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: #a29f96;
+}
+.navx-mega-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.navx-mega-item {
+  display: flex;
+  align-items: center;
+  gap: .7rem;
+  padding: .5rem .55rem;
+  border-radius: 13px;
+  text-decoration: none;
+  color: #0b0b0c;
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity .3s ease, transform .3s ease, background .2s ease;
+}
+.navx-mega--open .navx-mega-item { opacity: 1; transform: none; }
+.navx-mega-item:hover { background: rgba(225, 6, 0, 0.06); }
+.navx-mega-ico {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px; height: 34px;
+  flex-shrink: 0;
+  border-radius: 9px;
+  background: #fff;
+  color: #0b0b0c;
+  border: 1px solid rgba(11, 11, 12, 0.08);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+  transition: background .25s ease, color .25s ease, border-color .25s ease, transform .25s ease;
+}
+.navx-mega-item:hover .navx-mega-ico {
+  background: #e10600;
+  color: #fff;
+  border-color: #e10600;
+  transform: translateY(-1px);
+}
+.navx-mega-txt { display: flex; flex-direction: column; gap: 1px; min-width: 0; }
+.navx-mega-title {
+  font-family: var(--font-sans);
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.2;
+  color: #0b0b0c;
+}
+.navx-mega-desc {
+  font-size: 11px;
+  line-height: 1.2;
+  color: #8a887f;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.navx-mega-arrow {
+  margin-left: auto;
+  flex-shrink: 0;
+  color: #cbc9c0;
+  opacity: 0;
+  transform: translateX(-4px);
+  transition: opacity .2s ease, transform .2s ease, color .2s ease;
+}
+.navx-mega-item:hover .navx-mega-arrow { opacity: 1; transform: none; color: #e10600; }
+
+/* column-wise entrance stagger */
+.navx-mega--open .navx-mega-col:nth-child(1) .navx-mega-item { transition-delay: .04s; }
+.navx-mega--open .navx-mega-col:nth-child(2) .navx-mega-item { transition-delay: .09s; }
+.navx-mega--open .navx-mega-col:nth-child(3) .navx-mega-item { transition-delay: .14s; }
+
+/* feature / CTA card */
+.navx-mega-feature {
+  position: relative;
+  overflow: hidden;
+  flex: 0 0 250px;
+  width: 250px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 1.3rem 1.3rem 1.25rem;
+  border-radius: 18px;
+  background: linear-gradient(155deg, #1b1a1f 0%, #0b0b0c 62%);
+  color: #f6f4ef;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity .3s ease .16s, transform .3s ease .16s;
+}
+.navx-mega--open .navx-mega-feature { opacity: 1; transform: none; }
+.navx-feat-mark {
+  position: absolute;
+  right: -28px; top: -22px;
+  width: 155px; height: auto;
+  opacity: .09;
+  pointer-events: none;
+  user-select: none;
+  filter: brightness(0) invert(1);
+}
+.navx-feat-badge {
+  position: relative; z-index: 1;
+  display: inline-flex; align-items: center; gap: .45rem;
+  padding: .3rem .6rem;
+  border-radius: 100px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  font-family: var(--font-sans);
+  font-size: 9.5px; font-weight: 700;
+  letter-spacing: .18em; text-transform: uppercase;
+  color: #f6f4ef;
+}
+.navx-feat-dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: #16a34a;
+  animation: navx-pulse 2s ease-in-out infinite;
+}
+.navx-feat-title {
+  position: relative; z-index: 1;
+  margin: .85rem 0 0;
+  font-family: var(--font-display, var(--font-sans));
+  font-size: 1.28rem; line-height: 1.08; font-weight: 700;
+  letter-spacing: -.01em;
+  color: #fff;
+}
+.navx-feat-copy {
+  position: relative; z-index: 1;
+  margin: .5rem 0 0;
+  max-width: 24ch;
+  font-size: 12.5px; line-height: 1.5;
+  color: #b9b7b0;
+}
+.navx-feat-cta {
+  position: relative; z-index: 1;
+  margin-top: 1.05rem;
+  display: inline-flex; align-items: center; gap: .5rem;
+  padding: .62rem 1.1rem;
+  border-radius: 100px;
+  background: #e10600;
+  color: #fff;
+  text-decoration: none;
+  font-family: var(--font-sans);
+  font-size: 11px; font-weight: 700;
+  letter-spacing: .12em; text-transform: uppercase;
+  transition: transform .25s ease, box-shadow .25s ease;
+}
+.navx-feat-cta svg { transition: transform .25s ease; }
+.navx-feat-cta:hover { transform: translateY(-1px); box-shadow: 0 10px 24px -8px rgba(225, 6, 0, 0.6); }
+.navx-feat-cta:hover svg { transform: translateX(3px); }
+.navx-feat-phone {
+  position: relative; z-index: 1;
+  margin-top: .85rem;
+  font-family: var(--font-sans);
+  font-size: 10px; letter-spacing: .14em; text-transform: uppercase;
+  color: #8a887f; text-decoration: none;
+  transition: color .2s ease;
+}
+.navx-feat-phone:hover { color: #f6f4ef; }
+.navx-feat-num { white-space: nowrap; }
+
+/* footer bar */
+.navx-mega-foot {
+  display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+  padding: .9rem 1.75rem;
+  border-top: 1px solid rgba(11, 11, 12, 0.08);
+  background: rgba(11, 11, 12, 0.015);
+  border-radius: 0 0 24px 24px;
+}
+.navx-mega-all {
+  display: inline-flex; align-items: center; gap: .5rem;
+  font-family: var(--font-sans);
+  font-size: 11px; font-weight: 700;
+  letter-spacing: .14em; text-transform: uppercase;
+  color: #0b0b0c; text-decoration: none;
+  transition: color .2s ease;
+}
+.navx-mega-all svg { transition: transform .2s ease; }
+.navx-mega-all:hover { color: #e10600; }
+.navx-mega-all:hover svg { transform: translateX(3px); }
+.navx-mega-note {
+  font-family: var(--font-sans);
+  font-size: 10px; letter-spacing: .13em; text-transform: uppercase;
+  color: #a29f96;
+}
+
+/* responsive collapse */
+@media (max-width: 1040px) {
+  .navx-mega { width: min(680px, calc(100vw - 1.5rem)); }
+  .navx-mega-inner { flex-direction: column; }
+  .navx-mega-feature {
+    flex-basis: auto;
+    width: 100%;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: .4rem 1.1rem;
+  }
+  .navx-feat-title { margin-top: 0; flex: 1 1 auto; }
+  .navx-feat-copy { display: none; }
+  .navx-feat-cta { margin-top: 0; }
+}
+@media (max-width: 820px) {
+  .navx-mega-groups { grid-template-columns: 1fr 1fr; }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .navx-status-dot { animation: none; }
-  .navx-logo:hover .navx-logo-mark { transform: none; }
+  .navx-logo { transition: none; }
+  .navx-logo:hover { transform: none; }
   .navx-ind { transition: opacity .2s ease; }
+
+  .navx-mega { transform: translateX(-50%); transition: opacity .15s ease, visibility 0s linear .15s; }
+  .navx-mega--open { transform: translateX(-50%); transition: opacity .15s ease, visibility 0s; }
+  .navx-mega-item, .navx-mega-feature { transform: none; transition: opacity .15s ease; }
+  .navx-chev, .navx-mega-arrow, .navx-mega-ico { transition: none; }
+  .navx-feat-dot { animation: none; }
 }

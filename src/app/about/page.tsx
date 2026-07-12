@@ -23,7 +23,7 @@ const HERO_LINES = [
 ];
 
 const META = [
-  { v: "2008", l: "Founded", em: false },
+  { v: "2017", l: "Founded", em: false },
   { v: "2,400", l: "Company Trucks", em: false },
   { v: "48", l: "States", em: false },
   { v: "98.7%", l: "On-Time", em: true },
@@ -34,19 +34,19 @@ const MANIFESTO =
 const MANIFESTO_ACCENT = ["it", "moves,", "it", "moves."]; // emphasised cluster
 
 const TIMELINE = [
-  { year: "2008", img: IMG.yard,    h: "Twelve trucks, one promise", c: "Founded in Columbus with a dozen units and a refusal to broker a single load." },
-  { year: "2012", img: IMG.dock,    h: "Two hundred strong",          c: "Crossed 200 company-owned units and pushed our first lanes into the Southeast." },
-  { year: "2015", img: IMG.loading, h: "The Midwest, owned",          c: "400 tractors running the heartland — every driver an employee, every truck ours." },
-  { year: "2018", img: IMG.sunset,  h: "Coast to coast",              c: "The Los Angeles hub opens. Phantom freight now moves ocean to ocean." },
-  { year: "2020", img: IMG.aerial,  h: "2,400 units, 48 states",      c: "The fastest organic fleet growth in the industry — without a single brokered mile." },
-  { year: "2024", img: IMG.fleet,   h: "Intelligence on every lane",  c: "AI-driven dispatch and live tracking roll out across the entire fleet." },
+  { year: "2017", img: IMG.yard,    h: "Twelve trucks, one promise", c: "Founded in Truro, NS with a dozen units and a refusal to broker a single load." },
+  { year: "2019", img: IMG.dock,    h: "Two hundred strong",          c: "Crossed 200 company-owned units and pushed our first lanes across Atlantic Canada." },
+  { year: "2021", img: IMG.loading, h: "East coast, owned",           c: "400 tractors running the Maritimes and beyond — every driver an employee, every truck ours." },
+  { year: "2022", img: IMG.sunset,  h: "Ontario terminal",            c: "The Bolton, ON location opens. Phantom freight now moves coast to coast across Canada." },
+  { year: "2024", img: IMG.aerial,  h: "2,400 units, 48 states",      c: "The fastest organic fleet growth in the industry — without a single brokered mile." },
+  { year: "2025", img: IMG.fleet,   h: "Intelligence on every lane",  c: "AI-driven dispatch and live tracking roll out across the entire fleet." },
 ];
 
 const STATS = [
   { v: "2,400", u: "", l: "Company-owned trucks", dec: 0 },
   { v: "48",    u: "", l: "States covered", dec: 0 },
   { v: "98.7",  u: "%", l: "On-time, door to door", dec: 1 },
-  { v: "16",    u: "+", l: "Years asset-based", dec: 0 },
+  { v: "9",     u: "+", l: "Years asset-based", dec: 0 },
 ];
 
 const VALUES = [
@@ -68,9 +68,8 @@ const FLEET = [
 ];
 
 const LOCATIONS = [
-  { tag: "HQ", city: "Columbus, OH", addr: "4400 Linehaul Blvd\nColumbus, OH 43219", phone: "1-800-PHANTOM" },
-  { tag: "Midwest Hub", city: "Chicago, IL", addr: "1200 Terminal Dr\nChicago, IL 60601", phone: "1-312-555-0194" },
-  { tag: "West Coast Hub", city: "Los Angeles, CA", addr: "9800 Port Access Rd\nLos Angeles, CA 90058", phone: "1-310-555-0183" },
+  { tag: "Home Terminal", city: "Truro, NS", addr: "415 Willow St\nTruro, NS B2N 6T2", phone: "(902) 403-0112" },
+  { tag: "Second Location", city: "Bolton, ON", addr: "365 Healey Rd Unit 19\nBolton, ON L7E 5C1", phone: "(902) 403-0112" },
 ];
 
 function fmt(n: number, d: number) {
@@ -233,7 +232,7 @@ export default function AboutPage() {
         <header className="ab-hero">
           <p className="ab-kicker ab-kicker-hero">
             <span className="ab-kicker-dot" aria-hidden="true" />
-            About Phantom <em>/ since 2008</em>
+            About Phantom <em>/ since 2017</em>
           </p>
 
           <h1 className="ab-hero-head ab-display" aria-label="Built for the long haul.">
@@ -267,7 +266,7 @@ export default function AboutPage() {
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src={IMG.fleet} alt="Phantom Logistics fleet lined up at the company yard" />
             <div className="shade" aria-hidden="true" />
-            <span className="badge">Phantom fleet · Columbus, OH</span>
+            <span className="badge">Phantom fleet · Truro, NS</span>
           </div>
         </header>
 

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import BrandLogo from "./BrandLogo";
 
 const OPERATIONS_LINKS = [
   { label: "Company Bio", href: "/about" },
@@ -17,29 +18,7 @@ export default function Footer() {
         
         {/* Column 1 & 2: Brand & Bio */}
         <div className="md:col-span-2 flex flex-col items-start gap-6">
-          <Link href="/" className="flex items-center gap-2.5" aria-label="Back to home">
-            <svg
-              width="28"
-              height="28"
-              viewBox="0 0 26 26"
-              fill="none"
-              aria-hidden="true"
-              className="text-red"
-            >
-              <path
-                d="M13 2 L23 8 V18 L13 24 L3 18 V8 Z"
-                stroke="currentColor"
-                strokeWidth="1.6"
-              />
-              <path
-                d="M8 15.5 V11 h6 l2 2.2 h2.5 v2.3 h-1.2 a1.8 1.8 0 1 0-3.6 0 h-2 a1.8 1.8 0 1 0-3.6 0 Z"
-                fill="currentColor"
-              />
-            </svg>
-            <span className="display text-base tracking-[0.25em] text-paper font-bold">
-              PHANTOM LOGISTICS
-            </span>
-          </Link>
+          <BrandLogo href="/" height={72} />
           
           <p className="max-w-[44ch] text-[14.5px] leading-[1.7] text-silver">
             From local deliveries to long-haul freight, we move your cargo efficiently without delays or uncertainty. Every load is tracked, managed, and delivered with full control.
@@ -77,18 +56,18 @@ export default function Footer() {
           <div className="flex flex-col gap-5">
             <div>
               <p className="font-mono text-[13px] uppercase tracking-[0.15em] text-paper font-bold leading-normal">
-                Toronto, ON
+                Truro, NS
               </p>
               <p className="font-mono text-[12px] uppercase tracking-[0.14em] text-silver mt-1 leading-normal">
-                HQ TERMINAL
+                415 Willow St · Home Terminal
               </p>
             </div>
             <div>
               <p className="font-mono text-[13px] uppercase tracking-[0.15em] text-paper font-bold leading-normal">
-                Truro, NS
+                Bolton, ON
               </p>
               <p className="font-mono text-[12px] uppercase tracking-[0.14em] text-silver mt-1 leading-normal">
-                FACILITY TERMINAL
+                365 Healey Rd Unit 19
               </p>
             </div>
           </div>
@@ -102,7 +81,7 @@ export default function Footer() {
           <div className="flex flex-col gap-4">
             <div>
               <p className="font-mono text-[12px] uppercase tracking-[0.15em] text-silver leading-normal">
-                DISPATCH
+                DISPATCH · EXT 102
               </p>
               <a
                 href="tel:+19024030112"
@@ -110,6 +89,27 @@ export default function Footer() {
               >
                 (902) 403-0112
               </a>
+            </div>
+            <div>
+              <p className="font-mono text-[12px] uppercase tracking-[0.15em] text-silver leading-normal">
+                EMAIL
+              </p>
+              <a
+                href="mailto:info@phantomlogisticsinc.com"
+                className="font-mono text-[12px] lowercase tracking-[0.04em] text-paper hover:text-red transition-colors duration-200 block mt-1 break-all"
+              >
+                info@phantomlogisticsinc.com
+              </a>
+            </div>
+            <div>
+              <p className="font-mono text-[12px] uppercase tracking-[0.15em] text-silver leading-normal">
+                HOURS
+              </p>
+              <p className="font-mono text-[11px] uppercase tracking-[0.1em] text-paper mt-1 leading-relaxed">
+                Mon–Fri 8AM–6PM
+                <br />
+                Sat 10AM–4PM · Sun Closed
+              </p>
             </div>
           </div>
         </div>

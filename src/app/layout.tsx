@@ -25,7 +25,7 @@ const jetbrainsMono = JetBrains_Mono({
   display: "swap",
 });
 
-const siteUrl = "https://phantomlogistics.example.com";
+const siteUrl = "https://phantomlogisticsinc.com";
 
 export const viewport: Viewport = {
   themeColor: "#0b0b0c",
@@ -108,6 +108,7 @@ const organizationJsonLd = {
   "@type": "Organization",
   name: "Phantom Logistics",
   url: siteUrl,
+  logo: `${siteUrl}/phantom-logo.png`,
   description:
     "Trucking and logistics company providing FTL & LTL freight, dedicated contract fleets, fleet wraps, 24/7 dispatch, live tracking, warehousing and final-mile delivery across the 48 contiguous states.",
   slogan: "Freight that moves like it was never there.",

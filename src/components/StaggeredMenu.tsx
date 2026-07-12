@@ -409,7 +409,14 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
         })()}
       </div>
 
-      <header className="staggered-menu-header" aria-label="Main navigation header">
+      <header
+        className="staggered-menu-header"
+        aria-label="Main navigation header"
+        style={{
+          backdropFilter: 'blur(22px) saturate(1.6)',
+          WebkitBackdropFilter: 'blur(22px) saturate(1.6)',
+        }}
+      >
         <div className="sm-logo" aria-label="Logo">
           {logoNode ? (
             logoNode
@@ -426,16 +433,16 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
           onClick={toggleMenu}
           type="button"
         >
+          <span ref={iconRef} className="sm-icon" aria-hidden="true">
+            <span ref={plusHRef} className="sm-icon-line" />
+            <span ref={plusVRef} className="sm-icon-line sm-icon-line-v" />
+          </span>
           <span ref={textWrapRef} className="sm-toggle-textWrap" aria-hidden="true">
             <span ref={textInnerRef} className="sm-toggle-textInner">
               {textLines.map((l, i) => (
                 <span className="sm-toggle-line" key={i}>{l}</span>
               ))}
             </span>
-          </span>
-          <span ref={iconRef} className="sm-icon" aria-hidden="true">
-            <span ref={plusHRef} className="sm-icon-line" />
-            <span ref={plusVRef} className="sm-icon-line sm-icon-line-v" />
           </span>
         </button>
       </header>

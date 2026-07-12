@@ -81,7 +81,7 @@ export default function Hero() {
           <div className="h-copy">
             <span className="h-kicker">
               <span className="h-kicker-dot" aria-hidden="true" />
-              Asset-Based Carrier · Est. 2008
+              Asset-Based Carrier · Est. 2017
             </span>
 
             <h1 className="h-title">

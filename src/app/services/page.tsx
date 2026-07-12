@@ -457,11 +457,11 @@ export default function ServicesPage() {
                 <span>Get a quote</span>
               </Link>
               <a
-                href="tel:+18007428666"
+                href="tel:+19024030112"
                 className="nav-link inline-flex items-center gap-3 py-3 text-[13px] uppercase tracking-[0.2em] text-paper hover:text-red"
               >
                 <span className="h-2 w-2 shrink-0 rounded-full bg-red" aria-hidden="true" />
-                Talk to dispatch · 1-800-PHANTOM
+                Talk to dispatch · (902) 403-0112
               </a>
             </div>
 
@@ -791,11 +791,11 @@ export default function ServicesPage() {
                 <span>GET FREIGHT QUOTE</span>
               </Link>
               <a
-                href="tel:+18007428666"
+                href="tel:+19024030112"
                 className="nav-link inline-flex items-center gap-3 py-3 text-[13px] uppercase tracking-[0.2em] text-paper hover:text-red"
               >
                 <span className="h-2 w-2 shrink-0 rounded-full bg-red" aria-hidden="true" />
-                Or call dispatch · 1-800-PHANTOM
+                Or call dispatch · (902) 403-0112
               </a>
             </div>
           </div>

@@ -17,10 +17,14 @@ const IMG = {
 
 /* ── Data ─────────────────────────────────────────────────────────────────── */
 const DISPATCH_TEL = "+19024030112";
+const INFO_EMAIL = "info@phantomlogisticsinc.com";
+
+const HOURS =
+  "Mon – Fri: 8:00 AM – 6:00 PM\nSat: 10:00 AM – 4:00 PM\nSun: Closed";
 
 const DIRECT_LINES = [
   {
-    k: "Dispatch · 24/7",
+    k: "Dispatch · ext 102",
     v: "(902) 403-0112",
     href: `tel:${DISPATCH_TEL}`,
     icon: (
@@ -30,9 +34,29 @@ const DIRECT_LINES = [
     ),
   },
   {
-    k: "Quotes & freight",
-    v: "dispatch@phantomlogistics.com",
-    href: "mailto:dispatch@phantomlogistics.com",
+    k: "Customs · ext 105",
+    v: "(902) 403-0112",
+    href: `tel:${DISPATCH_TEL}`,
+    icon: (
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+        <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92Z" />
+      </svg>
+    ),
+  },
+  {
+    k: "Safety · ext 106",
+    v: "(902) 403-0112",
+    href: `tel:${DISPATCH_TEL}`,
+    icon: (
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+        <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92Z" />
+      </svg>
+    ),
+  },
+  {
+    k: "Email",
+    v: INFO_EMAIL,
+    href: `mailto:${INFO_EMAIL}`,
     icon: (
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
         <rect x="2.5" y="4.5" width="19" height="15" rx="2" />
@@ -48,27 +72,27 @@ const FREIGHT_TYPES = ["FTL", "LTL", "Refrigerated", "Dedicated Fleet", "Expedit
 
 const TERMINALS = [
   {
-    flag: "HQ Terminal",
-    tag: "Headquarters",
-    city: "Toronto, ON",
-    coords: "43.65° N · 79.38° W",
-    img: IMG.yard,
-    rows: [
-      { k: "Address", v: "1200 Terminal Drive\nToronto, ON  M9W 1A1", href: undefined },
-      { k: "Dispatch", v: "(902) 403-0112", href: `tel:${DISPATCH_TEL}` },
-      { k: "Hours", v: "24 / 7 / 365", href: undefined },
-    ],
-  },
-  {
-    flag: "Facility Terminal",
-    tag: "East Coast",
+    flag: "Home Terminal",
+    tag: "Nova Scotia",
     city: "Truro, NS",
     coords: "45.37° N · 63.28° W",
     img: IMG.dock,
     rows: [
-      { k: "Address", v: "85 Industrial Avenue\nTruro, NS  B2N 5G3", href: undefined },
-      { k: "Dispatch", v: "(902) 403-0112", href: `tel:${DISPATCH_TEL}` },
-      { k: "Hours", v: "24 / 7 / 365", href: undefined },
+      { k: "Address", v: "415 Willow St\nTruro, NS B2N 6T2", href: undefined },
+      { k: "Phone", v: "(902) 403-0112", href: `tel:${DISPATCH_TEL}` },
+      { k: "Hours", v: HOURS, href: undefined },
+    ],
+  },
+  {
+    flag: "Second Location",
+    tag: "Ontario",
+    city: "Bolton, ON",
+    coords: "43.88° N · 79.74° W",
+    img: IMG.yard,
+    rows: [
+      { k: "Address", v: "365 Healey Rd Unit 19\nBolton, ON L7E 5C1", href: undefined },
+      { k: "Phone", v: "(902) 403-0112", href: `tel:${DISPATCH_TEL}` },
+      { k: "Hours", v: HOURS, href: undefined },
     ],
   },
 ];
@@ -76,7 +100,7 @@ const TERMINALS = [
 const FAQS = [
   {
     q: "How fast can you dispatch?",
-    a: "Firm quote in 15 minutes, dispatch confirmed the same day. For time-critical freight we can have a company driver assigned and rolling within the hour — dispatch is staffed by real humans, 24/7/365.",
+    a: "Firm quote in 15 minutes during business hours, dispatch confirmed the same day. For time-critical freight we can have a company driver assigned and rolling quickly — real humans on the desk, Mon–Sat.",
   },
   {
     q: "Do you run temperature-controlled and secured freight?",
@@ -92,7 +116,7 @@ const FAQS = [
   },
   {
     q: "Where do you operate?",
-    a: "All US states and across Canada from our Toronto HQ and Truro, NS facility. One carrier, one invoice, North America wide — every mile on company-owned equipment, zero brokers in between.",
+    a: "Across Canada and into the US from our Truro, NS home terminal and Bolton, ON location. One carrier, one invoice — every mile on company-owned equipment, zero brokers in between.",
   },
 ];
 
@@ -124,12 +148,12 @@ export default function ContactPage() {
     setFields({});
   };
 
-  /* live dispatch clock (Toronto) — mounts client-side to avoid hydration drift */
+  /* live dispatch clock (Truro / Atlantic) — mounts client-side to avoid hydration drift */
   useEffect(() => {
     const tick = () =>
       setClock(
         new Intl.DateTimeFormat("en-CA", {
-          timeZone: "America/Toronto",
+          timeZone: "America/Halifax",
           hour: "2-digit",
           minute: "2-digit",
           second: "2-digit",
@@ -266,11 +290,11 @@ export default function ContactPage() {
                 <div className="ct-status-row" data-c-meta>
                   <span className="ct-clock">
                     <span className="t">{clock ?? "--:--:--"}</span>
-                    <span className="z">Toronto · ET</span>
+                    <span className="z">Truro · AT</span>
                   </span>
                   <span className="ct-live">
                     <span className="pip" aria-hidden="true" />
-                    Dispatch desk awake
+                    Mon–Sat desk hours
                   </span>
                 </div>
 
@@ -295,7 +319,7 @@ export default function ContactPage() {
                     </span>
                     <p className="tag">// Request logged</p>
                     <h3>We&apos;ll call you back.</h3>
-                    <p>Dispatch will reach out with a confirmed rate within 15 minutes — even at 3 a.m. That&apos;s the job.</p>
+                    <p>Dispatch will reach out with a confirmed rate within 15 minutes during business hours. That&apos;s the job.</p>
                     <ul className="ct-next">
                       <li><span className="n">01</span> Dispatch reviews your lane &amp; freight</li>
                       <li><span className="n">02</span> Firm, all-in rate back in ~15 minutes</li>
@@ -397,7 +421,7 @@ export default function ContactPage() {
                 <p className="ct-eyebrow"><span className="dot" aria-hidden="true" />Terminals</p>
                 <h2>Two yards, <span className="accent">one network.</span></h2>
               </div>
-              <p className="note">Walk-ins welcome at both terminals. Dispatch answers the same line, day or night.</p>
+              <p className="note">Walk-ins welcome at both terminals. Same main line for Dispatch (102), Customs (105), and Safety (106).</p>
             </div>
 
             <div className="ct-term-grid" data-c-term-grid>
@@ -438,7 +462,7 @@ export default function ContactPage() {
               <div className="ct-faq-head">
                 <p className="ct-eyebrow"><span className="dot" aria-hidden="true" />Before you call</p>
                 <h2>Questions, <span className="accent">answered.</span></h2>
-                <p>Can&apos;t find it here? Dispatch is on the line 24/7 — most answers take less than a minute.</p>
+                <p>Can&apos;t find it here? Call (902) 403-0112 — Dispatch ext 102, Customs ext 105, Safety ext 106.</p>
                 <a className="cta" href={`tel:${DISPATCH_TEL}`}>
                   Call dispatch
                   <svg width="16" height="16" viewBox="0 0 18 18" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
@@ -485,10 +509,10 @@ export default function ContactPage() {
           </div>
           <div className="ct-cta-inner">
             <p data-c-cta-rise className="ct-eyebrow"><span className="dot" aria-hidden="true" />Prefer to talk?</p>
-            <h2 data-c-cta-rise>Dispatch is <span className="accent">awake.</span></h2>
+            <h2 data-c-cta-rise>Dispatch is <span className="accent">ready.</span></h2>
             <p data-c-cta-rise>
-              Real humans, every hour of every day. One call and your freight starts moving — no
-              hold music, no broker chain, no excuses.
+              Real humans on the desk Mon–Fri 8AM–6PM and Sat 10AM–4PM. One call and your freight
+              starts moving — no hold music, no broker chain, no excuses.
             </p>
             <div className="ct-cta-row" data-c-cta-rise>
               <a href={`tel:${DISPATCH_TEL}`} className="btn btn-red px-10 py-5">
