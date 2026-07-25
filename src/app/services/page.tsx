@@ -386,7 +386,7 @@ export default function ServicesPage() {
           {/* Cinematic background image */}
           <div className="absolute inset-0 select-none pointer-events-none z-0" aria-hidden="true">
             <img
-              src="https://images.unsplash.com/photo-1519003722824-194d4455a60c?auto=format&fit=crop&q=80&w=1600"
+              src="/services/photos/services-index-hero.webp"
               alt=""
               className="object-cover w-full h-full opacity-40"
             />

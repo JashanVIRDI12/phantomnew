@@ -24,7 +24,7 @@ const baseServices = [
     tag: "DRY VAN · TRUCKING",
     title: "DRY VAN TRUCKING",
     copy: "Reliable and cost-effective transportation for general freight. Our dry van trailers protect your goods from weather and external conditions, ensuring safe and consistent delivery across every mile.",
-    img: "/services/dry_van.png",
+    img: "/services/photos/dry-van-trucking.webp",
     longDescription:
       "Our dry van fleet is the backbone of North American logistics. Whether you're moving palletized goods, boxed freight, or consumer packaged products, we deliver with precision. Every trailer is GPS-tracked, professionally maintained, and operated by experienced company drivers who own the outcome.",
     benefits: [
@@ -90,7 +90,7 @@ const baseServices = [
     tag: "GOVERNMENT · DEFENCE CANADA · TRANSPORT CANADA · SECURED CARGO",
     title: "GOVERNMENT & SECURED CARGO",
     copy: "Defence Canada approved and Transport Canada certified carrier for sensitive government freight, secured cargo program loads, and high-value electronics. Full chain of custody, 24/7 secured yard.",
-    img: "/services/dry_van.png",
+    img: "/services/photos/government-secured-cargo.webp",
     longDescription:
       "When the cargo demands absolute accountability, we step up. Phantom holds Defence Canada approval and Transport Canada certification, and is an approved carrier under the Secured Cargo Program. We handle government freight, high-value electronics, sensitive loads, and anything that requires protocol-grade security at every touchpoint — pickup, transit, and delivery.",
     benefits: [
@@ -124,7 +124,7 @@ const baseServices = [
     tag: "PRIVATE ROSTER · EXCLUSIVE OPERATIONS",
     title: "DEDICATED FLEET",
     copy: "A dedicated fleet built around your business needs. You get consistent capacity, priority dispatch, and full control over how your freight moves every day.",
-    img: "/services/dedicated_fleet.png",
+    img: "/services/photos/dedicated-fleet.webp",
     longDescription:
       "Treat our trucks like yours. We assign dedicated power units and drivers to your lanes, wrapped in your branding if desired. Same drivers, same dispatch team, same reliability — every single day. It's like having your own private fleet without the capital or headaches.",
     benefits: [
@@ -156,7 +156,7 @@ const baseServices = [
     tag: "SECURE STORAGE · STORAGE SOLUTIONS",
     title: "WAREHOUSING",
     copy: "Secure, structured, and scalable warehousing solutions. We provide short-term and long-term storage options with full inventory management, ensuring your goods are safe and ready for dispatch.",
-    img: "/services/warehousing.png",
+    img: "/services/photos/warehousing.webp",
     longDescription:
       "Our strategically located distribution centers give you flexible storage + seamless last-mile execution. Real-time WMS, cycle counts, lot tracking, and value-added services (labeling, kitting, returns) all under one roof and one invoice.",
     benefits: [
@@ -188,7 +188,7 @@ const baseServices = [
     tag: "NATIONWIDE · GENERAL FREIGHT",
     title: "FREIGHT SHIPPING",
     copy: "Comprehensive freight shipping services across domestic routes. From standard pallets to specialized loads, we coordinate the entire shipping process for seamless delivery.",
-    img: "/services/freight_shipping.png",
+    img: "/services/photos/freight-shipping.webp",
     longDescription:
       "One carrier. One invoice. Every mode you need. We handle FTL, LTL, expedited, and project freight with the same obsessive attention to detail. No handoffs, no excuses.",
     benefits: [
@@ -220,7 +220,7 @@ const baseServices = [
     tag: "COST EFFICIENT · PARTIAL LOAD",
     title: "LTL TRUCKING",
     copy: "Efficient Less-Than-Truckload shipping for freight that doesn't require a full trailer. Share the ride and save on costs while maintaining reliable delivery schedules.",
-    img: "/services/ltl.png",
+    img: "/services/photos/ltl-trucking.webp",
     longDescription:
       "LTL done right. We consolidate your partial loads with other compatible freight on optimized routes. You get competitive rates, reliable transit times, and the same Phantom reliability and visibility you expect from our FTL moves.",
     benefits: [
@@ -252,7 +252,7 @@ const baseServices = [
     tag: "URGENT DELIVERY · TIME-CRITICAL",
     title: "EXPEDITED TRUCKING",
     copy: "When time is of the essence, our expedited trucking services ensure your freight reaches its destination via the fastest possible route with zero layovers.",
-    img: "/services/expedited.png",
+    img: "/services/photos/expedited-trucking.webp",
     longDescription:
       "Team drivers. Non-stop. We run true expedited — no drop yards, no layovers, no excuses. When a plant is down or a line is starving, we move heaven and earth (and trucks) to get it there.",
     benefits: [
@@ -284,7 +284,7 @@ const baseServices = [
     tag: "DIRECT DISPATCH · RAPID RESPONSE",
     title: "HOTSHOT TRUCKING",
     copy: "Dedicated hotshot capabilities for time-sensitive, smaller, or specialized loads. Immediate dispatch to get your crucial freight moving at a moment's notice.",
-    img: "/services/hotshot.png",
+    img: "/services/photos/hotshot-trucking.webp",
     longDescription:
       "Small load? Huge urgency? Our hotshot team moves critical parts, emergency shipments, and high-value items on a moment’s notice. Goosenecks, flatbeds, and sprinter-style units ready 24/7 with the same Phantom standards.",
     benefits: [
@@ -316,7 +316,7 @@ const baseServices = [
     tag: "INTERSTATE · CROSS-COUNTRY",
     title: "LONG HAUL TRUCKING",
     copy: "Extensive long-haul network bridging the distance. Our experienced drivers and well-maintained fleet ensure your cargo crosses state lines safely and on time.",
-    img: "/services/long_haul.png",
+    img: "/services/photos/long-haul-trucking.webp",
     longDescription:
       "Coast to coast, border to border. Our long-haul network is built for reliability over distance. Team and solo options, heavy experience on high-volume corridors, and a culture that treats every mile like it matters.",
     benefits: [
@@ -348,7 +348,7 @@ const baseServices = [
     tag: "VERSATILE FLEET · END-TO-END",
     title: "FREIGHT TRANSPORTATION",
     copy: "Versatile freight transportation handling all sizes and classes. We match your specific cargo with the ideal equipment to maximize efficiency.",
-    img: "/services/freight_trans.png",
+    img: "/services/photos/freight-transportation.webp",
     longDescription:
       "Not every load is a 53' van. We have the right iron for the job — flatbeds, step decks, lowboys, tankers, curtain vans, and more. One relationship, every equipment type you’ll ever need.",
     benefits: [
@@ -380,7 +380,7 @@ const baseServices = [
     tag: "LOGISTICS MANAGEMENT · SUPPLY CHAIN",
     title: "FREIGHT FORWARDING",
     copy: "Strategic freight forwarding logistics. We manage the network of carriers and complex routing to optimize your supply chain from origin to final destination.",
-    img: "/services/forwarding.png",
+    img: "/services/photos/freight-forwarding.webp",
     longDescription:
       "When your network is bigger than our footprint, we still run the show. We act as your single point of contact, optimizing carrier mix, negotiating rates, and managing exceptions across domestic and cross-border moves. Full visibility. One relationship.",
     benefits: [

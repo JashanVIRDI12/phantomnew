@@ -1,0 +1,21 @@
+/* WAREHOUSING — accent + unique showpiece only. Structure comes from service-page-shared.css */
+.wh { --accent: #2f8a99; --accent-deep: #226570; }
+
+.wh-showpiece-grid { display: grid; gap: 1.4rem; grid-template-columns: 1fr; }
+@media (min-width: 860px) { .wh-showpiece-grid { grid-template-columns: 1fr 1fr; } }
+
+.wh-stats-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; background: rgba(11,11,12,.08); border: 1px solid rgba(11,11,12,.08); border-radius: 12px; overflow: hidden; }
+.wh-stat-cell { background: #fff; padding: 1.2rem; }
+.wh-stat-cell .k { font-family: var(--font-mono); font-size: .6rem; letter-spacing: .1em; text-transform: uppercase; color: var(--steel); }
+.wh-stat-cell .v { font-family: var(--font-display); font-weight: 800; font-size: 1.5rem; color: var(--coal); margin-top: .3rem; }
+
+.wh-ticker { border: 1px solid rgba(11,11,12,.1); border-radius: 12px; background: #fff; padding: 1.2rem 1.3rem; }
+.wh-ticker-head { display: flex; align-items: center; justify-content: space-between; padding-bottom: .7rem; margin-bottom: .5rem; border-bottom: 1px solid rgba(11,11,12,.08); }
+.wh-ticker-head .title { font-family: var(--font-mono); font-size: .62rem; letter-spacing: .12em; text-transform: uppercase; color: var(--steel); }
+.wh-ticker-head .live { display: inline-flex; align-items: center; gap: .4rem; font-family: var(--font-mono); font-size: .58rem; letter-spacing: .12em; color: var(--accent-deep); }
+.wh-ticker-head .live .d { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); }
+.wh-ticker-row { display: flex; align-items: baseline; gap: .6rem; padding: .5rem 0; border-top: 1px dashed rgba(11,11,12,.08); font-family: var(--font-mono); font-size: .78rem; }
+.wh-ticker-row:first-child { border-top: 0; }
+.wh-ticker-row .t { color: var(--steel); font-size: .64rem; flex-shrink: 0; }
+.wh-ticker-row .msg { color: var(--coal); }
+.wh-ticker-row.is-recent .msg { color: var(--accent-deep); font-weight: 600; }

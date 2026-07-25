@@ -1,0 +1,17 @@
+/* FREIGHT SHIPPING — accent + unique showpiece only. Structure comes from service-page-shared.css */
+.fs { --accent: #2b8f86; --accent-deep: #1f6a63; }
+
+.fs-modes-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: .7rem; }
+@media (min-width: 640px) { .fs-modes-grid { grid-template-columns: repeat(3, 1fr); } }
+.fs-mode-btn { position: relative; text-align: left; border: 1px solid rgba(11,11,12,.1); background: #fff; border-radius: 10px; padding: 1rem 1rem .9rem; cursor: pointer; transition: border-color .25s ease, transform .25s ease; }
+.fs-mode-btn:hover { transform: translateY(-2px); }
+.fs-mode-btn[data-active="true"] { border-color: var(--accent); background: rgba(43,143,134,.05); }
+.fs-mode-btn .ic { color: var(--accent-deep); margin-bottom: .5rem; display: block; }
+.fs-mode-btn .lbl { font-family: var(--font-display); font-weight: 800; text-transform: uppercase; font-size: 1rem; color: var(--coal); }
+.fs-mode-btn .stat { display: block; margin-top: .25rem; font-family: var(--font-mono); font-size: .58rem; letter-spacing: .06em; text-transform: uppercase; color: var(--steel); }
+.fs-mode-btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+.fs-detail { margin-top: 1rem; border: 1px solid rgba(11,11,12,.1); border-radius: 12px; background: #fff; padding: 1.4rem 1.5rem; min-height: 110px; }
+.fs-detail-tag { font-family: var(--font-mono); font-size: .6rem; letter-spacing: .14em; text-transform: uppercase; color: var(--accent-deep); }
+.fs-detail h3 { font-family: var(--font-display); font-weight: 800; text-transform: uppercase; font-size: clamp(1.3rem, 2.6vw, 1.8rem); margin: .4rem 0 .4rem; color: var(--coal); }
+.fs-detail p { color: var(--steel); font-size: .92rem; line-height: 1.55; max-width: 60ch; }

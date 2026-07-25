@@ -8,7 +8,45 @@ import PageShell from "@/components/PageShell";
 import ParticleField from "@/components/services/ParticleField";
 import type { Service } from "@/data/services";
 
+import DryVanClient from "@/components/services/pages/DryVanClient";
+import GovCargoClient from "@/components/services/pages/GovCargoClient";
+import DedicatedFleetClient from "@/components/services/pages/DedicatedFleetClient";
+import WarehousingClient from "@/components/services/pages/WarehousingClient";
+import FreightShippingClient from "@/components/services/pages/FreightShippingClient";
+import LtlClient from "@/components/services/pages/LtlClient";
+import ExpeditedClient from "@/components/services/pages/ExpeditedClient";
+import HotshotClient from "@/components/services/pages/HotshotClient";
+import LongHaulClient from "@/components/services/pages/LongHaulClient";
+import FreightTransClient from "@/components/services/pages/FreightTransClient";
+import ForwardingClient from "@/components/services/pages/ForwardingClient";
+
+/**
+ * Each service (except refrigerated-transport, which has its own dedicated
+ * route + bespoke build) gets its own fully custom page — different layout,
+ * color language, and signature interactive centerpiece — instead of sharing
+ * one generic template. Unmapped slugs fall back to <GenericServiceClient>.
+ */
+const REGISTRY: Record<string, React.ComponentType<{ service: Service }>> = {
+  "dry-van-trucking": DryVanClient,
+  "government-secured-cargo": GovCargoClient,
+  "dedicated-fleet": DedicatedFleetClient,
+  warehousing: WarehousingClient,
+  "freight-shipping": FreightShippingClient,
+  "ltl-trucking": LtlClient,
+  "expedited-trucking": ExpeditedClient,
+  "hotshot-trucking": HotshotClient,
+  "long-haul-trucking": LongHaulClient,
+  "freight-transportation": FreightTransClient,
+  "freight-forwarding": ForwardingClient,
+};
+
 export default function ServiceDetailClient({ service }: { service: Service }) {
+  const Bespoke = REGISTRY[service.slug];
+  if (Bespoke) return <Bespoke service={service} />;
+  return <GenericServiceClient service={service} />;
+}
+
+function GenericServiceClient({ service }: { service: Service }) {
   const root = React.useRef<HTMLDivElement>(null);
   const prefersReduced = useReducedMotion();
 

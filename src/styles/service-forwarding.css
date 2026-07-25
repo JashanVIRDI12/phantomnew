@@ -1,0 +1,20 @@
+/* FREIGHT FORWARDING — accent + unique showpiece only. Structure comes from service-page-shared.css */
+.fw { --accent: #2f4f8f; --accent-deep: #223a6b; }
+
+.fw-network-grid { display: grid; gap: 1.4rem; grid-template-columns: 1fr; }
+@media (min-width: 940px) { .fw-network-grid { grid-template-columns: 1.15fr .85fr; } }
+
+/* The globe component is styled for a dark backdrop, so it keeps its own dark card
+   even though the rest of the page is light — like the red metrics band, a deliberate accent block. */
+.fw-globe-wrap { position: relative; border-radius: 16px; background: var(--ink); display: flex; align-items: center; justify-content: center; padding: 1.2rem; min-height: clamp(280px, 32vw, 420px); }
+.fw-globe-hint { position: absolute; bottom: 1rem; left: 50%; transform: translateX(-50%); font-family: var(--font-mono); font-size: .58rem; letter-spacing: .14em; text-transform: uppercase; color: rgba(246,244,239,.5); }
+
+.fw-lanes { border: 1px solid rgba(11,11,12,.1); border-radius: 12px; background: #fff; padding: 1.1rem 1.2rem; }
+.fw-lanes-head { display: flex; align-items: center; justify-content: space-between; padding-bottom: .7rem; margin-bottom: .5rem; border-bottom: 1px solid rgba(11,11,12,.08); }
+.fw-lanes-head .title { font-family: var(--font-mono); font-size: .62rem; letter-spacing: .12em; text-transform: uppercase; color: var(--steel); }
+.fw-lanes-head .live { display: inline-flex; align-items: center; gap: .4rem; font-family: var(--font-mono); font-size: .58rem; letter-spacing: .12em; color: var(--accent-deep); }
+.fw-lanes-head .live .d { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); }
+.fw-lane-row { display: flex; align-items: center; justify-content: space-between; gap: .8rem; padding: .55rem 0; border-top: 1px dashed rgba(11,11,12,.08); font-family: var(--font-mono); font-size: .78rem; }
+.fw-lane-row:first-child { border-top: 0; }
+.fw-lane-row .route { color: var(--coal); }
+.fw-lane-row .badge { font-size: .56rem; letter-spacing: .06em; text-transform: uppercase; color: var(--accent-deep); border: 1px solid rgba(47,79,143,.25); border-radius: 100px; padding: .2rem .5rem; white-space: nowrap; }
