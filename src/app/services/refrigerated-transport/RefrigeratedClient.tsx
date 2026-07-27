@@ -13,7 +13,7 @@ import "@/styles/service-reefer.css";
 const REVEAL_IMGS = [
   "/dock.webp", // F
   "/yard.webp", // R
-  "/loading.webp", // O
+  "/fleet.webp", // O
   "/sunset.webp", // Z
   "/aerial.webp", // E
   "/fleet.webp", // N

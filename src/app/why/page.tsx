@@ -12,7 +12,6 @@ const IMG = {
   sunset: "/sunset.webp",
   dock: "/dock.webp",
   yard: "/yard.webp",
-  loading: "/loading.webp",
   fleet: "/fleet.webp",
 };
 
@@ -28,7 +27,7 @@ const PROBLEM_ITEMS = [
 const EDGES = [
   { n: "01", title: "Company-Owned Fleet", copy: "Every truck is ours. 50+ units, zero brokered loads. You always know exactly whose equipment is moving your freight.", img: IMG.fleet },
   { n: "02", title: "24/7 Live Dispatch", copy: "Human dispatchers answer at 3 a.m. Same voices, same team. No call centers, no email queues — ever.", img: IMG.dock },
-  { n: "03", title: "Live Temp Monitoring", copy: "Real-time thermal watch from pickup to delivery, −40°F to 70°F. Seafood, produce, pharma — all protected.", img: IMG.loading },
+  { n: "03", title: "Live Temp Monitoring", copy: "Real-time thermal watch from pickup to delivery, −40°F to 70°F. Seafood, produce, pharma — all protected.", img: IMG.fleet },
   { n: "04", title: "Experienced Drivers", copy: "Company drivers with years of long-haul experience. Not owner-operators. Not strangers. Our team — vetted and committed.", img: IMG.sunset },
   { n: "05", title: "24/7 Secured Yard", copy: "Fenced, lit, and live-monitored around the clock. Your freight never sits in a dark lot between routes.", img: IMG.yard },
   { n: "06", title: "Fully Accountable", copy: "Comprehensive cargo insurance on every load. One responsible party — us — from dock to dock. No he-said-she-said.", img: IMG.aerial },

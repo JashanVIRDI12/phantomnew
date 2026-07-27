@@ -10,7 +10,6 @@ import "@/styles/about.css";
 const IMG = {
   dock:    "/dock.webp",
   yard:    "/yard.webp",
-  loading: "/loading.webp",
   sunset:  "/sunset.webp",
   aerial:  "/aerial.webp",
   fleet:   "/fleet.webp",
@@ -36,7 +35,7 @@ const MANIFESTO_ACCENT = ["it", "moves,", "it", "moves."]; // emphasised cluster
 const TIMELINE = [
   { year: "2017", img: IMG.yard,    h: "Twelve trucks, one promise", c: "Founded in Truro, NS with a dozen units and a refusal to broker a single load." },
   { year: "2019", img: IMG.dock,    h: "Twenty-five strong",         c: "Crossed 25 company-owned units and pushed our first lanes across Atlantic Canada." },
-  { year: "2021", img: IMG.loading, h: "East coast, owned",           c: "40 tractors running the Maritimes and beyond — every driver an employee, every truck ours." },
+  { year: "2021", img: IMG.fleet,   h: "East coast, owned",           c: "40 tractors running the Maritimes and beyond — every driver an employee, every truck ours." },
   { year: "2022", img: IMG.sunset,  h: "Ontario terminal",            c: "The Bolton, ON location opens. Phantom freight now moves coast to coast across Canada." },
   { year: "2024", img: IMG.aerial,  h: "50+ units, 48 states",        c: "The fastest organic fleet growth in the industry — without a single brokered mile." },
   { year: "2025", img: IMG.fleet,   h: "Intelligence on every lane",  c: "AI-driven dispatch and live tracking roll out across the entire fleet." },
@@ -53,7 +52,7 @@ const VALUES = [
   { n: "01", t: "Ownership",     c: "We own every truck, every trailer, every mile. No pass-through, no excuses — the outcome is always in our hands.", img: IMG.fleet },
   { n: "02", t: "Transparency",  c: "One dot on the map. One invoice. Nothing hidden between the quote you accept and the freight we deliver.", img: IMG.aerial },
   { n: "03", t: "Reliability",   c: "98.7% on-time isn't luck. It's discipline, driver culture, and the control that only company assets allow.", img: IMG.sunset },
-  { n: "04", t: "Partnership",   c: "Your freight moves like it's the only load we have. Because to the rep who owns your account, it is.", img: IMG.loading },
+  { n: "04", t: "Partnership",   c: "Your freight moves like it's the only load we have. Because to the rep who owns your account, it is.", img: IMG.fleet },
 ];
 
 const FLEET = [

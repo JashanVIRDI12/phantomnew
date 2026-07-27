@@ -11,10 +11,6 @@ const STOPS = [
     copy: "A tractor backs into your dock inside the appointment window. Bills signed, load secured, photos on file before the doors close.",
     images: [
       {
-        src: "/loading.webp",
-        alt: "Phantom Logistics facility with trucks loading at docks",
-      },
-      {
         src: "/dock.webp",
         alt: "Phantom Logistics dry van backed to loading dock in winter",
       },

@@ -27,7 +27,6 @@ const PORTRAITS = [
 const IMGS = {
   dock: "/dock.webp",
   yard: "/yard.webp",
-  loading: "/loading.webp",
   sunset: "/sunset.webp",
   aerial: "/aerial.webp",
   fleet: "/fleet.webp",

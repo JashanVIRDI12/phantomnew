@@ -33,7 +33,6 @@ const COL_C: Card[] = [
 const AVATARS = [
   "/dock.webp",
   "/yard.webp",
-  "/loading.webp",
   "/aerial.webp",
 ];
 
