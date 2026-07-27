@@ -4,31 +4,62 @@ import { useRef } from "react";
 import Link from "next/link";
 import { gsap, ScrollTrigger, useGSAP } from "@/lib/gsap";
 import PageShell from "@/components/PageShell";
-import { MagicText } from "@/components/ui/magic-text";
 import type { Service } from "@/data/services";
-import "@/styles/service-page-shared.css";
-import "@/styles/service-warehousing.css";
+import "@/styles/service-light.css";
 
-const STATS = [
-  { k: "Bonded space", v: "1.2M sq ft" },
-  { k: "Inventory accuracy", v: "99.2%" },
-  { k: "Order cycle time", v: "6.2 hrs avg" },
-  { k: "Coverage", v: "Ambient + climate" },
+const EQUIPMENT = [
+  "CLIMATE-CONTROLLED + AMBIENT SPACE",
+  "1.2M SQ FT BONDED CAPACITY",
+  "WMS WITH EDI / API INTEGRATION",
+  "CROSS-DOCK + TRANSLOAD READY",
+  "24/7 SECURITY + FULL INSURANCE",
+  "PICK, PACK & LABEL ON SITE",
 ];
 
-const LOG = [
-  { t: "08:41", msg: "PO #4471 received — 212 units, dock 3" },
-  { t: "08:47", msg: "Putaway complete — bin C-14 to C-19" },
-  { t: "09:02", msg: "Pick wave #88213 released — 40 lines" },
-  { t: "09:35", msg: "Order #3390 staged for LTL pickup" },
-  { t: "09:41", msg: "Shipment #3390 departed, dock 7" },
+const FREIGHT_TYPES = [
+  "SHORT & LONG-TERM STORAGE",
+  "RETURNS & REVERSE LOGISTICS",
+  "KITTING & LIGHT ASSEMBLY",
+  "SEASONAL OVERFLOW INVENTORY",
+  "CROSS-DOCK TRANSFERS",
+];
+
+const DRIVER_FACTS = ["6 YR AVERAGE DRIVER TENURE", "ELD + DASHCAM ON EVERY UNIT", "SAME CARRIER, DOCK TO DOOR"];
+
+const GUARANTEES = [
+  { n: "01", v: "99.2%", k: "Inventory Accuracy", d: "cycle-counted and audited continuously, not once a quarter." },
+  { n: "02", v: "6.2 HRS", k: "Average Order Cycle", d: "from pick ticket to dock door, tracked on every order." },
+  { n: "03", v: "1.2M", k: "Sq Ft Bonded Space", d: "climate-controlled and ambient capacity across our network." },
+  { n: "04", v: "24/7", k: "Security Coverage", d: "monitored access and full insurance on everything stored under our roof." },
+];
+
+const FAQS = [
+  {
+    q: "Can you handle both short-term and long-term storage?",
+    a: "Yes — from a single overflow pallet run to a standing long-term program, priced either way.",
+  },
+  {
+    q: "Do you integrate with our existing WMS or ERP?",
+    a: "Yes, via EDI or API. Most integrations are live within a couple of weeks.",
+  },
+  {
+    q: "What happens to freight after it leaves the warehouse?",
+    a: "It can ship on our own trucks or hand off to your carrier of choice — your call, same invoice either way.",
+  },
+  {
+    q: "Can you do kitting, labeling, or light assembly?",
+    a: "Yes, all handled on site as part of the same storage agreement — no separate vendor to manage.",
+  },
+  {
+    q: "How is inventory accuracy actually verified?",
+    a: "Continuous cycle counts, not an annual audit — discrepancies get caught and corrected within days, not months.",
+  },
 ];
 
 export default function WarehousingClient({ service }: { service: Service }) {
   const root = useRef<HTMLDivElement>(null);
 
-  const fmt = (n: number, d: number) =>
-    n.toLocaleString("en-US", { minimumFractionDigits: d, maximumFractionDigits: d });
+  const fmt = (n: number, d: number) => n.toLocaleString("en-US", { minimumFractionDigits: d, maximumFractionDigits: d });
 
   useGSAP(
     () => {
@@ -37,26 +68,15 @@ export default function WarehousingClient({ service }: { service: Service }) {
       const mm = gsap.matchMedia();
 
       mm.add("(prefers-reduced-motion: no-preference)", () => {
-        gsap.from("[data-hero-fade]", { opacity: 0, y: 20, duration: 0.7, stagger: 0.08, ease: "power2.out", delay: 0.1 });
-        gsap.to(".svcx-hero-bg img", { yPercent: 8, ease: "none", scrollTrigger: { trigger: ".svcx-hero", start: "top top", end: "bottom top", scrub: true } });
-
-        gsap.from(".wh-stat-cell", { opacity: 0, y: 14, stagger: 0.06, duration: 0.5, ease: "power2.out", scrollTrigger: { trigger: ".wh-stats-grid", start: "top 85%", once: true } });
-        gsap.from(".wh-ticker-row", { opacity: 0, x: 12, stagger: 0.06, duration: 0.4, ease: "power2.out", scrollTrigger: { trigger: ".wh-ticker", start: "top 85%", once: true } });
-
-        gsap.utils.toArray<HTMLElement>("[data-count]").forEach((node) => {
-          const end = Number(node.dataset.count);
-          const dec = Number(node.dataset.dec ?? 0);
-          const proxy = { n: 0 };
-          gsap.to(proxy, {
-            n: end, duration: 1.6, ease: "power2.out",
-            scrollTrigger: { trigger: node, start: "top 88%", once: true },
-            onUpdate: () => { node.firstChild!.textContent = fmt(proxy.n, dec); },
-          });
-        });
-        gsap.from(".svcx-metric", { opacity: 0, y: 20, stagger: 0.08, duration: 0.55, ease: "power2.out", scrollTrigger: { trigger: ".svcx-metrics", start: "top 85%", once: true } });
-        gsap.from(".svcx-process-step", { opacity: 0, y: 18, stagger: 0.08, duration: 0.55, ease: "power2.out", scrollTrigger: { trigger: ".svcx-process-list", start: "top 85%", once: true } });
-        gsap.from(".svcx-card", { opacity: 0, y: 20, stagger: 0.07, duration: 0.55, ease: "power2.out", scrollTrigger: { trigger: ".svcx-cards-grid", start: "top 85%", once: true } });
-        gsap.from(".svcx-cta-inner > *", { opacity: 0, y: 20, stagger: 0.08, duration: 0.6, ease: "power2.out", scrollTrigger: { trigger: ".svcx-cta", start: "top 80%", once: true } });
+        gsap.from("[data-svl-fade]", { opacity: 0, y: 22, duration: 0.75, stagger: 0.09, ease: "power2.out", delay: 0.1 });
+        gsap.from(".svl-stat", { opacity: 0, y: 14, duration: 0.5, stagger: 0.08, ease: "power2.out", scrollTrigger: { trigger: ".svl-stats", start: "top 85%", once: true } });
+        gsap.from(".svl-tag", { opacity: 0, y: 10, duration: 0.45, stagger: 0.03, ease: "power2.out", scrollTrigger: { trigger: ".svl-specs-block", start: "top 82%", once: true } });
+        gsap.from(".svl-photo-band", { opacity: 0, y: 24, duration: 0.65, ease: "power2.out", scrollTrigger: { trigger: ".svl-photo-band", start: "top 85%", once: true } });
+        gsap.from(".svl-step", { opacity: 0, y: 22, duration: 0.6, stagger: 0.12, ease: "power2.out", scrollTrigger: { trigger: ".svl-timeline", start: "top 82%", once: true } });
+        gsap.from(".svl-drivers-fade", { opacity: 0, y: 20, duration: 0.6, stagger: 0.09, ease: "power2.out", scrollTrigger: { trigger: ".svl-drivers", start: "top 82%", once: true } });
+        gsap.from(".svl-guarantee", { opacity: 0, y: 18, duration: 0.55, stagger: 0.08, ease: "power2.out", scrollTrigger: { trigger: ".svl-guarantees", start: "top 85%", once: true } });
+        gsap.from(".svl-faq-item", { opacity: 0, y: 16, duration: 0.5, stagger: 0.07, ease: "power2.out", scrollTrigger: { trigger: ".svl-faq", start: "top 85%", once: true } });
+        gsap.from(".svl-cta-photo-inner > *", { opacity: 0, y: 20, duration: 0.6, stagger: 0.08, ease: "power2.out", scrollTrigger: { trigger: ".svl-cta-photo", start: "top 80%", once: true } });
       });
 
       return () => mm.revert();
@@ -66,146 +86,196 @@ export default function WarehousingClient({ service }: { service: Service }) {
 
   return (
     <PageShell>
-      <div ref={root} className="wh svcx">
-        {/* ══════════ HERO ══════════ */}
-        <section className="svcx-hero">
-          <div className="svcx-hero-bg" aria-hidden="true">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={service.img} alt="" />
-          </div>
-          <div className="svcx-hero-inner svcx-wrap">
-            <div className="svcx-hero-top" data-hero-fade>
-              <span className="svcx-eyebrow on-dark"><span className="dot" />{service.tag}</span>
-              <span className="svcx-hero-toptag">Storage · Fulfillment · Cross-dock</span>
-            </div>
-            <h1 className="svcx-hero-title" data-hero-fade>Under one <span className="accent">roof.</span></h1>
-            <p className="svcx-hero-sub" data-hero-fade>
-              Storage, fulfillment, and transportation from a single carrier — no third-party handoff.
-              Real-time WMS, cycle counts, and value-added services, all under one invoice.
-            </p>
-            <div className="svcx-hero-actions" data-hero-fade>
-              <Link href="/contact" className="btn btn-red px-8 py-3.5">GET WAREHOUSE CAPACITY</Link>
-              <a href="tel:+19024030112" className="svcx-phone"><span className="pulse" />(902) 403-0112</a>
-            </div>
-            <ul className="svcx-hero-stats" data-hero-fade>
-              <li><b>1.2M</b> sq ft bonded</li><li className="sep">/</li>
-              <li><b>99.2%</b> inventory accuracy</li><li className="sep">/</li>
-              <li><b>6.2 hrs</b> avg order cycle</li>
-            </ul>
-          </div>
-        </section>
-
-        {/* ══════════ THESIS ══════════ */}
-        <section className="svcx-thesis svcx-wrap">
-          <span className="svcx-eyebrow on-light"><span className="dot" />No third-party risk</span>
-          <MagicText
-            className="svcx-magic"
-            text="A separate warehouse means a separate company, a separate system, a separate excuse. We own the racking and the trucks — one roof, one record, one call."
-            highlightWords={["separate", "own", "racking", "trucks", "one", "roof", "record", "call"]}
-            highlightClassName="svcx-magic-hl"
-          />
-        </section>
-
-        {/* ══════════ WAREHOUSE STATUS ══════════ */}
-        <section className="svcx-showpiece svcx-wrap">
-          <div className="svcx-showpiece-head">
-            <span className="svcx-eyebrow on-light"><span className="dot" />Live floor status</span>
-            <h2>Every bin tracked. Every pallet placed.</h2>
-          </div>
-          <div className="wh-showpiece-grid">
-            <div className="wh-stats-grid">
-              {STATS.map((s) => (
-                <div className="wh-stat-cell" key={s.k}>
-                  <div className="k">{s.k}</div>
-                  <div className="v">{s.v}</div>
+      <div ref={root} className="svl">
+        <div className="svl-wrap">
+          <div
+            className="svl-panel"
+            style={{ backdropFilter: "blur(30px) saturate(1.4) brightness(1.03)", WebkitBackdropFilter: "blur(30px) saturate(1.4) brightness(1.03)" }}
+          >
+            <div className="svl-hero-row">
+              <div className="svl-hero-col">
+                <h1 className="svl-headline" data-svl-fade>
+                  Warehousing
+                </h1>
+                <p className="svl-positioning" data-svl-fade>
+                  Storage, fulfillment, and last-mile execution under one roof — and one invoice with your freight.
+                </p>
+                <span className="svl-rule" data-svl-fade aria-hidden="true" />
+                <div className="svl-hero-actions" data-svl-fade>
+                  <Link href="/contact" className="svl-cta-btn">
+                    Request a Warehousing Quote
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                      <path d="M3 8h9M8 4l4 4-4 4" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" />
+                    </svg>
+                  </Link>
+                  <a href="tel:+19024030112" className="svl-phone">
+                    (902) 403-0112
+                  </a>
                 </div>
-              ))}
-            </div>
-            <div className="wh-ticker">
-              <div className="wh-ticker-head">
-                <span className="title">WMS activity feed</span>
-                <span className="live"><span className="d" />LIVE</span>
               </div>
-              {LOG.map((row, i) => (
-                <div className={`wh-ticker-row${i === LOG.length - 1 ? " is-recent" : ""}`} key={row.t}>
-                  <span className="t">{row.t}</span>
-                  <span className="msg">{row.msg}</span>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
 
-        {/* ══════════ METRICS ══════════ */}
-        <section className="svcx-metrics">
-          <div className="svcx-wrap">
-            <div className="svcx-metrics-grid">
-              {service.metrics.map((m) => (
-                <div className="svcx-metric" key={m.label}>
-                  <div className="v"><span data-count={m.value} data-dec={m.decimals}>{fmt(0, m.decimals)}</span><span className="u">{m.suffix}</span></div>
-                  <div className="l">{m.label}</div>
+              <div className="svl-photo-col" data-svl-fade>
+                <div className="svl-photo-frame">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src={service.img} alt="Phantom Logistics warehousing and distribution facility" />
                 </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* ══════════ PROCESS ══════════ */}
-        <section className="svcx-process">
-          <div className="svcx-wrap">
-            <div className="svcx-process-head">
-              <span className="svcx-eyebrow on-dark"><span className="dot" />Dock to dock</span>
-              <h2>In. Stored. Picked. Out.</h2>
-            </div>
-            <div className="svcx-process-list">
-              {service.process.map((step) => (
-                <div className="svcx-process-step" key={step.n}>
-                  <span className="n">{step.n}</span>
-                  <h3>{step.title}</h3>
-                  <p>{step.copy}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* ══════════ BENEFITS ══════════ */}
-        <section className="svcx-cards svcx-wrap">
-          <div className="svcx-cards-head">
-            <span className="svcx-eyebrow on-light"><span className="dot" />System capabilities</span>
-            <h2>What's running behind every bin.</h2>
-          </div>
-          <div className="svcx-cards-grid">
-            {service.benefits.map((b, i) => (
-              <div className="svcx-card" key={i}>
-                <div className="tag">CAPABILITY {String(i + 1).padStart(2, "0")}</div>
-                <p className="body">{b}</p>
+                <div className="svl-visual-caption">Bonded storage — company-owned facility</div>
               </div>
-            ))}
-          </div>
-        </section>
+            </div>
 
-        {/* ══════════ CTA ══════════ */}
-        <section className="svcx-cta">
-          <div className="svcx-cta-bg" aria-hidden="true">
+            <div className="svl-divider" />
+
+            <div className="svl-block">
+              <h2 className="svl-block-title">By the numbers</h2>
+              <div className="svl-stats">
+                {service.metrics.map((m) => (
+                  <div className="svl-stat" key={m.label}>
+                    <div className="svl-stat-v">
+                      {fmt(m.value, m.decimals)}
+                      {m.suffix}
+                    </div>
+                    <div className="svl-stat-k">{m.label}</div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="svl-divider" />
+
+            <div className="svl-block svl-specs-block">
+              <h2 className="svl-block-title">What&apos;s available on every account</h2>
+              <div className="svl-tag-group">
+                <div className="svl-tag-label">Facility &amp; systems</div>
+                <div className="svl-tags">
+                  {EQUIPMENT.map((tag) => (
+                    <span className="svl-tag" key={tag}>
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              </div>
+              <div className="svl-tag-group">
+                <div className="svl-tag-label">Built for</div>
+                <div className="svl-tags">
+                  {FREIGHT_TYPES.map((tag) => (
+                    <span className="svl-tag" key={tag}>
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              </div>
+
+              <div className="svl-photo-band">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src={service.img} alt="Phantom Logistics warehousing facility floor" />
+                <div className="svl-photo-band-inner">
+                  <div className="svl-photo-band-title">One roof. One invoice. Storage to dispatch.</div>
+                  <div className="svl-photo-band-facts">
+                    <span>1.2M SQ FT BONDED</span>
+                    <span>99.2% INVENTORY ACCURACY</span>
+                    <span>24/7 SECURITY</span>
+                    <span>REAL-TIME WMS</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="svl-divider" />
+
+            <div className="svl-block">
+              <h2 className="svl-block-title">How freight moves through the warehouse</h2>
+              <div className="svl-timeline">
+                {service.process.map((step) => (
+                  <div className="svl-step" key={step.n}>
+                    <span className="svl-step-n">{step.n}</span>
+                    <div className="svl-step-body">
+                      <h3>{step.title}</h3>
+                      <p>{step.copy}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="svl-divider" />
+
+            <div className="svl-block">
+              <h2 className="svl-block-title">Company drivers. Not gig freight.</h2>
+              <div className="svl-drivers">
+                <div className="svl-driver-photo svl-drivers-fade">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src="/services/photos/spare-driver-portrait.webp"
+                    alt="Phantom Logistics company driver standing beside his assigned tractor at the home terminal"
+                  />
+                </div>
+                <div className="svl-drivers-copy">
+                  <p className="svl-drivers-fade">
+                    When freight leaves the warehouse on our trucks, it&apos;s run by a Phantom company driver — not a leased owner-operator, not
+                    a broker&apos;s best guess. Same carrier from the dock door to final delivery.
+                  </p>
+                  <div className="svl-fact-list">
+                    {DRIVER_FACTS.map((fact) => (
+                      <div className="svl-fact svl-drivers-fade" key={fact}>
+                        {fact}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="svl-divider" />
+
+            <div className="svl-block">
+              <h2 className="svl-block-title">What we guarantee</h2>
+              <div className="svl-guarantees">
+                {GUARANTEES.map((g) => (
+                  <div className="svl-guarantee" key={g.k}>
+                    <div className="svl-guarantee-n">{g.n}</div>
+                    <div className="svl-guarantee-v">{g.v}</div>
+                    <div className="svl-guarantee-k">{g.k}</div>
+                    <p>{g.d}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="svl-divider" />
+
+            <div className="svl-block">
+              <h2 className="svl-block-title">Questions we get before booking</h2>
+              <div className="svl-faq">
+                {FAQS.map((f) => (
+                  <div className="svl-faq-item" key={f.q}>
+                    <div className="svl-faq-q">{f.q}</div>
+                    <p className="svl-faq-a">{f.a}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          <div className="svl-cta-photo">
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={service.img} alt="" />
-          </div>
-          <div className="svcx-cta-inner svcx-wrap">
-            <span className="svcx-eyebrow on-dark"><span className="dot" />Ready to store it right</span>
-            <h2>Storage that talks<br />to your <span className="accent">trucks.</span></h2>
-            <p>Tell us your volume and your SKUs. We'll model the space, wire up the WMS, and give you one invoice for storage and transportation both.</p>
-            <div className="svcx-diffs">
-              {service.differentiators.map((d) => <div className="svcx-diff" key={d}>{d}</div>)}
+            <img src={service.img} alt="" aria-hidden="true" />
+            <div className="svl-cta-photo-inner">
+              <h2>Ready to talk warehousing?</h2>
+              <p>Tell us your volume, SKU count, and whether you need fulfillment or just storage. We&apos;ll scope space the same week.</p>
+              <div className="svl-cta-actions">
+                <Link href="/contact" className="svl-cta-btn svl-cta-btn--lg svl-cta-btn--photo">
+                  Request a Warehousing Quote
+                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                    <path d="M3 8h9M8 4l4 4-4 4" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                </Link>
+                <Link href="/services" className="svl-phone svl-phone--onphoto">
+                  ← Back to all services
+                </Link>
+              </div>
             </div>
-            <div className="svcx-cta-actions">
-              <Link href="/contact" className="btn btn-red px-10 py-4">START THIS MOVE</Link>
-              <Link href="/services" className="svcx-back">← Back to all services</Link>
-            </div>
           </div>
-        </section>
-
-        <div className="svcx-sign">One carrier · One invoice · One roof for storage and freight — Phantom Logistics</div>
+        </div>
       </div>
     </PageShell>
   );

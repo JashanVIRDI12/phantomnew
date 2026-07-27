@@ -11,12 +11,12 @@ import "@/styles/service-reefer.css";
 
 /* Real Phantom lanes — one photo per letter of FROZEN (hover reveal) */
 const REVEAL_IMGS = [
-  "/hf_20260606_104556_7052f106-a0e2-4aae-a9ad-cc8f8a74266e(1).png", // F
-  "/hf_20260606_104624_2d9fc850-b40b-4e43-a8de-2f9cceecdead(1).png", // R
-  "/hf_20260606_104656_597a0532-bf54-40c9-adad-28423d0fadaa(1).png", // O
-  "/hf_20260606_104819_db26e803-e1e6-450e-a7e3-24b2f16e33cb(1).png", // Z
-  "/hf_20260606_104850_008b5602-bfa5-40a9-a9c8-3020d070d0f2(1).png", // E
-  "/hf_20260606_105246_4f3378c4-ef89-4fbe-8dda-c5ffff69c467(1).png", // N
+  "/dock.webp", // F
+  "/yard.webp", // R
+  "/loading.webp", // O
+  "/sunset.webp", // Z
+  "/aerial.webp", // E
+  "/fleet.webp", // N
 ];
 
 /* ── Cold-chain domain data (presentation-only, page-specific) ────────────── */

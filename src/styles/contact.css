@@ -237,6 +237,8 @@
 .ct-submit { width: 100%; padding: 1.05rem 1.5rem; margin-top: .35rem; }
 .ct-submit svg { transition: transform .35s cubic-bezier(.2,.7,.3,1); }
 .ct-submit:hover svg { transform: translateX(4px); }
+.ct-submit:disabled { opacity: .6; cursor: not-allowed; pointer-events: none; }
+.ct-error { font-family: var(--font-sans); font-size: .82rem; line-height: 1.5; color: var(--red); text-align: center; }
 .ct-consent { font-family: var(--font-sans); font-size: .76rem; line-height: 1.5; color: var(--steel); text-align: center; }
 .ct-consent a { color: var(--silver); text-decoration: underline; text-underline-offset: 2px; }
 .ct-consent a:hover { color: var(--red); }

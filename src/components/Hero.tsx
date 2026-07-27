@@ -13,29 +13,29 @@ import "@/styles/hero.css";
 type Card = { src: string; tag: string; h: "t" | "m" | "s" };
 
 const COL_A: Card[] = [
-  { src: "/services/dry_van.png",      tag: "Dry Van",       h: "t" },
-  { src: "/services/warehousing.png",  tag: "Warehousing",   h: "m" },
-  { src: "/services/long_haul.png",    tag: "Long Haul",     h: "s" },
-  { src: "/services/hotshot.png",      tag: "Hotshot",       h: "m" },
+  { src: "/services/photos/dry-van-trucking.webp",      tag: "Dry Van",       h: "t" },
+  { src: "/services/photos/warehousing.webp",  tag: "Warehousing",   h: "m" },
+  { src: "/services/photos/long-haul-trucking.webp",    tag: "Long Haul",     h: "s" },
+  { src: "/services/photos/hotshot-trucking.webp",      tag: "Hotshot",       h: "m" },
 ];
 const COL_B: Card[] = [
-  { src: "/services/dedicated_fleet.png",  tag: "Dedicated Fleet", h: "m" },
-  { src: "/hero-bg.png",                   tag: "Linehaul",        h: "t" },
-  { src: "/services/refrigerated.png",     tag: "Refrigerated",    h: "s" },
-  { src: "/services/freight_shipping.png", tag: "Freight",         h: "m" },
+  { src: "/services/photos/dedicated-fleet.webp",  tag: "Dedicated Fleet", h: "m" },
+  { src: "/hero-bg.webp",                   tag: "Linehaul",        h: "t" },
+  { src: "/services/photos/refrigerated.png",     tag: "Refrigerated",    h: "s" },
+  { src: "/services/photos/freight-shipping.webp", tag: "Freight",         h: "m" },
 ];
 const COL_C: Card[] = [
-  { src: "/services/expedited.png",    tag: "Expedited",   h: "s" },
-  { src: "/services/ltl.png",          tag: "LTL",         h: "m" },
-  { src: "/services/forwarding.png",   tag: "Forwarding",  h: "t" },
-  { src: "/services/freight_trans.png",tag: "Transport",   h: "m" },
+  { src: "/services/photos/expedited-trucking.webp",    tag: "Expedited",   h: "s" },
+  { src: "/services/photos/ltl-trucking.webp",          tag: "LTL",         h: "m" },
+  { src: "/services/photos/freight-forwarding.webp",   tag: "Forwarding",  h: "t" },
+  { src: "/services/photos/freight-transportation.webp",tag: "Transport",   h: "m" },
 ];
 
 const AVATARS = [
-  "/hf_20260606_104556_7052f106-a0e2-4aae-a9ad-cc8f8a74266e(1).png",
-  "/hf_20260606_104624_2d9fc850-b40b-4e43-a8de-2f9cceecdead(1).png",
-  "/hf_20260606_104656_597a0532-bf54-40c9-adad-28423d0fadaa(1).png",
-  "/hf_20260606_104850_008b5602-bfa5-40a9-a9c8-3020d070d0f2(1).png",
+  "/dock.webp",
+  "/yard.webp",
+  "/loading.webp",
+  "/aerial.webp",
 ];
 
 function Column({ cards, dir, slow }: { cards: Card[]; dir: "up" | "down"; slow?: boolean }) {
@@ -86,7 +86,7 @@ export default function Hero() {
             </h1>
 
             <p className="h-sub">
-              2,400 company trucks across all 48 states. Real-time tracking, same-day
+              50+ company trucks across all 48 states. Real-time tracking, same-day
               dispatch, one invoice — every mile owned end to end, no brokers in between.
             </p>
 

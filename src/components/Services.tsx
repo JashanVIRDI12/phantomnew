@@ -11,7 +11,7 @@ const SERVICES = [
     title: "Full Truckload",
     copy: "Dry van, reefer and flatbed — one shipper, one trailer, zero touches from dock to dock.",
     tags: ["Dry Van", "Reefer", "Flatbed"],
-    src: "/hf_20260606_104819_db26e803-e1e6-450e-a7e3-24b2f16e33cb(1).png",
+    src: "/sunset.webp",
     alt: "Phantom Logistics truck running a highway at sunset",
   },
   {
@@ -19,7 +19,7 @@ const SERVICES = [
     title: "Less-Than-Truckload",
     copy: "Palletized freight on scheduled lanes with cross-dock at every hub. Pay for the space, not the trailer.",
     tags: ["Palletized", "Scheduled Lanes", "Cross-dock"],
-    src: "/hf_20260606_104850_008b5602-bfa5-40a9-a9c8-3020d070d0f2(1).png",
+    src: "/aerial.webp",
     alt: "Phantom Logistics truck on scenic mountain highway aerial view",
   },
   {
@@ -27,7 +27,7 @@ const SERVICES = [
     title: "Dedicated Fleet",
     copy: "Contract trucks and drivers assigned to your lanes — wrapped in your livery, run on your schedule.",
     tags: ["Contract", "Your Livery", "Priority Dispatch"],
-    src: "/hf_20260606_105246_4f3378c4-ef89-4fbe-8dda-c5ffff69c467(1).png",
+    src: "/fleet.webp",
     alt: "Phantom Logistics yard with multiple truck and trailer types",
   },
   {
@@ -35,7 +35,7 @@ const SERVICES = [
     title: "Warehousing & Cross-dock",
     copy: "1.2M sq ft of bonded, climate-controlled space positioned at the hubs your freight already passes through.",
     tags: ["1.2M sq ft", "Bonded", "Climate-controlled"],
-    src: "/hf_20260606_104624_2d9fc850-b40b-4e43-a8de-2f9cceecdead(1).png",
+    src: "/yard.webp",
     alt: "Phantom Logistics fleet lineup at company yard",
   },
   {
@@ -43,7 +43,7 @@ const SERVICES = [
     title: "Final Mile",
     copy: "Box trucks and sprinters for the last leg — liftgate, inside delivery, photo proof on every stop.",
     tags: ["Liftgate", "Inside Delivery", "Photo POD"],
-    src: "/hf_20260606_104556_7052f106-a0e2-4aae-a9ad-cc8f8a74266e(1).png",
+    src: "/dock.webp",
     alt: "Phantom Logistics dry van backed to loading dock in winter",
   },
 ];

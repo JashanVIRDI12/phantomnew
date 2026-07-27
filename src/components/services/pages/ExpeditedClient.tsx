@@ -4,16 +4,62 @@ import { useRef } from "react";
 import Link from "next/link";
 import { gsap, ScrollTrigger, useGSAP } from "@/lib/gsap";
 import PageShell from "@/components/PageShell";
-import { MagicText } from "@/components/ui/magic-text";
 import type { Service } from "@/data/services";
-import "@/styles/service-page-shared.css";
-import "@/styles/service-expedited.css";
+import "@/styles/service-light.css";
+
+const EQUIPMENT = [
+  "TEAM DRIVERS — 24/7 ROLLING",
+  "1,200+ MILES/DAY CAPABLE",
+  "DIRECT DOOR-TO-DOOR, NO TERMINALS",
+  "GPS + ELD, EVERY UNIT",
+  "LIVE CHECK-INS EVERY 2 HRS",
+  "GUARANTEED CAPACITY WINDOWS",
+];
+
+const FREIGHT_TYPES = [
+  "TIME-CRITICAL FREIGHT",
+  "PRODUCTION-LINE PARTS",
+  "EMERGENCY / HOT-LOAD SHIPMENTS",
+  "TRADE SHOW & EVENT FREIGHT",
+  "MEDICAL / URGENT SUPPLY RUNS",
+];
+
+const DRIVER_FACTS = ["6 YR AVERAGE DRIVER TENURE", "ELD + DASHCAM ON EVERY UNIT", "COMPANY TEAM DRIVERS ONLY"];
+
+const GUARANTEES = [
+  { n: "01", v: "100%", k: "Delivered On Promised Time", d: "tracked on every expedited load, not just the ones that go well." },
+  { n: "02", v: "19.5 HRS", k: "Coast-to-Coast Record", d: "team drivers rotating non-stop, no layovers baked into the schedule." },
+  { n: "03", v: "1,240 MI", k: "Average Expedited Run", d: "team-driven lanes built for distance under time pressure." },
+  { n: "04", v: "TEAM", k: "Drivers Only", d: "no owner-operators on expedited freight — company drivers, company standard." },
+];
+
+const FAQS = [
+  {
+    q: "How fast can a team driver actually get moving?",
+    a: "Within minutes of confirming the load — we pre-position assets on major corridors specifically for this.",
+  },
+  {
+    q: "Do you make stops at terminals along the way?",
+    a: "No — expedited runs direct door-to-door. The truck doesn't stop until it's empty.",
+  },
+  {
+    q: "What if the pickup window is extremely tight?",
+    a: "Tell us the deadline when you call — we'll deadhead if that's what it takes to make it.",
+  },
+  {
+    q: "Are these owner-operators or your own drivers?",
+    a: "Company team drivers only. No owner-operators on expedited freight.",
+  },
+  {
+    q: "How often will I get an update during transit?",
+    a: "Live satellite tracking plus a driver check-in at least every 2 hours.",
+  },
+];
 
 export default function ExpeditedClient({ service }: { service: Service }) {
   const root = useRef<HTMLDivElement>(null);
 
-  const fmt = (n: number, d: number) =>
-    n.toLocaleString("en-US", { minimumFractionDigits: d, maximumFractionDigits: d });
+  const fmt = (n: number, d: number) => n.toLocaleString("en-US", { minimumFractionDigits: d, maximumFractionDigits: d });
 
   useGSAP(
     () => {
@@ -22,25 +68,15 @@ export default function ExpeditedClient({ service }: { service: Service }) {
       const mm = gsap.matchMedia();
 
       mm.add("(prefers-reduced-motion: no-preference)", () => {
-        gsap.from("[data-hero-fade]", { opacity: 0, y: 20, duration: 0.7, stagger: 0.08, ease: "power2.out", delay: 0.1 });
-        gsap.to(".svcx-hero-bg img", { yPercent: 8, ease: "none", scrollTrigger: { trigger: ".svcx-hero", start: "top top", end: "bottom top", scrub: true } });
-
-        gsap.from(".xp-compare-card", { opacity: 0, y: 18, stagger: 0.1, duration: 0.5, ease: "power2.out", scrollTrigger: { trigger: ".xp-compare", start: "top 85%", once: true } });
-
-        gsap.utils.toArray<HTMLElement>("[data-count]").forEach((node) => {
-          const end = Number(node.dataset.count);
-          const dec = Number(node.dataset.dec ?? 0);
-          const proxy = { n: 0 };
-          gsap.to(proxy, {
-            n: end, duration: 1.6, ease: "power2.out",
-            scrollTrigger: { trigger: node, start: "top 88%", once: true },
-            onUpdate: () => { node.firstChild!.textContent = fmt(proxy.n, dec); },
-          });
-        });
-        gsap.from(".svcx-metric", { opacity: 0, y: 20, stagger: 0.08, duration: 0.55, ease: "power2.out", scrollTrigger: { trigger: ".svcx-metrics", start: "top 85%", once: true } });
-        gsap.from(".svcx-process-step", { opacity: 0, y: 18, stagger: 0.08, duration: 0.55, ease: "power2.out", scrollTrigger: { trigger: ".svcx-process-list", start: "top 85%", once: true } });
-        gsap.from(".svcx-card", { opacity: 0, y: 20, stagger: 0.07, duration: 0.55, ease: "power2.out", scrollTrigger: { trigger: ".svcx-cards-grid", start: "top 85%", once: true } });
-        gsap.from(".svcx-cta-inner > *", { opacity: 0, y: 20, stagger: 0.08, duration: 0.6, ease: "power2.out", scrollTrigger: { trigger: ".svcx-cta", start: "top 80%", once: true } });
+        gsap.from("[data-svl-fade]", { opacity: 0, y: 22, duration: 0.75, stagger: 0.09, ease: "power2.out", delay: 0.1 });
+        gsap.from(".svl-stat", { opacity: 0, y: 14, duration: 0.5, stagger: 0.08, ease: "power2.out", scrollTrigger: { trigger: ".svl-stats", start: "top 85%", once: true } });
+        gsap.from(".svl-tag", { opacity: 0, y: 10, duration: 0.45, stagger: 0.03, ease: "power2.out", scrollTrigger: { trigger: ".svl-specs-block", start: "top 82%", once: true } });
+        gsap.from(".svl-photo-band", { opacity: 0, y: 24, duration: 0.65, ease: "power2.out", scrollTrigger: { trigger: ".svl-photo-band", start: "top 85%", once: true } });
+        gsap.from(".svl-step", { opacity: 0, y: 22, duration: 0.6, stagger: 0.12, ease: "power2.out", scrollTrigger: { trigger: ".svl-timeline", start: "top 82%", once: true } });
+        gsap.from(".svl-drivers-fade", { opacity: 0, y: 20, duration: 0.6, stagger: 0.09, ease: "power2.out", scrollTrigger: { trigger: ".svl-drivers", start: "top 82%", once: true } });
+        gsap.from(".svl-guarantee", { opacity: 0, y: 18, duration: 0.55, stagger: 0.08, ease: "power2.out", scrollTrigger: { trigger: ".svl-guarantees", start: "top 85%", once: true } });
+        gsap.from(".svl-faq-item", { opacity: 0, y: 16, duration: 0.5, stagger: 0.07, ease: "power2.out", scrollTrigger: { trigger: ".svl-faq", start: "top 85%", once: true } });
+        gsap.from(".svl-cta-photo-inner > *", { opacity: 0, y: 20, duration: 0.6, stagger: 0.08, ease: "power2.out", scrollTrigger: { trigger: ".svl-cta-photo", start: "top 80%", once: true } });
       });
 
       return () => mm.revert();
@@ -50,144 +86,198 @@ export default function ExpeditedClient({ service }: { service: Service }) {
 
   return (
     <PageShell>
-      <div ref={root} className="xp svcx">
-        {/* ══════════ HERO ══════════ */}
-        <section className="svcx-hero">
-          <div className="svcx-hero-bg" aria-hidden="true">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={service.img} alt="" />
-          </div>
-          <div className="svcx-hero-inner svcx-wrap">
-            <div className="svcx-hero-top" data-hero-fade>
-              <span className="svcx-eyebrow on-dark"><span className="dot" />{service.tag}</span>
-              <span className="svcx-hero-toptag">Team drivers · Rolling 24/7</span>
-            </div>
-            <h1 className="svcx-hero-title" data-hero-fade>The truck never <span className="accent">stops.</span></h1>
-            <p className="svcx-hero-sub" data-hero-fade>
-              Team drivers, non-stop. No drop yards, no layovers, no excuses. When a plant is down or a
-              line is starving, we move heaven, earth, and trucks to get it there.
-            </p>
-            <div className="svcx-hero-actions" data-hero-fade>
-              <Link href="/contact" className="btn btn-red px-8 py-3.5">REQUEST EMERGENCY CAPACITY</Link>
-              <a href="tel:+19024030112" className="svcx-phone"><span className="pulse" />(902) 403-0112</a>
-            </div>
-            <ul className="svcx-hero-stats" data-hero-fade>
-              <li><b>1,240 mi</b> avg expedited run</li><li className="sep">/</li>
-              <li><b>19.5 hrs</b> coast-to-coast record</li><li className="sep">/</li>
-              <li><b>100%</b> delivered on promised time</li>
-            </ul>
-          </div>
-        </section>
-
-        {/* ══════════ THESIS ══════════ */}
-        <section className="svcx-thesis svcx-wrap">
-          <span className="svcx-eyebrow on-light"><span className="dot" />Every hour is a number</span>
-          <MagicText
-            className="svcx-magic"
-            text="When a plant is down, every hour is a number on someone's spreadsheet. We move heaven, earth, and trucks to keep that number small."
-            highlightWords={["every", "hour", "number", "spreadsheet", "heaven", "earth", "trucks", "small"]}
-            highlightClassName="svcx-magic-hl"
-          />
-        </section>
-
-        {/* ══════════ STANDARD VS EXPEDITED ══════════ */}
-        <section className="svcx-showpiece svcx-wrap">
-          <div className="svcx-showpiece-head">
-            <span className="svcx-eyebrow on-light"><span className="dot" />What changes when it's urgent</span>
-            <h2>Same network. A very different clock.</h2>
-          </div>
-          <div className="xp-compare">
-            <div className="xp-compare-card">
-              <span className="tag">STANDARD FREIGHT</span>
-              <h3>Next available truck</h3>
-              <ul>
-                <li>Scheduled pickup window</li>
-                <li>Solo driver, standard hours-of-service</li>
-                <li>Planned stops along the route</li>
-              </ul>
-            </div>
-            <div className="xp-compare-card is-us">
-              <span className="tag">PHANTOM EXPEDITED</span>
-              <h3>Rolling within the hour</h3>
-              <ul>
-                <li>Priority dispatch, guaranteed capacity window</li>
-                <li>Team drivers — the truck never stops</li>
-                <li>Door-to-door, zero terminal stops</li>
-              </ul>
-            </div>
-          </div>
-        </section>
-
-        {/* ══════════ METRICS ══════════ */}
-        <section className="svcx-metrics">
-          <div className="svcx-wrap">
-            <div className="svcx-metrics-grid">
-              {service.metrics.map((m) => (
-                <div className="svcx-metric" key={m.label}>
-                  <div className="v"><span data-count={m.value} data-dec={m.decimals}>{fmt(0, m.decimals)}</span><span className="u">{m.suffix}</span></div>
-                  <div className="l">{m.label}</div>
+      <div ref={root} className="svl">
+        <div className="svl-wrap">
+          <div
+            className="svl-panel"
+            style={{ backdropFilter: "blur(30px) saturate(1.4) brightness(1.03)", WebkitBackdropFilter: "blur(30px) saturate(1.4) brightness(1.03)" }}
+          >
+            <div className="svl-hero-row">
+              <div className="svl-hero-col">
+                <h1 className="svl-headline" data-svl-fade>
+                  Expedited
+                  <br />
+                  Trucking
+                </h1>
+                <p className="svl-positioning" data-svl-fade>
+                  Team drivers, non-stop — no terminals, no layovers, no excuses when the clock is running.
+                </p>
+                <span className="svl-rule" data-svl-fade aria-hidden="true" />
+                <div className="svl-hero-actions" data-svl-fade>
+                  <Link href="/contact" className="svl-cta-btn">
+                    Request Expedited Dispatch
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                      <path d="M3 8h9M8 4l4 4-4 4" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" />
+                    </svg>
+                  </Link>
+                  <a href="tel:+19024030112" className="svl-phone">
+                    (902) 403-0112
+                  </a>
                 </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* ══════════ PROCESS ══════════ */}
-        <section className="svcx-process">
-          <div className="svcx-wrap">
-            <div className="svcx-process-head">
-              <span className="svcx-eyebrow on-dark"><span className="dot" />From the call to mission complete</span>
-              <h2>How an emergency load actually moves.</h2>
-            </div>
-            <div className="svcx-process-list">
-              {service.process.map((step) => (
-                <div className="svcx-process-step" key={step.n}>
-                  <span className="n">{step.n}</span>
-                  <h3>{step.title}</h3>
-                  <p>{step.copy}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* ══════════ BENEFITS ══════════ */}
-        <section className="svcx-cards svcx-wrap">
-          <div className="svcx-cards-head">
-            <span className="svcx-eyebrow on-light"><span className="dot" />Standing by, always</span>
-            <h2>Built for the call nobody plans for.</h2>
-          </div>
-          <div className="svcx-cards-grid">
-            {service.benefits.map((b, i) => (
-              <div className="svcx-card" key={i}>
-                <div className="tag">OPS {String(i + 1).padStart(2, "0")}</div>
-                <p className="body">{b}</p>
               </div>
-            ))}
-          </div>
-        </section>
 
-        {/* ══════════ CTA ══════════ */}
-        <section className="svcx-cta">
-          <div className="svcx-cta-bg" aria-hidden="true">
+              <div className="svl-photo-col" data-svl-fade>
+                <div className="svl-photo-frame">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src={service.img} alt="Phantom Logistics expedited team-driven trailer on an active lane" />
+                </div>
+                <div className="svl-visual-caption">Team drivers — non-stop, door to door</div>
+              </div>
+            </div>
+
+            <div className="svl-divider" />
+
+            <div className="svl-block">
+              <h2 className="svl-block-title">By the numbers</h2>
+              <div className="svl-stats">
+                {service.metrics.map((m) => (
+                  <div className="svl-stat" key={m.label}>
+                    <div className="svl-stat-v">
+                      {fmt(m.value, m.decimals)}
+                      {m.suffix}
+                    </div>
+                    <div className="svl-stat-k">{m.label}</div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="svl-divider" />
+
+            <div className="svl-block svl-specs-block">
+              <h2 className="svl-block-title">What&apos;s on every expedited dispatch</h2>
+              <div className="svl-tag-group">
+                <div className="svl-tag-label">Equipment &amp; capability</div>
+                <div className="svl-tags">
+                  {EQUIPMENT.map((tag) => (
+                    <span className="svl-tag" key={tag}>
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              </div>
+              <div className="svl-tag-group">
+                <div className="svl-tag-label">Built for</div>
+                <div className="svl-tags">
+                  {FREIGHT_TYPES.map((tag) => (
+                    <span className="svl-tag" key={tag}>
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              </div>
+
+              <div className="svl-photo-band">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src={service.img} alt="Phantom Logistics expedited trailer running a lane" />
+                <div className="svl-photo-band-inner">
+                  <div className="svl-photo-band-title">Non-stop. Door to door. No excuses.</div>
+                  <div className="svl-photo-band-facts">
+                    <span>1,240 MI AVG RUN</span>
+                    <span>19.5 HR COAST-TO-COAST RECORD</span>
+                    <span>100% ON PROMISED TIME</span>
+                    <span>TEAM DRIVERS, NOT OWNER-OPS</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="svl-divider" />
+
+            <div className="svl-block">
+              <h2 className="svl-block-title">How an expedited load moves</h2>
+              <div className="svl-timeline">
+                {service.process.map((step) => (
+                  <div className="svl-step" key={step.n}>
+                    <span className="svl-step-n">{step.n}</span>
+                    <div className="svl-step-body">
+                      <h3>{step.title}</h3>
+                      <p>{step.copy}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="svl-divider" />
+
+            <div className="svl-block">
+              <h2 className="svl-block-title">Company drivers. Not gig freight.</h2>
+              <div className="svl-drivers">
+                <div className="svl-driver-photo svl-drivers-fade">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src="/services/photos/spare-driver-portrait.webp"
+                    alt="Phantom Logistics company driver standing beside his assigned tractor at the home terminal"
+                  />
+                </div>
+                <div className="svl-drivers-copy">
+                  <p className="svl-drivers-fade">
+                    Every expedited run on this page is staffed by Phantom company team drivers — not owner-operators, not a broker&apos;s best
+                    guess. Same standard, same dispatch board, rolling around the clock.
+                  </p>
+                  <div className="svl-fact-list">
+                    {DRIVER_FACTS.map((fact) => (
+                      <div className="svl-fact svl-drivers-fade" key={fact}>
+                        {fact}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="svl-divider" />
+
+            <div className="svl-block">
+              <h2 className="svl-block-title">What we guarantee</h2>
+              <div className="svl-guarantees">
+                {GUARANTEES.map((g) => (
+                  <div className="svl-guarantee" key={g.k}>
+                    <div className="svl-guarantee-n">{g.n}</div>
+                    <div className="svl-guarantee-v">{g.v}</div>
+                    <div className="svl-guarantee-k">{g.k}</div>
+                    <p>{g.d}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="svl-divider" />
+
+            <div className="svl-block">
+              <h2 className="svl-block-title">Questions we get before booking</h2>
+              <div className="svl-faq">
+                {FAQS.map((f) => (
+                  <div className="svl-faq-item" key={f.q}>
+                    <div className="svl-faq-q">{f.q}</div>
+                    <p className="svl-faq-a">{f.a}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          <div className="svl-cta-photo">
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={service.img} alt="" />
-          </div>
-          <div className="svcx-cta-inner svcx-wrap">
-            <span className="svcx-eyebrow on-dark"><span className="dot" />Ready to roll, now</span>
-            <h2>Every hour counts.<br /><span className="accent">We count them too.</span></h2>
-            <p>Tell us what's down and where it needs to be. We'll hold capacity, dispatch a team, and run it non-stop.</p>
-            <div className="svcx-diffs">
-              {service.differentiators.map((d) => <div className="svcx-diff" key={d}>{d}</div>)}
+            <img src={service.img} alt="" aria-hidden="true" />
+            <div className="svl-cta-photo-inner">
+              <h2>Got a load that can&apos;t wait?</h2>
+              <p>Call dispatch directly. We&apos;ll hold capacity and get a team driver rolling within minutes.</p>
+              <div className="svl-cta-actions">
+                <Link href="/contact" className="svl-cta-btn svl-cta-btn--lg svl-cta-btn--photo">
+                  Request Expedited Dispatch
+                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                    <path d="M3 8h9M8 4l4 4-4 4" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                </Link>
+                <Link href="/services" className="svl-phone svl-phone--onphoto">
+                  ← Back to all services
+                </Link>
+              </div>
             </div>
-            <div className="svcx-cta-actions">
-              <Link href="/contact" className="btn btn-red px-10 py-4">START THIS MOVE</Link>
-              <Link href="/services" className="svcx-back">← Back to all services</Link>
-            </div>
           </div>
-        </section>
-
-        <div className="svcx-sign">One carrier · One invoice · The truck never stops — Phantom Logistics</div>
+        </div>
       </div>
     </PageShell>
   );

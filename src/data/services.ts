@@ -35,7 +35,7 @@ const baseServices = [
       "Competitive all-in rates with no hidden fees",
     ],
     metrics: [
-      { value: 2400, decimals: 0, suffix: "", label: "dry vans in the fleet" },
+      { value: 50, decimals: 0, suffix: "+", label: "dry vans in the fleet" },
       { value: 98.7, decimals: 1, suffix: "%", label: "on-time delivery" },
       { value: 15, decimals: 0, suffix: " min", label: "average quote time" },
     ],
@@ -56,7 +56,7 @@ const baseServices = [
     tag: "CLIMATE CONTROLLED · TEMPERATURE CONTROLLED · REFRIGERATED · LIVE SEAFOOD · PRODUCE",
     title: "REFRIGERATED TRANSPORT",
     copy: "Temperature-controlled transport from -40°F to 70°F for perishable and sensitive goods — live seafood, fresh produce, dairy, pharmaceuticals, and more. Live monitoring from pickup to delivery.",
-    img: "/services/refrigerated.png",
+    img: "/services/photos/refrigerated.png",
     longDescription:
       "Temperature integrity is non-negotiable. Our reefers run -40°F to 70°F multi-temp zones with continuous live monitoring, redundant systems, and real-time alerts. Live seafood, fresh produce, vegetables, protein, pharmaceuticals, chocolate — we protect your product and your brand on every lane across North America.",
     benefits: [

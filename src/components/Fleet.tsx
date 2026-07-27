@@ -9,35 +9,35 @@ const UNITS = [
     idx: "01",
     name: "Dry Vans",
     spec: "53' air-ride · 1,800 units",
-    src: "/hf_20260606_104819_db26e803-e1e6-450e-a7e3-24b2f16e33cb(1).png",
+    src: "/sunset.webp",
     alt: "Phantom Logistics truck running a highway at sunset",
   },
   {
     idx: "02",
     name: "Sleeper Linehaul",
     spec: "Team drivers · coast-to-coast",
-    src: "/hf_20260606_104850_008b5602-bfa5-40a9-a9c8-3020d070d0f2(1).png",
+    src: "/aerial.webp",
     alt: "Phantom Logistics truck on scenic mountain highway aerial view",
   },
   {
     idx: "03",
     name: "Regional Day Cabs",
     spec: "Sub-300mi lanes · same-day turns",
-    src: "/hf_20260606_105246_4f3378c4-ef89-4fbe-8dda-c5ffff69c467(1).png",
+    src: "/fleet.webp",
     alt: "Phantom Logistics yard with multiple truck and trailer types",
   },
   {
     idx: "04",
     name: "Drayage & Containers",
     spec: "Port pickups · bonded chassis",
-    src: "/hf_20260606_104624_2d9fc850-b40b-4e43-a8de-2f9cceecdead(1).png",
+    src: "/yard.webp",
     alt: "Phantom Logistics fleet lineup at company yard",
   },
   {
     idx: "05",
     name: "Port & Intermodal",
     spec: "Rail + sea + road · one waybill",
-    src: "/hf_20260606_104556_7052f106-a0e2-4aae-a9ad-cc8f8a74266e(1).png",
+    src: "/dock.webp",
     alt: "Phantom Logistics dry van backed to loading dock in winter",
   },
 ];
@@ -209,7 +209,7 @@ export default function Fleet() {
               >
                 Your livery
                 <br />
-                <span className="text-coal">on 2,400</span>
+                <span className="text-coal">on 50+</span>
                 <br />
                 rolling boards
               </p>

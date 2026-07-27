@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState, type FormEvent } from "react";
 import Link from "next/link";
+import emailjs from "@emailjs/browser";
 import { gsap, ScrollTrigger, useGSAP } from "@/lib/gsap";
 import PageShell from "@/components/PageShell";
 import { Input } from "@/components/ui/input";
@@ -9,10 +10,10 @@ import "@/styles/contact.css";
 
 /* ── Imagery ──────────────────────────────────────────────────────────────── */
 const IMG = {
-  aerial: "/hf_20260606_104850_008b5602-bfa5-40a9-a9c8-3020d070d0f2(1).png",
-  yard: "/hf_20260606_104624_2d9fc850-b40b-4e43-a8de-2f9cceecdead(1).png",
-  dock: "/hf_20260606_104556_7052f106-a0e2-4aae-a9ad-cc8f8a74266e(1).png",
-  sunset: "/hf_20260606_104819_db26e803-e1e6-450e-a7e3-24b2f16e33cb(1).png",
+  aerial: "/aerial.webp",
+  yard: "/yard.webp",
+  dock: "/dock.webp",
+  sunset: "/sunset.webp",
 };
 
 /* ── Data ─────────────────────────────────────────────────────────────────── */
@@ -125,6 +126,8 @@ const KEY_FIELDS = ["name", "phone", "email", "origin", "destination", "freight"
 export default function ContactPage() {
   const root = useRef<HTMLDivElement>(null);
   const [sent, setSent] = useState(false);
+  const [sending, setSending] = useState(false);
+  const [sendError, setSendError] = useState<string | null>(null);
   const [freight, setFreight] = useState<string | null>(null);
   const [fields, setFields] = useState<Record<string, string>>({});
   const [openFaq, setOpenFaq] = useState<number | null>(0);
@@ -137,13 +140,44 @@ export default function ContactPage() {
   const track = (name: string) => (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) =>
     setFields((s) => ({ ...s, [name]: e.target.value }));
 
-  const onSubmit = (e: FormEvent<HTMLFormElement>) => {
+  const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setSent(true);
+    setSendError(null);
+    setSending(true);
+    try {
+      const serviceId = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID;
+      const templateId = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID;
+      const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY;
+      if (!serviceId || !templateId || !publicKey) {
+        throw new Error("EmailJS is not configured (missing env vars).");
+      }
+      await emailjs.send(
+        serviceId,
+        templateId,
+        {
+          name: fields.name ?? "",
+          company: fields.company ?? "",
+          phone: fields.phone ?? "",
+          email: fields.email ?? "",
+          origin: fields.origin ?? "",
+          destination: fields.destination ?? "",
+          freight: freight ?? "",
+          notes: fields.notes ?? "",
+        },
+        { publicKey }
+      );
+      setSent(true);
+    } catch (err) {
+      console.error("Contact form send failed:", err);
+      setSendError("Something went wrong sending your request. Please call dispatch directly at (902) 403-0112.");
+    } finally {
+      setSending(false);
+    }
   };
 
   const reset = () => {
     setSent(false);
+    setSendError(null);
     setFreight(null);
     setFields({});
   };
@@ -391,8 +425,14 @@ export default function ContactPage() {
                         />
                       </div>
 
-                      <button type="submit" className="btn btn-red ct-submit">
-                        <span>Send it to dispatch</span>
+                      {sendError && (
+                        <p className="ct-error" role="alert">
+                          {sendError}
+                        </p>
+                      )}
+
+                      <button type="submit" className="btn btn-red ct-submit" disabled={sending}>
+                        <span>{sending ? "Sending…" : "Send it to dispatch"}</span>
                         <svg width="15" height="15" viewBox="0 0 18 18" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                           <path d="M3 9h11M10 5l4 4-4 4" />
                         </svg>

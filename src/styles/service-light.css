@@ -1,0 +1,734 @@
+/* ══════════════════════════════════════════════════════════════════════════
+   SHARED LIGHT-THEME SERVICE PAGE TEMPLATE
+   Used by every bespoke service detail page (dry van, government/secured
+   cargo, dedicated fleet, warehousing, freight shipping, LTL, expedited,
+   hotshot, long haul, freight transportation, freight forwarding).
+
+   Concept: paper-white page, one glass "build sheet" panel holding the
+   operational detail (stats, specs, process, drivers, guarantees, FAQ),
+   separated by hairline rules — closing on a full-bleed photo CTA, matching
+   the site's established light → light → dark-photo-CTA rhythm.
+   Palette: black / white / red only. Red = numbering, underlines, hover
+   states and the CTA. Equipment/freight tags stay black chips (red
+   outline) regardless of the page being light — that contrast is the point.
+   ══════════════════════════════════════════════════════════════════════════ */
+
+.svl {
+  --white: #f6f4ef;
+  --ink: #0b0b0c;
+  --red: #e10600;
+  --silver: #a3a19c;
+  --steel: #565550;
+  position: relative;
+  background: var(--white);
+  color: var(--ink);
+  overflow-x: clip;
+  /* pull the white background up under the fixed nav's reserved space so the
+     dark <body> behind it never peeks through as a strip above this (light) page */
+  margin-top: calc(-1 * var(--nav-h-mobile));
+  padding-top: var(--nav-h-mobile);
+}
+
+@media (min-width: 768px) {
+  .svl {
+    margin-top: calc(-1 * var(--nav-h));
+    padding-top: var(--nav-h);
+  }
+}
+
+/* faint blueprint grid wash across the whole section */
+.svl::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(11, 11, 12, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(11, 11, 12, 0.035) 1px, transparent 1px);
+  background-size: 46px 46px;
+  -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, #000 0%, transparent 75%);
+  mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, #000 0%, transparent 75%);
+}
+
+.svl-wrap {
+  position: relative;
+  z-index: 1;
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: clamp(3.5rem, 9vh, 6rem) clamp(1.1rem, 4.5vw, 2.5rem) clamp(4rem, 10vh, 6.5rem);
+}
+
+/* ── the panel ─────────────────────────────────────────────────────────── */
+.svl-panel {
+  position: relative;
+  border-radius: 22px;
+  border: 1px solid rgba(11, 11, 12, 0.09);
+  background:
+    linear-gradient(155deg, rgba(11, 11, 12, 0.035) 0%, rgba(11, 11, 12, 0.01) 42%, rgba(225, 6, 0, 0.025) 100%),
+    rgba(255, 255, 255, 0.5);
+  box-shadow:
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.7),
+    inset 0 -1px 0 0 rgba(11, 11, 12, 0.04),
+    0 50px 120px -45px rgba(11, 11, 12, 0.28),
+    0 12px 32px -16px rgba(11, 11, 12, 0.12);
+  overflow: hidden;
+}
+
+/* frost noise texture — backdrop-filter itself is set inline in JSX (Lightning CSS strips it from stylesheet rules) */
+.svl-panel::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background-image: var(--glass-noise);
+  opacity: 0.025;
+  pointer-events: none;
+  mix-blend-mode: overlay;
+  z-index: 1;
+}
+
+.svl-divider {
+  position: relative;
+  z-index: 1;
+  height: 1px;
+  margin-inline: clamp(1.25rem, 4.5vw, 2.75rem);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(11, 11, 12, 0.14) 12%,
+    rgba(225, 6, 0, 0.45) 50%,
+    rgba(11, 11, 12, 0.14) 88%,
+    transparent
+  );
+}
+
+.svl-block {
+  position: relative;
+  z-index: 1;
+  padding: clamp(2.25rem, 6vh, 3.5rem) clamp(1.25rem, 4.5vw, 2.75rem);
+}
+
+.svl-block-title {
+  font-family: var(--font-sans);
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.015em;
+  font-size: clamp(1.4rem, 3vw, 2rem);
+  line-height: 1.05;
+  color: var(--ink);
+  max-width: 26ch;
+  margin-bottom: clamp(1.6rem, 4vh, 2.4rem);
+}
+
+/* ── hero row: headline + positioning  |  real photo ─────────────────── */
+.svl-hero-row {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: minmax(0, 1.32fr) minmax(0, 1fr);
+  align-items: center;
+  gap: clamp(2rem, 5vw, 3.5rem);
+  padding: clamp(2.75rem, 7vh, 4.5rem) clamp(1.25rem, 4.5vw, 2.75rem) clamp(2.5rem, 6vh, 4rem);
+}
+
+.svl-headline {
+  font-family: var(--font-display);
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.008em;
+  line-height: 0.86;
+  font-size: clamp(2.4rem, 8.5vw, 6.6rem);
+  overflow-wrap: break-word;
+  color: var(--ink);
+}
+
+.svl-positioning {
+  margin-top: clamp(1.25rem, 3.5vh, 1.9rem);
+  max-width: 44ch;
+  font-family: var(--font-sans);
+  font-weight: 500;
+  font-size: clamp(1.05rem, 1.7vw, 1.3rem);
+  line-height: 1.55;
+  color: rgba(11, 11, 12, 0.72);
+}
+
+.svl-rule {
+  display: block;
+  width: 56px;
+  height: 3px;
+  margin-top: clamp(1.25rem, 3vh, 1.6rem);
+  background: var(--red);
+}
+
+.svl-hero-actions {
+  margin-top: clamp(1.9rem, 4.5vh, 2.6rem);
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+/* ── oval CTA button — site-wide pill system ─────────────────────────── */
+.svl-cta-btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  padding: 1.05rem 2.15rem;
+  border-radius: 100px;
+  border: 1px solid transparent;
+  background: var(--ink);
+  color: var(--white);
+  font-family: var(--font-sans);
+  font-weight: 700;
+  font-size: 0.84rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-decoration: none;
+  white-space: nowrap;
+  transition:
+    background 0.35s ease,
+    border-color 0.35s ease,
+    box-shadow 0.35s ease,
+    transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.svl-cta-btn svg {
+  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.svl-cta-btn:hover,
+.svl-cta-btn:focus-visible {
+  background: var(--red);
+  box-shadow:
+    0 20px 48px -16px rgba(225, 6, 0, 0.55),
+    0 0 34px 2px rgba(225, 6, 0, 0.28);
+  transform: translateY(-2px);
+}
+
+.svl-cta-btn:hover svg {
+  transform: translateX(4px);
+}
+
+.svl-cta-btn--lg {
+  padding: 1.2rem 2.5rem;
+  font-size: 0.88rem;
+}
+
+/* on-photo variant — dark overlay backdrop, so default state must already read red */
+.svl-cta-btn--photo {
+  background: var(--red);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.svl-cta-btn--photo:hover,
+.svl-cta-btn--photo:focus-visible {
+  background: var(--white);
+  color: var(--ink);
+  box-shadow: 0 20px 48px -16px rgba(0, 0, 0, 0.5), 0 0 34px 2px rgba(225, 6, 0, 0.35);
+}
+
+.svl-phone {
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  color: rgba(11, 11, 12, 0.72);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(11, 11, 12, 0.2);
+  padding-bottom: 2px;
+  transition: color 0.3s ease, border-color 0.3s ease;
+}
+
+.svl-phone:hover,
+.svl-phone:focus-visible {
+  color: var(--red);
+  border-color: var(--red);
+}
+
+.svl-phone--onphoto {
+  color: rgba(246, 244, 239, 0.85);
+  border-bottom-color: rgba(246, 244, 239, 0.3);
+}
+
+.svl-phone--onphoto:hover,
+.svl-phone--onphoto:focus-visible {
+  color: var(--red);
+  border-color: var(--red);
+}
+
+/* ── hero photo ───────────────────────────────────────────────────────── */
+.svl-photo-col {
+  position: relative;
+}
+
+.svl-photo-frame {
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid rgba(11, 11, 12, 0.1);
+  background: #fff;
+  box-shadow: 0 34px 70px -34px rgba(11, 11, 12, 0.32);
+}
+
+.svl-photo-frame img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 6 / 5;
+  object-fit: cover;
+}
+
+.svl-visual-caption {
+  margin-top: 0.9rem;
+  text-align: center;
+  font-family: var(--font-sans);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--steel);
+}
+
+/* ── fleet stats band ─────────────────────────────────────────────────── */
+.svl-stats {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.svl-stat {
+  padding: 0 clamp(1rem, 2.5vw, 1.75rem);
+  border-left: 1px solid rgba(11, 11, 12, 0.1);
+}
+
+.svl-stat:first-child {
+  border-left: none;
+  padding-left: 0;
+}
+
+.svl-stat-v {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(2.4rem, 5.4vw, 3.6rem);
+  line-height: 1;
+  color: var(--red);
+}
+
+.svl-stat-k {
+  margin-top: 0.6rem;
+  font-family: var(--font-sans);
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: var(--steel);
+}
+
+/* ── equipment / freight tag groups — minimal red-outlined tags on black ─ */
+.svl-tag-group + .svl-tag-group {
+  margin-top: clamp(1.75rem, 4vh, 2.25rem);
+}
+
+.svl-tag-label {
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--steel);
+  margin-bottom: 0.85rem;
+}
+
+.svl-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+
+.svl-tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.55rem 0.95rem;
+  border-radius: 4px;
+  border: 1px solid rgba(225, 6, 0, 0.65);
+  background: var(--ink);
+  color: var(--white);
+  font-family: var(--font-sans);
+  font-size: 0.76rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  white-space: nowrap;
+  transition: background 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+@media (hover: hover) {
+  .svl-tag:hover {
+    border-color: var(--red);
+    background: #1c1c1e;
+    box-shadow: 0 0 22px -6px rgba(225, 6, 0, 0.6);
+  }
+}
+
+/* full-width real photo band with an informative overlay strip */
+.svl-photo-band {
+  position: relative;
+  margin-top: clamp(1.75rem, 4vh, 2.5rem);
+  border-radius: 16px;
+  overflow: hidden;
+  min-height: clamp(260px, 34vw, 380px);
+}
+
+.svl-photo-band img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.svl-photo-band::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(0deg, rgba(11, 11, 12, 0.88) 0%, rgba(11, 11, 12, 0.35) 55%, rgba(11, 11, 12, 0.05) 100%);
+}
+
+.svl-photo-band-inner {
+  position: relative;
+  z-index: 1;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: clamp(1.25rem, 3vw, 2rem);
+}
+
+.svl-photo-band-title {
+  font-family: var(--font-sans);
+  font-weight: 800;
+  font-size: clamp(1.1rem, 2.2vw, 1.4rem);
+  color: var(--white);
+  max-width: 24ch;
+}
+
+.svl-photo-band-facts {
+  margin-top: 0.9rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem 1.4rem;
+}
+
+.svl-photo-band-facts span {
+  font-family: var(--font-sans);
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(246, 244, 239, 0.9);
+  padding-left: 1rem;
+  border-left: 2px solid var(--red);
+}
+
+.svl-photo-band-facts span:first-child {
+  padding-left: 0;
+  border-left: none;
+}
+
+/* ── numbered vertical timeline ──────────────────────────────────────── */
+.svl-timeline {
+  display: flex;
+  flex-direction: column;
+}
+
+.svl-step {
+  display: grid;
+  grid-template-columns: 78px minmax(0, 1fr);
+  gap: clamp(1rem, 3vw, 1.75rem);
+  padding-block: clamp(1.4rem, 3.5vh, 1.9rem);
+  border-top: 1px solid rgba(11, 11, 12, 0.08);
+}
+
+.svl-step:first-child {
+  border-top: none;
+  padding-top: 0;
+}
+
+.svl-step:last-child {
+  padding-bottom: 0;
+}
+
+.svl-step-n {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(2rem, 4vw, 2.9rem);
+  line-height: 1;
+  color: var(--red);
+}
+
+.svl-step-body h3 {
+  font-family: var(--font-sans);
+  font-weight: 800;
+  font-size: 1.08rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+
+.svl-step-body p {
+  margin-top: 0.5rem;
+  max-width: 62ch;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: rgba(11, 11, 12, 0.65);
+}
+
+/* ── company drivers section (photo + facts) ─────────────────────────── */
+.svl-drivers {
+  display: grid;
+  grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+  gap: clamp(2rem, 5vw, 3.5rem);
+  align-items: center;
+}
+
+.svl-driver-photo {
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid rgba(11, 11, 12, 0.1);
+  box-shadow: 0 30px 60px -32px rgba(11, 11, 12, 0.3);
+}
+
+.svl-driver-photo img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+}
+
+.svl-drivers-copy p {
+  margin-top: 1rem;
+  max-width: 56ch;
+  font-size: 1rem;
+  line-height: 1.65;
+  color: rgba(11, 11, 12, 0.72);
+}
+
+.svl-fact-list {
+  margin-top: 1.6rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.svl-fact {
+  padding-left: 0.9rem;
+  border-left: 2px solid var(--red);
+  font-family: var(--font-sans);
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+
+/* ── guarantees grid ──────────────────────────────────────────────────── */
+.svl-guarantees {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1px;
+  background: rgba(11, 11, 12, 0.08);
+  border: 1px solid rgba(11, 11, 12, 0.08);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.svl-guarantee {
+  background: rgba(255, 255, 255, 0.6);
+  padding: clamp(1.4rem, 3vw, 1.9rem) clamp(1.1rem, 2.4vw, 1.5rem);
+}
+
+.svl-guarantee-n {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 1rem;
+  color: var(--red);
+}
+
+.svl-guarantee-v {
+  margin-top: 0.5rem;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(1.8rem, 3.4vw, 2.5rem);
+  line-height: 1;
+  color: var(--ink);
+}
+
+.svl-guarantee-k {
+  margin-top: 0.55rem;
+  font-family: var(--font-sans);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: var(--steel);
+}
+
+.svl-guarantee p {
+  margin-top: 0.6rem;
+  font-size: 0.86rem;
+  line-height: 1.55;
+  color: rgba(11, 11, 12, 0.62);
+}
+
+/* ── FAQ ──────────────────────────────────────────────────────────────── */
+.svl-faq {
+  display: flex;
+  flex-direction: column;
+}
+
+.svl-faq-item {
+  padding: clamp(1.1rem, 3vh, 1.5rem) 0;
+  border-top: 1px solid rgba(11, 11, 12, 0.08);
+}
+
+.svl-faq-item:first-child {
+  border-top: none;
+  padding-top: 0;
+}
+
+.svl-faq-q {
+  font-family: var(--font-sans);
+  font-weight: 800;
+  font-size: 1.02rem;
+  color: var(--ink);
+}
+
+.svl-faq-a {
+  margin-top: 0.5rem;
+  max-width: 68ch;
+  font-family: var(--font-sans);
+  font-size: 0.92rem;
+  line-height: 1.6;
+  color: rgba(11, 11, 12, 0.66);
+}
+
+/* ── full-bleed photo CTA (outside the panel) ────────────────────────── */
+.svl-cta-photo {
+  position: relative;
+  z-index: 1;
+  margin-top: clamp(3rem, 7vh, 4.5rem);
+  border-radius: 22px;
+  overflow: hidden;
+  min-height: 420px;
+  display: flex;
+  align-items: center;
+}
+
+.svl-cta-photo img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 42%;
+}
+
+.svl-cta-photo::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(115deg, rgba(11, 11, 12, 0.94) 0%, rgba(11, 11, 12, 0.82) 42%, rgba(11, 11, 12, 0.5) 100%);
+}
+
+.svl-cta-photo-inner {
+  position: relative;
+  z-index: 2;
+  max-width: 640px;
+  padding: clamp(3rem, 8vh, 5.5rem) clamp(1.5rem, 5vw, 3rem);
+}
+
+.svl-cta-photo-inner h2 {
+  font-family: var(--font-display);
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.008em;
+  line-height: 0.94;
+  font-size: clamp(2.1rem, 5vw, 3.4rem);
+  color: var(--white);
+  max-width: 16ch;
+}
+
+.svl-cta-photo-inner p {
+  margin-top: 1rem;
+  max-width: 54ch;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: rgba(246, 244, 239, 0.82);
+}
+
+.svl-cta-actions {
+  margin-top: clamp(1.75rem, 4vh, 2.25rem);
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+/* ── responsive ───────────────────────────────────────────────────────── */
+@media (max-width: 960px) {
+  .svl-hero-row {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .svl-photo-col {
+    order: -1;
+    max-width: 460px;
+    margin: 0 auto;
+  }
+  .svl-guarantees {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .svl-drivers {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .svl-driver-photo {
+    max-width: 340px;
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 640px) {
+  .svl-step {
+    grid-template-columns: 52px minmax(0, 1fr);
+  }
+  .svl-guarantees {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .svl-stats {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 1.25rem;
+  }
+  .svl-stat {
+    border-left: none;
+    padding-left: 0;
+    border-top: 1px solid rgba(11, 11, 12, 0.1);
+    padding-top: 1.25rem;
+  }
+  .svl-stat:first-child {
+    border-top: none;
+    padding-top: 0;
+  }
+}
+
+@media (max-width: 420px) {
+  .svl-cta-actions,
+  .svl-hero-actions {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+  .svl-cta-btn {
+    max-width: 100%;
+    white-space: normal;
+    text-align: center;
+  }
+}

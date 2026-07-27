@@ -8,12 +8,12 @@ import "@/styles/about.css";
 
 /* ── Imagery ──────────────────────────────────────────────────────────────── */
 const IMG = {
-  dock:    "/hf_20260606_104556_7052f106-a0e2-4aae-a9ad-cc8f8a74266e(1).png",
-  yard:    "/hf_20260606_104624_2d9fc850-b40b-4e43-a8de-2f9cceecdead(1).png",
-  loading: "/hf_20260606_104656_597a0532-bf54-40c9-adad-28423d0fadaa(1).png",
-  sunset:  "/hf_20260606_104819_db26e803-e1e6-450e-a7e3-24b2f16e33cb(1).png",
-  aerial:  "/hf_20260606_104850_008b5602-bfa5-40a9-a9c8-3020d070d0f2(1).png",
-  fleet:   "/hf_20260606_105246_4f3378c4-ef89-4fbe-8dda-c5ffff69c467(1).png",
+  dock:    "/dock.webp",
+  yard:    "/yard.webp",
+  loading: "/loading.webp",
+  sunset:  "/sunset.webp",
+  aerial:  "/aerial.webp",
+  fleet:   "/fleet.webp",
 };
 
 const HERO_LINES = [
@@ -24,7 +24,7 @@ const HERO_LINES = [
 
 const META = [
   { v: "2017", l: "Founded", em: false },
-  { v: "2,400", l: "Company Trucks", em: false },
+  { v: "50+", l: "Company Trucks", em: false },
   { v: "48", l: "States", em: false },
   { v: "98.7%", l: "On-Time", em: true },
 ];
@@ -35,15 +35,15 @@ const MANIFESTO_ACCENT = ["it", "moves,", "it", "moves."]; // emphasised cluster
 
 const TIMELINE = [
   { year: "2017", img: IMG.yard,    h: "Twelve trucks, one promise", c: "Founded in Truro, NS with a dozen units and a refusal to broker a single load." },
-  { year: "2019", img: IMG.dock,    h: "Two hundred strong",          c: "Crossed 200 company-owned units and pushed our first lanes across Atlantic Canada." },
-  { year: "2021", img: IMG.loading, h: "East coast, owned",           c: "400 tractors running the Maritimes and beyond — every driver an employee, every truck ours." },
+  { year: "2019", img: IMG.dock,    h: "Twenty-five strong",         c: "Crossed 25 company-owned units and pushed our first lanes across Atlantic Canada." },
+  { year: "2021", img: IMG.loading, h: "East coast, owned",           c: "40 tractors running the Maritimes and beyond — every driver an employee, every truck ours." },
   { year: "2022", img: IMG.sunset,  h: "Ontario terminal",            c: "The Bolton, ON location opens. Phantom freight now moves coast to coast across Canada." },
-  { year: "2024", img: IMG.aerial,  h: "2,400 units, 48 states",      c: "The fastest organic fleet growth in the industry — without a single brokered mile." },
+  { year: "2024", img: IMG.aerial,  h: "50+ units, 48 states",        c: "The fastest organic fleet growth in the industry — without a single brokered mile." },
   { year: "2025", img: IMG.fleet,   h: "Intelligence on every lane",  c: "AI-driven dispatch and live tracking roll out across the entire fleet." },
 ];
 
 const STATS = [
-  { v: "2,400", u: "", l: "Company-owned trucks", dec: 0 },
+  { v: "50", u: "+", l: "Company-owned trucks", dec: 0 },
   { v: "48",    u: "", l: "States covered", dec: 0 },
   { v: "98.7",  u: "%", l: "On-time, door to door", dec: 1 },
   { v: "9",     u: "+", l: "Years asset-based", dec: 0 },
@@ -57,14 +57,14 @@ const VALUES = [
 ];
 
 const FLEET = [
-  { src: "/services/dry_van.png", t: "Dry Van" },
-  { src: "/services/refrigerated.png", t: "Refrigerated" },
-  { src: "/services/dedicated_fleet.png", t: "Dedicated Fleet" },
-  { src: "/services/long_haul.png", t: "Long Haul" },
-  { src: "/services/warehousing.png", t: "Warehousing" },
-  { src: "/services/expedited.png", t: "Expedited" },
-  { src: "/services/ltl.png", t: "LTL" },
-  { src: "/services/hotshot.png", t: "Hotshot" },
+  { src: "/services/photos/dry-van-trucking.webp", t: "Dry Van" },
+  { src: "/services/photos/refrigerated.png", t: "Refrigerated" },
+  { src: "/services/photos/dedicated-fleet.webp", t: "Dedicated Fleet" },
+  { src: "/services/photos/long-haul-trucking.webp", t: "Long Haul" },
+  { src: "/services/photos/warehousing.webp", t: "Warehousing" },
+  { src: "/services/photos/expedited-trucking.webp", t: "Expedited" },
+  { src: "/services/photos/ltl-trucking.webp", t: "LTL" },
+  { src: "/services/photos/hotshot-trucking.webp", t: "Hotshot" },
 ];
 
 const LOCATIONS = [
@@ -106,6 +106,35 @@ export default function AboutPage() {
     if (!el) return;
     const mm = gsap.matchMedia();
     const splits: InstanceType<typeof SplitText>[] = [];
+
+    /* ── TIMELINE horizontal pin — desktop only (≥960px) ──
+       Registered before the rest of the page's ScrollTriggers on purpose:
+       this section sits above VALUES/STATS/etc. in the DOM and pins with a
+       large spacer. If its trigger were created *after* theirs, GSAP would
+       measure their positions before that spacer exists, then never
+       correct them on refresh — the exact bug that made the VALUES
+       scrollytelling latch onto its last item immediately. */
+    mm.add("(prefers-reduced-motion: no-preference) and (min-width: 960px)", () => {
+      const track = el.querySelector<HTMLElement>(".ab-tl-track");
+      const tlSection = el.querySelector<HTMLElement>(".ab-timeline");
+      const fill = el.querySelector<HTMLElement>(".ab-tl-progress span");
+      if (track && tlSection) {
+        const getScroll = () => track.scrollWidth - window.innerWidth;
+        gsap.to(track, {
+          x: () => -getScroll(),
+          ease: "none",
+          scrollTrigger: {
+            trigger: tlSection,
+            start: "top top",
+            end: () => "+=" + getScroll(),
+            pin: true,
+            scrub: 1,
+            invalidateOnRefresh: true,
+            onUpdate: (self) => { if (fill) fill.style.width = (self.progress * 100).toFixed(1) + "%"; },
+          },
+        });
+      }
+    });
 
     mm.add("(prefers-reduced-motion: no-preference)", () => {
       /* ── HERO ── */
@@ -184,32 +213,32 @@ export default function AboutPage() {
         { opacity: 1, y: 0, stagger: .1, duration: .9, ease: "power3.out",
           scrollTrigger: { trigger: ".ab-cta", start: "top 75%", once: true } });
 
-      requestAnimationFrame(() => ScrollTrigger.refresh());
+      /* Images loading after this point (common on a page this image-heavy) shift
+         layout height, leaving every ScrollTrigger position computed here stale —
+         that's what made the VALUES scrollytelling latch onto the last item
+         immediately. Refresh again once everything has actually finished loading. */
+      const refreshAll = () => ScrollTrigger.refresh();
+      requestAnimationFrame(refreshAll);
+      window.addEventListener("load", refreshAll);
+      const pageImages = Array.from(el.querySelectorAll("img"));
+      let pendingImages = pageImages.filter((im) => !im.complete).length;
+      pageImages.forEach((im) => {
+        if (!im.complete) {
+          im.addEventListener(
+            "load",
+            () => {
+              pendingImages -= 1;
+              if (pendingImages === 0) refreshAll();
+            },
+            { once: true }
+          );
+        }
+      });
 
-      return () => splits.forEach((s) => s.revert());
-    });
-
-    /* ── TIMELINE horizontal pin — desktop only (≥960px) ── */
-    mm.add("(prefers-reduced-motion: no-preference) and (min-width: 960px)", () => {
-      const track = el.querySelector<HTMLElement>(".ab-tl-track");
-      const tlSection = el.querySelector<HTMLElement>(".ab-timeline");
-      const fill = el.querySelector<HTMLElement>(".ab-tl-progress span");
-      if (track && tlSection) {
-        const getScroll = () => track.scrollWidth - window.innerWidth;
-        gsap.to(track, {
-          x: () => -getScroll(),
-          ease: "none",
-          scrollTrigger: {
-            trigger: tlSection,
-            start: "top top",
-            end: () => "+=" + getScroll(),
-            pin: true,
-            scrub: 1,
-            invalidateOnRefresh: true,
-            onUpdate: (self) => { if (fill) fill.style.width = (self.progress * 100).toFixed(1) + "%"; },
-          },
-        });
-      }
+      return () => {
+        splits.forEach((s) => s.revert());
+        window.removeEventListener("load", refreshAll);
+      };
     });
 
     /* reduced motion — everything visible, no pin */
@@ -330,6 +359,10 @@ export default function AboutPage() {
                     <img src={v.img} alt="" />
                   </div>
                 ))}
+                <div className="ab-sticky-num" aria-hidden="true">
+                  <span className="cur">01</span>
+                  <span className="of">/ {String(VALUES.length).padStart(2, "0")}</span>
+                </div>
               </div>
             </div>
 

@@ -8,12 +8,12 @@ import "@/styles/why.css";
 
 /* ── Imagery ──────────────────────────────────────────────────────────────── */
 const IMG = {
-  aerial: "/hf_20260606_104850_008b5602-bfa5-40a9-a9c8-3020d070d0f2(1).png",
-  sunset: "/hf_20260606_104819_db26e803-e1e6-450e-a7e3-24b2f16e33cb(1).png",
-  dock: "/hf_20260606_104556_7052f106-a0e2-4aae-a9ad-cc8f8a74266e(1).png",
-  yard: "/hf_20260606_104624_2d9fc850-b40b-4e43-a8de-2f9cceecdead(1).png",
-  loading: "/hf_20260606_104656_597a0532-bf54-40c9-adad-28423d0fadaa(1).png",
-  fleet: "/hf_20260606_105246_4f3378c4-ef89-4fbe-8dda-c5ffff69c467(1).png",
+  aerial: "/aerial.webp",
+  sunset: "/sunset.webp",
+  dock: "/dock.webp",
+  yard: "/yard.webp",
+  loading: "/loading.webp",
+  fleet: "/fleet.webp",
 };
 
 const BADGES = ["Defence Canada", "Transport Canada", "Secured Cargo Program", "North America"];
@@ -26,7 +26,7 @@ const PROBLEM_ITEMS = [
 ];
 
 const EDGES = [
-  { n: "01", title: "Company-Owned Fleet", copy: "Every truck is ours. 2,400 units, zero brokered loads. You always know exactly whose equipment is moving your freight.", img: IMG.fleet },
+  { n: "01", title: "Company-Owned Fleet", copy: "Every truck is ours. 50+ units, zero brokered loads. You always know exactly whose equipment is moving your freight.", img: IMG.fleet },
   { n: "02", title: "24/7 Live Dispatch", copy: "Human dispatchers answer at 3 a.m. Same voices, same team. No call centers, no email queues — ever.", img: IMG.dock },
   { n: "03", title: "Live Temp Monitoring", copy: "Real-time thermal watch from pickup to delivery, −40°F to 70°F. Seafood, produce, pharma — all protected.", img: IMG.loading },
   { n: "04", title: "Experienced Drivers", copy: "Company drivers with years of long-haul experience. Not owner-operators. Not strangers. Our team — vetted and committed.", img: IMG.sunset },
@@ -35,14 +35,14 @@ const EDGES = [
 ];
 
 const STATS = [
-  { value: 2400, decimals: 0, suffix: "", label: "Company-owned trucks" },
+  { value: 50, decimals: 0, suffix: "+", label: "Company-owned trucks" },
   { value: 98.7, decimals: 1, suffix: "%", label: "On-time, door to door" },
   { value: 24, decimals: 0, suffix: "/7", label: "Live human dispatch" },
   { value: 15, decimals: 0, suffix: " min", label: "Average quote turnaround" },
 ];
 
 const VS_ROWS = [
-  { cat: "Fleet ownership", phantom: "Company-owned, 2,400 units", broker: "Third-party carriers, unknown quality" },
+  { cat: "Fleet ownership", phantom: "Company-owned, 50+ units", broker: "Third-party carriers, unknown quality" },
   { cat: "Dispatch", phantom: "24/7 in-house human dispatchers", broker: "Email queues, offshore call centers" },
   { cat: "Visibility", phantom: "Live GPS on every truck", broker: "Carrier-reported, often delayed" },
   { cat: "Coverage", phantom: "All US states + Canada", broker: "Limited network, Canadian gaps" },
@@ -211,7 +211,7 @@ export default function WhyPage() {
               <span className="line"><span className="line-in" data-hero-line><span className="accent">truck.</span></span></span>
             </h1>
             <p className="why-hero-sub">
-              2,400 company-owned units. Defence Canada approved. Transport Canada certified.
+              50+ company-owned units. Defence Canada approved. Transport Canada certified.
               Secured Cargo Program carrier. One call — North America wide.
             </p>
             <ul className="why-badges" aria-label="Certifications">

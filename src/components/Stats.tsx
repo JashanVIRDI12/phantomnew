@@ -4,7 +4,7 @@ import { useRef } from "react";
 import { gsap, useGSAP } from "@/lib/gsap";
 
 const STATS = [
-  { value: 2400, decimals: 0, suffix: "", label: "company trucks on the road" },
+  { value: 50, decimals: 0, suffix: "+", label: "company trucks on the road" },
   { value: 48, decimals: 0, suffix: "", label: "contiguous states covered" },
   { value: 98.7, decimals: 1, suffix: "%", label: "on-time, door to door" },
   { value: 1.2, decimals: 1, suffix: "M", label: "sq ft bonded warehousing" },

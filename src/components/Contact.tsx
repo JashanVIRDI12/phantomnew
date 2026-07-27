@@ -84,7 +84,7 @@ export default function Contact() {
     >
       <div data-contact-bg className="absolute inset-0 will-change-transform">
         <Image
-          src="/hf_20260606_104624_2d9fc850-b40b-4e43-a8de-2f9cceecdead(1).png"
+          src="/yard.webp"
           alt="Phantom Logistics fleet lineup at company yard"
           fill
           sizes="100vw"

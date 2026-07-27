@@ -2,7 +2,7 @@ const ITEMS = [
   "FTL & LTL",
   "Dedicated fleets",
   "48 states",
-  "2,400 trucks",
+  "50+ trucks",
   "98.7% on-time",
   "24/7 dispatch",
   "Live GPS tracking",

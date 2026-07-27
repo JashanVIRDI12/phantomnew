@@ -49,7 +49,7 @@ export const metadata: Metadata = {
     email: true,
   },
   description:
-    "Phantom Logistics runs 2,400 company trucks across all 48 contiguous states. FTL & LTL freight, dedicated contract fleets, vehicle wraps, 24/7 dispatch, live GPS tracking — 98.7% on-time, door to door.",
+    "Phantom Logistics runs a 50+ truck company-owned fleet across all 48 contiguous states. FTL & LTL freight, dedicated contract fleets, vehicle wraps, 24/7 dispatch, live GPS tracking — 98.7% on-time, door to door.",
   keywords: [
     "trucking",
     "logistics",
@@ -68,7 +68,7 @@ export const metadata: Metadata = {
     siteName: "Phantom Logistics",
     title: "Phantom Logistics — Freight That Moves Like It Was Never There",
     description:
-      "2,400 trucks. 48 states. 98.7% on-time. Freight that moves like it was never there.",
+      "50+ trucks. 48 states. 98.7% on-time. Freight that moves like it was never there.",
     images: [
       {
         url: "https://images.unsplash.com/photo-1592805144716-feeccccef5ac?w=1200&h=630&fit=crop&q=80",
@@ -82,7 +82,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Phantom Logistics — Freight That Moves Like It Was Never There",
     description:
-      "2,400 trucks. 48 states. 98.7% on-time. Freight that moves like it was never there.",
+      "50+ trucks. 48 states. 98.7% on-time. Freight that moves like it was never there.",
   },
   robots: {
     index: true,

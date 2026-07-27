@@ -6,7 +6,7 @@ import { useGSAP } from "@gsap/react";
 
 /* ─── Stat data ───────────────────────────────────────────────────────────── */
 const STATS = [
-  { value: 2400, suffix: "+",  decimals: 0, label: "Active Fleet" },
+  { value: 50, suffix: "+",  decimals: 0, label: "Active Fleet" },
   { value: 48,   suffix: "",   decimals: 0, label: "States Covered" },
   { value: 98.7, suffix: "%",  decimals: 1, label: "On-Time Rate" },
   { value: 24,   suffix: "/7", decimals: 0, label: "Live Dispatch" },
@@ -176,7 +176,7 @@ export default function HeroClientUI() {
         <div className="glass-bright rounded-2xl p-5 pr-8">
           <p className="kicker mb-1">Active Fleet</p>
           <p className="display text-4xl text-paper">
-            2,400<span className="text-red">+</span>
+            50<span className="text-red">+</span>
           </p>
         </div>
       </div>
@@ -244,7 +244,7 @@ export default function HeroClientUI() {
             className="hero-desc mx-auto mt-6 max-w-[42ch] text-[15px] leading-relaxed text-paper/70 md:text-base"
             style={{ opacity: 0 }}
           >
-            2,400 company trucks, 48 states, 24/7 dispatch — one carrier,
+            50+ company trucks, 48 states, 24/7 dispatch — one carrier,
             one invoice, your freight moving coast to coast while you sleep.
           </p>
 
