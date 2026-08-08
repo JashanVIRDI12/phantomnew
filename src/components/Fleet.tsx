@@ -174,11 +174,15 @@ export default function Fleet() {
                 data-reveal
                 className="group relative h-[54svh] w-[82vw] shrink-0 snap-start overflow-hidden rounded-2xl border border-(--glass-border) sm:h-[56svh] sm:w-[380px] lg:h-[58vh] lg:w-[460px]"
               >
+                {/* cards are portrait, photos are 4:3 landscape — object-cover matches
+                    the height and overflows the width by ~1.34×, so sizes describes the
+                    cover-scaled width, not the card width. Understate it and the browser
+                    picks a source it then has to upscale. */}
                 <Image
                   src={u.src}
                   alt={u.alt}
                   fill
-                  sizes="(min-width: 1024px) 460px, 78vw"
+                  sizes="(min-width: 1024px) 950px, (min-width: 640px) 800px, 170vw"
                   className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
                 />
                 <div className="absolute inset-0 bg-linear-to-t from-coal/85 via-transparent to-coal/20" />
