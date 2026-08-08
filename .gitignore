@@ -40,6 +40,9 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
+# full-res photo masters — converted into public/services/photos via scripts/convert-photos*.mjs
+/source-images
+
 # local agent / editor config
 .claude
 .idea

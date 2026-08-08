@@ -9,8 +9,8 @@ const UNITS = [
     idx: "01",
     name: "Dry Vans",
     spec: "53' air-ride · 1,800 units",
-    src: "/sunset.webp",
-    alt: "Phantom Logistics truck running a highway at sunset",
+    src: "/services/photos/dry-van-rain.webp",
+    alt: "Phantom Logistics tractor and 53-foot dry van running a wet mountain highway",
   },
   {
     idx: "02",

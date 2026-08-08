@@ -11,8 +11,8 @@ const SERVICES = [
     title: "Full Truckload",
     copy: "Dry van, reefer and flatbed — one shipper, one trailer, zero touches from dock to dock.",
     tags: ["Dry Van", "Reefer", "Flatbed"],
-    src: "/sunset.webp",
-    alt: "Phantom Logistics truck running a highway at sunset",
+    src: "/services/photos/dry-van-dock.webp",
+    alt: "Phantom Logistics dry van staged on the dock apron between loads",
   },
   {
     num: "02",

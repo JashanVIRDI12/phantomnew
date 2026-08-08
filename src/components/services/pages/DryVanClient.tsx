@@ -273,7 +273,7 @@ export default function DryVanClient({ service }: { service: Service }) {
 
               <div className="svl-photo-band">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src="/services/photos/dry-van-trucking.webp" alt="Phantom Logistics dry van trailer running an interstate lane" />
+                <img src="/services/photos/dry-van-dock.webp" alt="Phantom Logistics tractor and 53-foot dry van on the apron with branded trailers on the dock doors behind" />
                 <div className="svl-photo-band-inner">
                   <div className="svl-photo-band-title">Same build, every trailer in the fleet</div>
                   <div className="svl-photo-band-facts">
@@ -369,7 +369,7 @@ export default function DryVanClient({ service }: { service: Service }) {
           {/* ══════════ CTA — full-bleed fleet photo ══════════ */}
           <div className="svl-cta-photo">
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={service.img} alt="" aria-hidden="true" />
+            <img src="/services/photos/dry-van-rain.webp" alt="" aria-hidden="true" />
             <div className="svl-cta-photo-inner">
               <h2>Ready to book a dry van?</h2>
               <p>Send the lane, the pallet count, and the pickup date. You&apos;ll have a firm rate and a trailer number back the same day.</p>

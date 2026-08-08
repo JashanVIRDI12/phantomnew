@@ -13,7 +13,7 @@ import "@/styles/hero.css";
 type Card = { src: string; tag: string; h: "t" | "m" | "s" };
 
 const COL_A: Card[] = [
-  { src: "/services/photos/dry-van-trucking.webp",      tag: "Dry Van",       h: "t" },
+  { src: "/services/photos/dry-van-highway.webp",      tag: "Dry Van",       h: "t" },
   { src: "/services/photos/warehousing.webp",  tag: "Warehousing",   h: "m" },
   { src: "/services/photos/long-haul-trucking.webp",    tag: "Long Haul",     h: "s" },
   { src: "/services/photos/hotshot-trucking.webp",      tag: "Hotshot",       h: "m" },

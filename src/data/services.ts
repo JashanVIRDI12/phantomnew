@@ -24,7 +24,7 @@ const baseServices = [
     tag: "DRY VAN · TRUCKING",
     title: "DRY VAN TRUCKING",
     copy: "Reliable and cost-effective transportation for general freight. Our dry van trailers protect your goods from weather and external conditions, ensuring safe and consistent delivery across every mile.",
-    img: "/services/photos/dry-van-trucking.webp",
+    img: "/services/photos/dry-van-highway.webp",
     longDescription:
       "Our dry van fleet is the backbone of North American logistics. Whether you're moving palletized goods, boxed freight, or consumer packaged products, we deliver with precision. Every trailer is GPS-tracked, professionally maintained, and operated by experienced company drivers who own the outcome.",
     benefits: [
