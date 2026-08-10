@@ -156,7 +156,7 @@ const baseServices = [
     tag: "SECURE STORAGE · STORAGE SOLUTIONS",
     title: "WAREHOUSING",
     copy: "Secure, structured, and scalable warehousing solutions. We provide short-term and long-term storage options with full inventory management, ensuring your goods are safe and ready for dispatch.",
-    img: "/services/photos/warehousing.webp",
+    img: "/services/photos/dry-van-dock.webp",
     longDescription:
       "Our strategically located distribution centers give you flexible storage + seamless last-mile execution. Real-time WMS, cycle counts, lot tracking, and value-added services (labeling, kitting, returns) all under one roof and one invoice.",
     benefits: [

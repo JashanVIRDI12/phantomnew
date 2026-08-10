@@ -59,7 +59,6 @@ const FLEET = [
   { src: "/services/photos/dry-van-trucking.webp", t: "Dry Van" },
   { src: "/services/photos/dedicated-fleet.webp", t: "Dedicated Fleet" },
   { src: "/services/photos/long-haul-trucking.webp", t: "Long Haul" },
-  { src: "/services/photos/warehousing.webp", t: "Warehousing" },
   { src: "/services/photos/expedited-trucking.webp", t: "Expedited" },
   { src: "/services/photos/ltl-trucking.webp", t: "LTL" },
   { src: "/services/photos/hotshot-trucking.webp", t: "Hotshot" },
