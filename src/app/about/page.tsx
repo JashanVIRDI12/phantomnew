@@ -57,7 +57,7 @@ const VALUES = [
 
 const FLEET = [
   { src: "/services/photos/dry-van-trucking.webp", t: "Dry Van" },
-  { src: "/services/photos/dedicated-fleet.webp", t: "Dedicated Fleet" },
+  { src: "/yard.webp", t: "Dedicated Fleet" },
   { src: "/services/photos/long-haul-trucking.webp", t: "Long Haul" },
   { src: "/services/photos/expedited-trucking.webp", t: "Expedited" },
   { src: "/services/photos/ltl-trucking.webp", t: "LTL" },

@@ -124,7 +124,7 @@ const baseServices = [
     tag: "PRIVATE ROSTER · EXCLUSIVE OPERATIONS",
     title: "DEDICATED FLEET",
     copy: "A dedicated fleet built around your business needs. You get consistent capacity, priority dispatch, and full control over how your freight moves every day.",
-    img: "/services/photos/dedicated-fleet.webp",
+    img: "/yard.webp",
     longDescription:
       "Treat our trucks like yours. We assign dedicated power units and drivers to your lanes, wrapped in your branding if desired. Same drivers, same dispatch team, same reliability — every single day. It's like having your own private fleet without the capital or headaches.",
     benefits: [

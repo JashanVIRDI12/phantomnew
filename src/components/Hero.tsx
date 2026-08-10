@@ -18,7 +18,7 @@ const COL_A: Card[] = [
   { src: "/services/photos/hotshot-trucking.webp",      tag: "Hotshot",       h: "m" },
 ];
 const COL_B: Card[] = [
-  { src: "/services/photos/dedicated-fleet.webp",  tag: "Dedicated Fleet", h: "m" },
+  { src: "/yard.webp",                      tag: "Dedicated Fleet", h: "m" },
   { src: "/hero-bg.webp",                   tag: "Linehaul",        h: "t" },
   { src: "/services/photos/freight-shipping.webp", tag: "Freight",         h: "m" },
 ];
