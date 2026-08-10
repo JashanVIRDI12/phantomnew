@@ -220,7 +220,7 @@ const baseServices = [
     tag: "COST EFFICIENT · PARTIAL LOAD",
     title: "LTL TRUCKING",
     copy: "Efficient Less-Than-Truckload shipping for freight that doesn't require a full trailer. Share the ride and save on costs while maintaining reliable delivery schedules.",
-    img: "/services/photos/ltl-trucking.webp",
+    img: "/dock.webp",
     longDescription:
       "LTL done right. We consolidate your partial loads with other compatible freight on optimized routes. You get competitive rates, reliable transit times, and the same Phantom reliability and visibility you expect from our FTL moves.",
     benefits: [

@@ -24,7 +24,7 @@ const COL_B: Card[] = [
 ];
 const COL_C: Card[] = [
   { src: "/services/photos/expedited-trucking.webp",    tag: "Expedited",   h: "s" },
-  { src: "/services/photos/ltl-trucking.webp",          tag: "LTL",         h: "m" },
+  { src: "/dock.webp",                                  tag: "LTL",         h: "m" },
   { src: "/services/photos/freight-forwarding.webp",   tag: "Forwarding",  h: "t" },
   { src: "/services/photos/freight-transportation.webp",tag: "Transport",   h: "m" },
 ];
